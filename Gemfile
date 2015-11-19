@@ -43,6 +43,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim', :require => 'slim-rails'
 gem 'slim-rails'
 
+# less(CSS)対応
+gem 'less-rails'
+
 
 #
 # css bootstrap

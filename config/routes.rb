@@ -24,5 +24,12 @@ Rails.application.routes.draw do
   match '/super/tag/edit',     :controller => 'super', :action => 'tag_edit',  :via => [:get, :post]
   match '/super/tag/delete',     :controller => 'super', :action => 'tag_delete',  :via => [:get, :post]
 
+  #管理ユーザー
+  match '/super/user/list',     :controller => 'super', :action => 'user_list', :via => [:get]
+  match '/super/user/add',     :controller => 'super', :action => 'user_add', :via => [:get]
+  match '/super/user/edit',     :controller => 'super', :action => 'user_edit', :via => [:get]
+  match '/super/user/delete',     :controller => 'super', :action => 'user_delete', :via => [:get]
+
+
 
 end
