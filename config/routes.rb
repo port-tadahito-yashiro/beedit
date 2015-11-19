@@ -1,56 +1,28 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # ログイン画面
+  root 'super#index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  # ダッシュボード
+  match '/super/dashboard',     :controller => 'super', :action => 'dashboard', :via => [:get]
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  #プロジェクト
+  match '/super/project/list',    :controller => 'super', :action => 'project_list',:via => [:get]
+  match '/super/project/add',    :controller => 'super', :action => 'project_add',:via => [:get, :post]
+  match '/super/project/edit',    :controller => 'super', :action => 'project_edit',:via => [:get, :post]
+  match '/super/project/delete',    :controller => 'super', :action => 'project_delete',:via => [:get, :post]
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  #企業
+  match '/super/company/list',    :controller => 'super', :action => 'company_list',:via => [:get]
+  match '/super/company/add',    :controller => 'super', :action => 'company_add',:via => [:get, :post]
+  match '/super/company/edit',    :controller => 'super', :action => 'company_edit',:via => [:get, :post]
+  match '/super/company/delete',    :controller => 'super', :action => 'company_delete',:via => [:get, :post]
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  #タグ
+  match '/super/tag/list',    :controller => 'super', :action => 'tag_list', :via => [:get]
+  match '/super/tag/add',     :controller => 'super', :action => 'tag_add',  :via => [:get, :post]
+  match '/super/tag/edit',     :controller => 'super', :action => 'tag_edit',  :via => [:get, :post]
+  match '/super/tag/delete',     :controller => 'super', :action => 'tag_delete',  :via => [:get, :post]
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end
