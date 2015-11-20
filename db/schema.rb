@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119115827) do
+ActiveRecord::Schema.define(version: 20151120074728) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(version: 20151119115827) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",      limit: 255
-    t.datetime "start_at"
-    t.datetime "finish_at"
-    t.string   "color",     limit: 255
+    t.string   "name",   limit: 255
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "color",  limit: 255
     t.boolean  "allDay"
   end
 

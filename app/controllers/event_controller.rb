@@ -1,3 +1,5 @@
+require 'date'
+
 class EventController < ApplicationController
 
   before_action :set_event, only: [:show, :edit, :update, :destroy]
@@ -25,15 +27,37 @@ class EventController < ApplicationController
  # POST /events
  # POST /events.json
  def create
-   @event = Event.new(event_params)
-   p @event
+   #data = Event.new
+   #data[:name] = event_params[:name]
+
+   #　受け取った値を数値にして変数へ
+   #start_time = event_params[:start].to_i
+   #finish_time = event_params[:end].to_i
+
+   # Time関数でDATETIMEで変換してdataに入れる
+   #data[:start_at] = Time.at(start_time)
+   #data[:finish_at] = Time.at(finish_time)
+   #data[:allDay] = event_params[:allDay]
+
+   data = Event.new
+
+   data[:name]  = params[:event][:name]
+   data[:start] = Time.at(params[:event][:start].to_i / 1000)
+   data[:end] = Time.at(params[:event][:end].to_i / 1000)
+
+   p "-----------"
+   p params[:event][:name]
+
+   @event = data
+   #@event = Event.new(event_params)
+
    respond_to do |format|
      if @event.save
        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-       format.json { render :show, status: :created, location: @event }
+       format.json { render :show, status: :created, location: @event and return}
      else
        format.html { render :new }
-       format.json { render json: @event.errors, status: :unprocessable_entity }
+       format.json { render json: @event.errors, status: :unprocessable_entity and return }
      end
    end
  end
@@ -70,7 +94,7 @@ class EventController < ApplicationController
 
    # Never trust parameters from the scary internet, only allow the white list through.
    def event_params
-     params.require(:event).permit(:name, :start_at, :finish_at, :color, :allDay)
+     params.require(:event).permit(:name, :start, :end, :color, :allDay)
    end
 
 end

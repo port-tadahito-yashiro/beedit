@@ -1,15 +1,16 @@
 $(document).ready(function() {
     var select = function(start, end, allDay) {
 
-      console.log('start:' + start);
-      console.log('end:' + end);
-      console.log('allDay:' + allDay);
         var basicDay = new Date();
         var title = window.prompt("title");
         var data = {event: {name: title,
-                            start_at: basicDay.setTime(start),
-                            finish_at: basicDay.setTime(end),
-                            allDay: allDay}};
+                            start: basicDay.setTime(start),
+                            end: basicDay.setTime(end),
+                            allDay: 1}};
+
+                            console.log('start:' + start);
+                            console.log('end:' + end);
+                            console.log('allDay:' + allDay);
         $.ajax({
             type: "POST",
             url: "/event",
