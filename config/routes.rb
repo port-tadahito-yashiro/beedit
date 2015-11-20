@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   # ダッシュボード
   match '/super/dashboard',     :controller => 'super', :action => 'dashboard', :via => [:get]
 
+  # イベント周り
+  #match '/events', :controller => 'events', :action => ''
+  resources :event
+
   #プロジェクト
   match '/super/project/list',    :controller => 'super', :action => 'project_list',:via => [:get]
   match '/super/project/add',    :controller => 'super', :action => 'project_add',:via => [:get, :post]
