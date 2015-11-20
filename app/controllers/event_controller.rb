@@ -50,16 +50,20 @@ class EventController < ApplicationController
 
    @event = data
    #@event = Event.new(event_params)
-
-   respond_to do |format|
-     if @event.save
-       format.html { redirect_to @event, notice: 'Event was successfully created.' }
-       format.json { render :show, status: :created, location: @event and return}
-     else
-       format.html { render :new }
-       format.json { render json: @event.errors, status: :unprocessable_entity and return }
-     end
-   end
+   @event.save
+   @viewData = Event.all
+   render :json => @viewData
+  # respond_to do |format|
+  #   if @event.save
+  #     format.html { redirect_to @event, notice: 'Event was successfully created.' }
+  #     @viewData = Event.all
+  #     #format.json { render :show, status: :created, location: @even and return}
+  #     format.json { render @viewData and return}
+  #   else
+  #     format.html { render :new }
+  #     format.json { render json: @event.errors, status: :unprocessable_entity and return }
+  #   end
+  # end
  end
 
  # PATCH/PUT /events/1

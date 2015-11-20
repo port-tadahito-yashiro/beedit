@@ -2,7 +2,7 @@ $(document).ready(function() {
     var select = function(start, end, allDay) {
 
         var basicDay = new Date();
-        var title = window.prompt("title");
+        var title = window.prompt("タイトルを入力してください");
         var data = {event: {name: title,
                             start: basicDay.setTime(start),
                             end: basicDay.setTime(end),
@@ -23,7 +23,16 @@ $(document).ready(function() {
     };
 
     var calendar = $('#calendar').fullCalendar({
-        events: '/event.json',
+        //カレンダーの形の種類
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,basicWeek,basicDay'
+        },
+        defaultView: 'basicWeek',
+        // イベントを表示する
+        events:
+        '/event.json',
         selectable: true,
         selectHelper: true,
         ignoreTimezone: false,
