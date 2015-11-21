@@ -28,44 +28,24 @@ class EventController < ApplicationController
  # POST /event.json
  def create
 
-   #データの保存
-   data = Event.new
-   data[:title]  = params[:event][:name]
-   data[:start] = Time.at(params[:event][:start].to_i / 1000)
-   data[:end] = Time.at(params[:event][:end].to_i / 1000)
-   event = data
-   #@event = Event.new(event_params)
-   event.save
-
-   hash = {}
-   hash[:events] = []
-   aaa = {}
-   view_data = {}
+   if request.post?
+     #データの保存
+     data = Event.new
+     data[:title]  = params[:event][:name]
+     data[:start] = Time.at(params[:event][:start].to_i / 1000)
+     data[:end] = Time.at(params[:event][:end].to_i / 1000)
+     data.save
+   end
+   view_data = []
    row_data = Event.all
-
-   row_data.each do |eve|
-    view_data[:id] = eve[:id]
-    view_data[:title] = eve[:title]
-    view_data[:start] = eve[:start]
-    view_data[:end] = eve[:end]
-    hash = view_data
+   Event.all.each do |item|
+     view_data.push(item)
    end
 
-     #hash[:events].push(view_data)
-  respond_to do |format|
-    format.json { render :json => hash }
-  end
-  # respond_to do |format|
-  #   if @event.save
-  #     format.html { redirect_to @event, notice: 'Event was successfully created.' }
-  #     @viewData = Event.all
-  #     #format.json { render :show, status: :created, location: @even and return}
-  #     format.json { render @viewData and return}
-  #   else
-  #     format.html { render :new }
-  #     format.json { render json: @event.errors, status: :unprocessable_entity and return }
-  #   end
-  # end
+   p "----------------------"
+   p view_data
+   p ">>>>>>>>>>>>>>>>>>"
+  render :json => ActiveSupport::JSON.encode(view_data)
  end
 
  # PATCH/PUT /events/1

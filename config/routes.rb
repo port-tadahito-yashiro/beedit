@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   # イベント周り
   #match '/events', :controller => 'events', :action => ''
-  resources :event
+  #resources :event
+
+  match '/super/events'   => 'event#create', :via => [:get, :post]
 
   #プロジェクト
   match '/super/project/list'                => 'super#project_list',:via => [:get]

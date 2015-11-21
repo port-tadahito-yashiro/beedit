@@ -11,10 +11,11 @@ $(document).ready(function() {
                             console.log('start:' + start);
                             console.log('end:' + end);
                             console.log('allDay:' + allDay);
+                            console.log('calendar:' + calendar);
 
         $.ajax({
             type: "POST",
-            url: "/event",
+            url: "/super/events",
             data: data,
             success: function() {
                 calendar.fullCalendar('refetchEvents');
@@ -33,10 +34,11 @@ $(document).ready(function() {
         // はじめに表示するカレンダーテーブルを指定
         defaultView: 'month',
         // イベントを表示する
-        eventSources: '/event.json',
+        events: '/super/events.json',
         selectable: true,
         selectHelper: true,
         ignoreTimezone: false,
         select: select
     });
+
 });
