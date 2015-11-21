@@ -24,35 +24,37 @@ class EventController < ApplicationController
  def edit
  end
 
- # POST /events
- # POST /events.json
+ # POST /event
+ # POST /event.json
  def create
-   #data = Event.new
-   #data[:name] = event_params[:name]
 
-   #　受け取った値を数値にして変数へ
-   #start_time = event_params[:start].to_i
-   #finish_time = event_params[:end].to_i
-
-   # Time関数でDATETIMEで変換してdataに入れる
-   #data[:start_at] = Time.at(start_time)
-   #data[:finish_at] = Time.at(finish_time)
-   #data[:allDay] = event_params[:allDay]
-
+   #データの保存
    data = Event.new
-
-   data[:name]  = params[:event][:name]
+   data[:title]  = params[:event][:name]
    data[:start] = Time.at(params[:event][:start].to_i / 1000)
    data[:end] = Time.at(params[:event][:end].to_i / 1000)
-
-   p "-----------"
-   p params[:event][:name]
-
-   @event = data
+   event = data
    #@event = Event.new(event_params)
-   @event.save
-   @viewData = Event.all
-   render :json => @viewData
+   event.save
+
+   hash = {}
+   hash[:events] = []
+   aaa = {}
+   view_data = {}
+   row_data = Event.all
+
+   row_data.each do |eve|
+    view_data[:id] = eve[:id]
+    view_data[:title] = eve[:title]
+    view_data[:start] = eve[:start]
+    view_data[:end] = eve[:end]
+    hash = view_data
+   end
+
+     #hash[:events].push(view_data)
+  respond_to do |format|
+    format.json { render :json => hash }
+  end
   # respond_to do |format|
   #   if @event.save
   #     format.html { redirect_to @event, notice: 'Event was successfully created.' }

@@ -11,6 +11,7 @@ $(document).ready(function() {
                             console.log('start:' + start);
                             console.log('end:' + end);
                             console.log('allDay:' + allDay);
+
         $.ajax({
             type: "POST",
             url: "/event",
@@ -29,10 +30,10 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,basicWeek,basicDay'
         },
-        defaultView: 'basicWeek',
+        // はじめに表示するカレンダーテーブルを指定
+        defaultView: 'month',
         // イベントを表示する
-        events:
-        '/event.json',
+        eventSources: '/event.json',
         selectable: true,
         selectHelper: true,
         ignoreTimezone: false,

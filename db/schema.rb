@@ -11,83 +11,83 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120074728) do
+ActiveRecord::Schema.define(version: 20151120163809) do
 
-  create_table "companies", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.text     "description",  limit: 65535
-    t.string   "password",     limit: 255
-    t.string   "email",        limit: 255
-    t.string   "salt",         limit: 255
-    t.datetime "created_at",                             null: false
-    t.integer  "created_time", limit: 4,                 null: false
-    t.integer  "created_user", limit: 4,     default: 1, null: false
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "password"
+    t.string   "email"
+    t.string   "salt"
+    t.datetime "created_at",               null: false
+    t.integer  "created_time",             null: false
+    t.integer  "created_user", default: 1, null: false
     t.datetime "deleted_at"
-    t.integer  "deleted_time", limit: 4
-    t.integer  "deleted_user", limit: 4
-    t.datetime "updated_at",                             null: false
-    t.integer  "updated_time", limit: 4,                 null: false
-    t.integer  "updated_user", limit: 4,     default: 1, null: false
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
+    t.datetime "updated_at",               null: false
+    t.integer  "updated_time",             null: false
+    t.integer  "updated_user", default: 1, null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string   "name",   limit: 255
+  create_table "events", force: true do |t|
+    t.string   "title"
     t.datetime "start"
     t.datetime "end"
-    t.string   "color",  limit: 255
+    t.string   "color"
     t.boolean  "allDay"
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.integer  "sales_user_id",   limit: 4,                 null: false
-    t.integer  "company_id",      limit: 4,                 null: false
-    t.string   "name",            limit: 255,               null: false
-    t.string   "url",             limit: 255,               null: false
-    t.integer  "page_type",       limit: 4,                 null: false
-    t.string   "title",           limit: 255
-    t.text     "description",     limit: 65535
-    t.text     "ogp_description", limit: 65535
+  create_table "projects", force: true do |t|
+    t.integer  "sales_user_id",               null: false
+    t.integer  "company_id",                  null: false
+    t.string   "name",                        null: false
+    t.string   "url",                         null: false
+    t.integer  "page_type",                   null: false
+    t.string   "title"
+    t.text     "description"
+    t.text     "ogp_description"
     t.datetime "start_at"
     t.datetime "finish_at"
-    t.datetime "created_at",                                null: false
-    t.integer  "created_time",    limit: 4,                 null: false
-    t.integer  "created_user",    limit: 4,     default: 1, null: false
+    t.datetime "created_at",                  null: false
+    t.integer  "created_time",                null: false
+    t.integer  "created_user",    default: 1, null: false
     t.datetime "deleted_at"
-    t.integer  "deleted_time",    limit: 4
-    t.integer  "deleted_user",    limit: 4
-    t.datetime "updated_at",                                null: false
-    t.integer  "updated_time",    limit: 4,                 null: false
-    t.integer  "updated_user",    limit: 4,     default: 1, null: false
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
+    t.datetime "updated_at",                  null: false
+    t.integer  "updated_time",                null: false
+    t.integer  "updated_user",    default: 1, null: false
   end
 
-  create_table "supers", force: :cascade do |t|
-    t.string   "name",         limit: 255,             null: false
-    t.string   "email",        limit: 255
-    t.string   "password",     limit: 255,             null: false
-    t.string   "salt",         limit: 255,             null: false
-    t.datetime "created_at",                           null: false
-    t.integer  "created_time", limit: 4,               null: false
-    t.integer  "created_user", limit: 4,   default: 1, null: false
+  create_table "supers", force: true do |t|
+    t.string   "name",                     null: false
+    t.string   "email"
+    t.string   "password",                 null: false
+    t.string   "salt",                     null: false
+    t.datetime "created_at",               null: false
+    t.integer  "created_time",             null: false
+    t.integer  "created_user", default: 1, null: false
     t.datetime "deleted_at"
-    t.integer  "deleted_time", limit: 4
-    t.integer  "deleted_user", limit: 4
-    t.datetime "updated_at",                           null: false
-    t.integer  "updated_time", limit: 4,               null: false
-    t.integer  "updated_user", limit: 4,   default: 1, null: false
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
+    t.datetime "updated_at",               null: false
+    t.integer  "updated_time",             null: false
+    t.integer  "updated_user", default: 1, null: false
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string   "name",         limit: 255,               null: false
-    t.text     "description",  limit: 65535,             null: false
-    t.datetime "created_at",                             null: false
-    t.integer  "created_time", limit: 4,                 null: false
-    t.integer  "created_user", limit: 4,     default: 1, null: false
+  create_table "tags", force: true do |t|
+    t.string   "name",                     null: false
+    t.text     "description",              null: false
+    t.datetime "created_at",               null: false
+    t.integer  "created_time",             null: false
+    t.integer  "created_user", default: 1, null: false
     t.datetime "deleted_at"
-    t.integer  "deleted_time", limit: 4
-    t.integer  "deleted_user", limit: 4
-    t.datetime "updated_at",                             null: false
-    t.integer  "updated_time", limit: 4,                 null: false
-    t.integer  "updated_user", limit: 4,     default: 1, null: false
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
+    t.datetime "updated_at",               null: false
+    t.integer  "updated_time",             null: false
+    t.integer  "updated_user", default: 1, null: false
   end
 
 end

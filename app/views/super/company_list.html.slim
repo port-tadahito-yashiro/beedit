@@ -1,0 +1,17 @@
+= render :partial => 'common/header'
+
+#wrapper
+  .company-list
+
+    = link_to 'ダッシュボードに戻る', url_for(:cotroller => 'super',:action => 'dashboard'),:class => 'btn btn-default'
+
+    table.table.table-hover
+      tr
+        td id
+        td 企業名
+        td メール
+      - @companies.each do |company|
+        tr
+          td = company.id
+          td = company.name
+          td = company.email

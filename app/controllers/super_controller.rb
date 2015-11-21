@@ -13,6 +13,7 @@ class SuperController < ApplicationController
   end
 
   def project_list
+    @projects = Project.all
   end
 
   def project_add
@@ -22,6 +23,15 @@ class SuperController < ApplicationController
   end
 
   def project_delete
+  end
+
+  def project_delete_list
+  end
+
+  def project_delete_restore
+  end
+
+  def project_graph
   end
 
   def company_list
