@@ -32,8 +32,8 @@ class EventController < ApplicationController
      #データの保存
      data = Event.new
      data[:title]  = params[:event][:name]
-     data[:start] = Time.at(params[:event][:start].to_i / 1000)
-     data[:end] = Time.at(params[:event][:end].to_i / 1000)
+     data[:start] = Time.at((params[:event][:start].to_i))
+     data[:end] = Time.at((params[:event][:end].to_i))
      data.save
    end
    view_data = []
