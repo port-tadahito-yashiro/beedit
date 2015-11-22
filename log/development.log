@@ -42224,3 +42224,260 @@ Processing by EventController#create as JSON
   Parameters: {"start"=>"2015-11-01", "end"=>"2015-12-13", "_"=>"1448167246527"}
   [1m[36mEvent Load (1.1ms)[0m  [1mSELECT `events`.* FROM `events`[0m
 Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/super/project/list" for 127.0.0.1 at 2015-11-22 13:43:51 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by SuperController#project_list as HTML
+  Rendered common/_header.html.slim (7.1ms)
+  [1m[35mProject Load (17.8ms)[0m  SELECT `projects`.* FROM `projects`
+  Rendered super/project_list.html.slim within layouts/application (60.8ms)
+Completed 200 OK in 876ms (Views: 844.2ms | ActiveRecord: 17.8ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.self-b0ab6d192dcf6651efcce0e30fa5a44acc732276501d89b264ca9ba9dd6bf6f5.css?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/event.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/super.self-d858cdb711a53a757cbcb81e810d0d99798f3ba59a9c552fd9c854c822ddfd0c.css?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/fullcalendar.self-65f7db174626acaa5bfa93e3a7d8675f38c107890cba1280bdedbb4414a91ba9.css?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/reset.self-2fa39472ab165fc39aca007d05fdf8f37609b0d35a61e4cd6c0abb70a06a373d.css?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/application.self-ec4b1af46e7feb011ceafe17bd2b8d442ed616e75d15cade4c79635d9118f3de.css?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/twitter/bootstrap/modal.self-a01f991a151e498eb0574397f16bc86935c184d0f8e2f27438e3ae1ce7e1dd96.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/jquery_ujs.self-82819b9f2de121124a614eeab50287468ad6f4b1ef4437925a7832ffbdf2cce9.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/twitter/bootstrap/transition.self-59708d952af2555cf994389e981c9adc2b4b48ebeb97fdec56e6b560cd21d4d6.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/twitter/bootstrap/alert.self-549e7b0fdca07fc77e1ba46965d0839ed9abc330424da4f634023590436a09b0.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/jquery.self-4c7649dd655c61cb850cfd2e71f937c3bbf3e3a752a3499ed8bb9884473fe1dd.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.self-8c9afa9a739af223093c639871a4abf52e04e586ea4e33647af412bea1537f5c.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:52 +0900
+
+
+Started GET "/assets/reset" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.self-b8c4afb1254273b520d3dd9090c575a9f1aa5268186ffcddd02bb0fee52376ab.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap/tab.self-fdbbb906fab4646e51f1d34b5c7cb16f4d9ecc9f228676ce84e415db1b4e80ea.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.self-1f4e592156d359bebbad73000f516b2481f5bfa3245fda995cf3359be1abd2e5.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap/popover.self-43f1dc7dd992dec25e5a7c7300c5dc90dd78326f043f110dc38a067da54b9255.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap/button.self-be29008be17aa3fe163dc7ab868a2f7c7a075a4c556f26e1bc657c30916a22ec.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap/collapse.self-7eb4b473179d5a3e44b8b7846de89811e6b55ef171c2c2e9eb8305cad605f249.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap/carousel.self-9884b04d3a55c4a2b2048ce31aa805ede1db6e45d2012bcee3f31886a713fb58.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap/affix.self-64bf7d03c92ff1121e0e3b6f962919740c93b90e178532c3019e2d0953a87d89.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/twitter/bootstrap.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/moment.self-c971da8733003f78cd8a2f8436a7c8bdda056e97411ab2c13f6dabec82c2828a.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/fullcalendar.self-eeac67cc38f6ca5c28a89eef0f1b6ae7403238300765ed2d701a541f5a47621a.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/bootstrap.self-fdc98dee79ee88255e10cac6caa91338165cb76cf0d263744d8d90011fc2ef8f.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/calendar.self-e2d721fe34b9b62a88bbc3bf802c58d032a59e21bae5949c22df8ef370bd013d.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/event.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/application.self-44dc72337fbefc4f8c73fc8781b922cf9e4f99f8d068e6563c3820851d9390f6.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/assets/super.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-22 13:43:53 +0900
+
+
+Started GET "/super/dashboard?cotroller=super" for 127.0.0.1 at 2015-11-22 13:44:54 +0900
+Processing by SuperController#dashboard as HTML
+  Parameters: {"cotroller"=>"super"}
+  Rendered common/_header.html.slim (14.4ms)
+  Rendered super/dashboard.html.slim within layouts/application (55.5ms)
+Completed 200 OK in 383ms (Views: 375.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/super/project/add" for 127.0.0.1 at 2015-11-22 13:44:59 +0900
+Processing by SuperController#project_add as HTML
+  Rendered common/_header.html.slim (0.6ms)
+  Rendered super/project_add.html.slim within layouts/application (26.1ms)
+Completed 200 OK in 176ms (Views: 175.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/super/project/list" for 127.0.0.1 at 2015-11-22 13:45:12 +0900
+Processing by SuperController#project_list as HTML
+  Rendered common/_header.html.slim (0.6ms)
+  [1m[36mProject Load (1.1ms)[0m  [1mSELECT `projects`.* FROM `projects`[0m
+  Rendered super/project_list.html.slim within layouts/application (12.3ms)
+Completed 200 OK in 216ms (Views: 213.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/super/project/list" for 127.0.0.1 at 2015-11-22 13:45:29 +0900
+Processing by SuperController#project_list as HTML
+  Rendered common/_header.html.slim (0.9ms)
+  [1m[35mProject Load (0.5ms)[0m  SELECT `projects`.* FROM `projects`
+  Rendered super/project_list.html.slim within layouts/application (4.5ms)
+Completed 200 OK in 342ms (Views: 340.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/super/project/add" for 127.0.0.1 at 2015-11-22 13:45:34 +0900
+Processing by SuperController#project_add as HTML
+  Rendered common/_header.html.slim (0.4ms)
+  Rendered super/project_add.html.slim within layouts/application (3.4ms)
+Completed 200 OK in 160ms (Views: 158.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/super/project/list" for 127.0.0.1 at 2015-11-22 13:45:38 +0900
+Processing by SuperController#project_list as HTML
+  Rendered common/_header.html.slim (0.4ms)
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT `projects`.* FROM `projects`[0m
+  Rendered super/project_list.html.slim within layouts/application (2.2ms)
+Completed 200 OK in 139ms (Views: 137.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/super/dashboard?cotroller=super" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+Processing by SuperController#dashboard as HTML
+  Parameters: {"cotroller"=>"super"}
+  Rendered common/_header.html.slim (0.4ms)
+  Rendered super/dashboard.html.slim within layouts/application (9.1ms)
+Completed 200 OK in 214ms (Views: 213.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.self-b0ab6d192dcf6651efcce0e30fa5a44acc732276501d89b264ca9ba9dd6bf6f5.css?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/super.self-d858cdb711a53a757cbcb81e810d0d99798f3ba59a9c552fd9c854c822ddfd0c.css?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/reset.self-2fa39472ab165fc39aca007d05fdf8f37609b0d35a61e4cd6c0abb70a06a373d.css?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/application.self-ec4b1af46e7feb011ceafe17bd2b8d442ed616e75d15cade4c79635d9118f3de.css?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/event.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/fullcalendar.self-65f7db174626acaa5bfa93e3a7d8675f38c107890cba1280bdedbb4414a91ba9.css?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/jquery.self-4c7649dd655c61cb850cfd2e71f937c3bbf3e3a752a3499ed8bb9884473fe1dd.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/jquery_ujs.self-82819b9f2de121124a614eeab50287468ad6f4b1ef4437925a7832ffbdf2cce9.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/transition.self-59708d952af2555cf994389e981c9adc2b4b48ebeb97fdec56e6b560cd21d4d6.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/alert.self-549e7b0fdca07fc77e1ba46965d0839ed9abc330424da4f634023590436a09b0.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/modal.self-a01f991a151e498eb0574397f16bc86935c184d0f8e2f27438e3ae1ce7e1dd96.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/reset" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.self-8c9afa9a739af223093c639871a4abf52e04e586ea4e33647af412bea1537f5c.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.self-b8c4afb1254273b520d3dd9090c575a9f1aa5268186ffcddd02bb0fee52376ab.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/tab.self-fdbbb906fab4646e51f1d34b5c7cb16f4d9ecc9f228676ce84e415db1b4e80ea.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.self-1f4e592156d359bebbad73000f516b2481f5bfa3245fda995cf3359be1abd2e5.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/popover.self-43f1dc7dd992dec25e5a7c7300c5dc90dd78326f043f110dc38a067da54b9255.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/button.self-be29008be17aa3fe163dc7ab868a2f7c7a075a4c556f26e1bc657c30916a22ec.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/collapse.self-7eb4b473179d5a3e44b8b7846de89811e6b55ef171c2c2e9eb8305cad605f249.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/carousel.self-9884b04d3a55c4a2b2048ce31aa805ede1db6e45d2012bcee3f31886a713fb58.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap/affix.self-64bf7d03c92ff1121e0e3b6f962919740c93b90e178532c3019e2d0953a87d89.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/twitter/bootstrap.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/moment.self-c971da8733003f78cd8a2f8436a7c8bdda056e97411ab2c13f6dabec82c2828a.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/fullcalendar.self-eeac67cc38f6ca5c28a89eef0f1b6ae7403238300765ed2d701a541f5a47621a.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/bootstrap.self-fdc98dee79ee88255e10cac6caa91338165cb76cf0d263744d8d90011fc2ef8f.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/calendar.self-e2d721fe34b9b62a88bbc3bf802c58d032a59e21bae5949c22df8ef370bd013d.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/event.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/super.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/assets/application.self-44dc72337fbefc4f8c73fc8781b922cf9e4f99f8d068e6563c3820851d9390f6.js?body=1" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+
+
+Started GET "/super/events.json?start=2015-11-01&end=2015-12-13&_=1448167545651" for 127.0.0.1 at 2015-11-22 13:45:45 +0900
+Processing by EventController#create as JSON
+  Parameters: {"start"=>"2015-11-01", "end"=>"2015-12-13", "_"=>"1448167545651"}
+  [1m[35mEvent Load (0.5ms)[0m  SELECT `events`.* FROM `events`
+Completed 200 OK in 112ms (Views: 0.4ms | ActiveRecord: 26.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateAdmins (20151122045831)
+  [1m[35m (329.1ms)[0m  CREATE TABLE `admins` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `password` varchar(255) NOT NULL, `salt` varchar(255) NOT NULL, `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (11.7ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151122045831')
+  [1m[36m (6.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`

@@ -1,0 +1,14 @@
+= render :partial => 'common/header'
+
+#wrapper
+  .login
+    = form_tag '', :method => 'post', :class => 'form-horizontal col-lg-11 clearfix', 'role' => 'form' do
+      .regend
+        'Beedit 管理画面'
+      .form-group
+        = label_tag :email, 'ID', {'class' => 'col-sm-2 control-label'}
+        = text_field_tag :email, '', {'placeholder' => 'IDを入力してください。', 'class' => 'form-control'}
+      .form-group
+        = label_tag :password, 'パスワード', {'class' => 'col-sm-2 control-label'}
+        = password_field_tag :password, '', {'placeholder' => 'パスワードを入力してください。', 'class' => 'form-control'}
+      = button_tag 'ログイン', :type => 'submit'

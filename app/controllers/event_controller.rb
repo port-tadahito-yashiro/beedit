@@ -37,14 +37,9 @@ class EventController < ApplicationController
      data.save
    end
    view_data = []
-   row_data = Event.all
    Event.all.each do |item|
      view_data.push(item)
    end
-
-   p "----------------------"
-   p view_data
-   p ">>>>>>>>>>>>>>>>>>"
   render :json => ActiveSupport::JSON.encode(view_data)
  end
 

@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120163809) do
+ActiveRecord::Schema.define(version: 20151122045831) do
+
+  create_table "admins", force: true do |t|
+    t.string   "name",                     null: false
+    t.string   "email",                    null: false
+    t.string   "password",                 null: false
+    t.string   "salt",                     null: false
+    t.datetime "created_at",               null: false
+    t.integer  "created_time",             null: false
+    t.integer  "created_user", default: 1, null: false
+    t.datetime "deleted_at"
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
+    t.datetime "updated_at",               null: false
+    t.integer  "updated_time",             null: false
+    t.integer  "updated_user", default: 1, null: false
+  end
 
   create_table "companies", force: true do |t|
     t.string   "name"
