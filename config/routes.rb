@@ -33,11 +33,11 @@ Rails.application.routes.draw do
   match '/super/tag/edit'                     => 'super#tag_edit',  :via => [:get, :post]
   match '/super/tag/delete'                   => 'super#tag_delete',  :via => [:get, :post]
 
-  #スーパー管理ユーザー
-  match '/super/user/list'                    => 'super#user_list', :via => [:get]
-  match '/super/user/add'                     => 'super#user_add', :via => [:get]
-  match '/super/user/edit'                    => 'super#user_edit', :via => [:get]
-  match '/super/user/delete'                  => 'super#user_delete', :via => [:get]
+  #管理ユーザー
+  match '/super/admin/list'                    => 'super#admin_list', :via => [:get]
+  match '/super/admin/add'                     => 'super#admin_add', :via => [:get,:post]
+  match '/super/admin/edit'                    => 'super#admin_edit', :via => [:get]
+  match '/super/admin/delete'                  => 'super#admin_delete', :via => [:get]
 
   #管理ユーザー
   #match '/super/admin/list'                   => 'admin#admin_list', :via => [:get]
