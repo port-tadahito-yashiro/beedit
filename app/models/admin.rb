@@ -21,7 +21,7 @@ class Admin < ActiveRecord::Base
  end
 
  def self.regist(name,email, password, password_confirm)
-    admin = self.new
+    admin = Admin.new
     if password == password_confirm and !password.blank?
       admin.name = name
       admin.email = email
@@ -37,8 +37,8 @@ class Admin < ActiveRecord::Base
   private
   #
   # self.crypt_password
-  # Author masaki.nagaishi
-  # Created 2015/02/13
+  # Author
+  # Created
   # パスワードを暗号化する
   def self.crypt_password(password, salt)
     Digest::SHA1.hexdigest(salt + password)
@@ -46,8 +46,8 @@ class Admin < ActiveRecord::Base
 
   #
   # self.new_salt
-  # Author masaki.nagaishi
-  # Created 2015/02/13
+  # Author
+  # Created
   # パスワード暗号化のためのsalt生成
   def self.new_salt
     s = rand.to_s.tr('+', '.')

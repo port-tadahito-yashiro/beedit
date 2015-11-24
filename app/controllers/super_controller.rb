@@ -48,9 +48,14 @@ class SuperController < ApplicationController
   end
 
   def company_list
+    @companies = Company.all
   end
 
   def company_add
+    if request.post? then
+      if Company.regist(params[:name],params[:description],params[:password],params[:email],params[:password_confirm]) then
+      end
+    end
   end
 
   def company_edit
@@ -60,6 +65,7 @@ class SuperController < ApplicationController
   end
 
   def admin_list
+    @admins = Admin.all
   end
 
   def admin_add

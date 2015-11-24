@@ -1,7 +1,9 @@
+= render :partial => 'common/header'
+
 #wrapper
   .admin-add
 
-    = link_to 'ダッシュボードに戻る', url_for(:cotroller => 'super',:action => 'dashboard'),:class => 'btn btn-default'
+    = link_to(ダッシュボードに戻る, '/super/dashboard',:class => 'btn btn-default')
 
     = form_tag '/super/admin/add', :class => 'form-horizontal col-lg-11 clearfix', :role => 'form'
 

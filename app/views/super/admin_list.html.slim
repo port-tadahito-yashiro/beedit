@@ -1,0 +1,18 @@
+= render :partial => 'common/header'
+
+#wrapper
+  .project-list
+
+  = link_to 'ダッシュボードに戻る', url_for(:cotroller => 'super',:action => 'dashboard'),:class => 'btn btn-default'
+
+
+  table.table.table-hover
+    tr
+      td ユーザーID
+      td ユーザー名
+      td ユーザーemail
+    - @admins.each do |admin|
+      tr
+        td = admin.id
+        td = admin.name
+        td = admin.email
