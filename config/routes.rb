@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   #resources :event
 
   match '/super/events'   => 'event#create', :via => [:get, :post]
+  match '/super/events/:id'   => 'event#update', :via => [:put, :post]
+
 
   #タスク管理
   match '/super/task/lsit'                   => 'super#task_list',:via => [:get]

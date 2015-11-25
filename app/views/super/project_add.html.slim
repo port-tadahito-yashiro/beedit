@@ -3,7 +3,7 @@
 #wrapper
   .project_add
 
-  = link_to 'ダッシュボードに戻る', url_for(:cotroller => 'super',:action => 'dashboard'),:class => 'btn btn-default'
+  = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
 
   = form_tag '', :class => 'form-horizontal col-lg-11', :role => 'form', :multipart => true
 

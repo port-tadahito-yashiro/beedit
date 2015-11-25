@@ -25,6 +25,29 @@ $(document).ready(function() {
         calendar.fullCalendar('unselect');
     };
 
+    var updateEvent = function(event, revertFunc) {
+    var basicDay = new Date();
+    var title = window.prompt("Edit title", event.title);
+    var url = "/super/events/" + event.id;
+    var data = {_method: 'PUT',
+            event: {name: title,
+                start: ((basicDay.setTime(event.start) / 1000) - 32400),
+                end: ((basicDay.setTime(event.end) / 1000) - 32400),
+                allDay: 1}};
+
+                console.log('aaaaaaa');
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function() {
+        calendar.fullCalendar("refetchEvents");
+        },
+        error: revertFunc
+    });
+    };
+
     var calendar = $('#calendar').fullCalendar({
         //カレンダーの形の種類
         header: {
@@ -106,7 +129,11 @@ $(document).ready(function() {
         selectable: true,
         selectHelper: true,
         ignoreTimezone: false,
-        select: select
+        editable: true,
+        select: select,
+        eventClick: updateEvent,
+        eventResize: updateEvent,
+        eventDrop: updateEvent
     });
 
 });

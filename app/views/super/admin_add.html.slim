@@ -3,7 +3,7 @@
 #wrapper
   .admin-add
 
-    = link_to(ダッシュボードに戻る, '/super/dashboard',:class => 'btn btn-default')
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
 
     = form_tag '/super/admin/add', :class => 'form-horizontal col-lg-11 clearfix', :role => 'form'
 

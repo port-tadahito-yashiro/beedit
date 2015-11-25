@@ -45,17 +45,33 @@ class EventController < ApplicationController
 
  # PATCH/PUT /events/1
  # PATCH/PUT /events/1.json
- def update
-   respond_to do |format|
-     if @event.update(event_params)
-       format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-       format.json { render :show, status: :ok, location: @event }
-     else
-       format.html { render :edit }
-       format.json { render json: @event.errors, status: :unprocessable_entity }
-     end
-   end
- end
+ #def update
+  # respond_to do |format|
+  #   if @event.update(event_params)
+  #     format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+  #     format.json { render :show, status: :ok, location: @event }
+  #   else
+  #     format.html { render :edit }
+  #     format.json { render json: @event.errors, status: :unprocessable_entity }
+  #   end
+   #end
+  def update
+    if request.put?
+      p '------------------'
+      data = Event.where(:id => params[:id]).last
+      p "-----data----"
+      p data
+      data[:title]  = params[:event][:name]
+      data[:start] = Time.at((params[:event][:start].to_i))
+      data[:end] = Time.at((params[:event][:end].to_i))
+      data.save
+    end
+    view_data = []
+    Event.all.each do |item|
+      view_data.push(item)
+    end
+   render :json => ActiveSupport::JSON.encode(view_data)
+  end
 
  # DELETE /events/1
  # DELETE /events/1.json
