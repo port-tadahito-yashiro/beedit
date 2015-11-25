@@ -54,6 +54,12 @@ gem 'fullcalendar-rails', '2.2.2.0'
 gem 'momentjs-rails', '2.8.3'
 
 #
+# カレンダーから情報入力を実装
+#
+#
+gem 'bootstrap3-datetimepicker-rails'
+
+#
 # gemを上手く動かすやつ！
 #
 #

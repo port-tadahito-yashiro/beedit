@@ -15,5 +15,12 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require moment
+//= require bootstrap-datetimepicker
 //= require fullcalendar
 //= require_tree .
+
+var data = {'data-date-format': 'YYYY-MM-DD hh:mm:ss' };
+$(function(){
+  $('.datepicker1').attr(data);
+  $('.datepicker1').datetimepicker();
+});

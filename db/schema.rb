@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122045831) do
+ActiveRecord::Schema.define(version: 20151125054206) do
 
   create_table "admins", force: true do |t|
     t.string   "name",                     null: false
@@ -95,6 +95,24 @@ ActiveRecord::Schema.define(version: 20151122045831) do
   create_table "tags", force: true do |t|
     t.string   "name",                     null: false
     t.text     "description",              null: false
+    t.datetime "created_at",               null: false
+    t.integer  "created_time",             null: false
+    t.integer  "created_user", default: 1, null: false
+    t.datetime "deleted_at"
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
+    t.datetime "updated_at",               null: false
+    t.integer  "updated_time",             null: false
+    t.integer  "updated_user", default: 1, null: false
+  end
+
+  create_table "tasks", force: true do |t|
+    t.integer  "admin_id"
+    t.string   "title"
+    t.text     "context"
+    t.integer  "state"
+    t.datetime "finish_at"
+    t.datetime "start_at"
     t.datetime "created_at",               null: false
     t.integer  "created_time",             null: false
     t.integer  "created_user", default: 1, null: false

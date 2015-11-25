@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   match '/super/events'   => 'event#create', :via => [:get, :post]
 
+  #タスク管理
+  match '/super/task/lsit'                   => 'super#task_list',:via => [:get]
+  match '/super/task/add'                   => 'super#task_add',:via => [:get,:post]
+  match '/super/task/edit'                   => 'super#task_edit',:via => [:get,:post]
+  match '/super/task/delete'                   => 'super#task_delete',:via => [:get,:post]
+
   #プロジェクト
   match '/super/project/list'                => 'super#project_list',:via => [:get]
   match '/super/project/add'                 => 'super#project_add',:via => [:get, :post]

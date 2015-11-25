@@ -54,10 +54,16 @@
       label.col-sm-2.control-label for="start_at"
         '開始時間'
         span.text-danger *
-      .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'start_at',:name => 'start_at', :placeholder => '開始時間'
+      .input-group.date.datepicker1
+        = text_field_tag('', '',  :class => 'form-control',:name => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+        span.input-group-addon
+          span.glyphicon.glyphicon-calendar
 
     .form-group
       label.col-sm-2.control-label for="finish_at"
         '終了時間'
         span.text-danger *
-      .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'finish_at',:name => 'finish_at', :placeholder => '終了時間'
+      .input-group.date.datepicker1
+        = text_field_tag('', '',  :class => 'form-control',:name => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+        span.input-group-addon
+          span.glyphicon.glyphicon-calendar

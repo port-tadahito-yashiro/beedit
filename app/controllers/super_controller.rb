@@ -81,6 +81,18 @@ class SuperController < ApplicationController
   def admin_delete
   end
 
+  def task_list
+  end
+
+  def task_add
+  end
+
+  def task_delete
+  end
+
+  def task_delete
+  end
+
 
 
   private
