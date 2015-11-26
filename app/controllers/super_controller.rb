@@ -1,3 +1,5 @@
+require 'time'
+
 class SuperController < ApplicationController
 
   #
@@ -30,6 +32,27 @@ class SuperController < ApplicationController
   end
 
   def project_add
+
+    if request.post? then
+      ActiveRecord::Base.transaction do
+        project_data = Project.new
+        project_data.sales_user_id = params[:sales].to_i
+        project_data.company_id = params[:company].to_i
+        project_data.name = params[:name]
+        project_data.url = params[:url]
+        project_data.page_type = 1
+        project_data.title = params[:title]
+        project_data.description = params[:description]
+        project_data.ogp_description = params[:ogp_description]
+        project_data.start_at = params[:start_at]
+        project_data.finish_at = params[:finish_at]
+        project_data.save
+
+        Event.create(:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
+
+      end
+    end
+
   end
 
   def project_edit

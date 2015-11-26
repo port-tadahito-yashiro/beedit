@@ -11,7 +11,7 @@
       label.col-sm-2.control-label for="sales"
         'セールス担当者'
         span.text-danger *
-      .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'sales',:name => 'sales', :placeholder => 'タイトル'
+      .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'sales',:name => 'sales', :placeholder => 'セールス'
 
 
     .form-group
@@ -54,7 +54,7 @@
       label.col-sm-2.control-label for="start_at"
         '開始時間'
         span.text-danger *
-      .input-group.date.datepicker1
+      .input-group.date.datepicker4
         = text_field_tag('', '',  :class => 'form-control',:name => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
         span.input-group-addon
           span.glyphicon.glyphicon-calendar
@@ -63,7 +63,10 @@
       label.col-sm-2.control-label for="finish_at"
         '終了時間'
         span.text-danger *
-      .input-group.date.datepicker1
+      .input-group.date.datepicker4
         = text_field_tag('', '',  :class => 'form-control',:name => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
         span.input-group-addon
           span.glyphicon.glyphicon-calendar
+
+    .form-group
+      = submit_tag '登録', :class => 'btn btn-primary'

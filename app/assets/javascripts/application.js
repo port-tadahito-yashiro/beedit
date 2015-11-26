@@ -19,8 +19,10 @@
 //= require fullcalendar
 //= require_tree .
 
-var data = {'data-date-format': 'YYYY-MM-DD hh:mm:ss' };
+//var data = {'data-date-format': 'YYYY-MM-DD hh:mm:ss' };
 $(function(){
-  $('.datepicker1').attr(data);
-  $('.datepicker1').datetimepicker();
+  //$('.datepicker4').attr(data);
+  $('.datepicker4').datetimepicker({
+    format : 'YYYY/MM/DD hh:mm:ss'
+  });
 });
