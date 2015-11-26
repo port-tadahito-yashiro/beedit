@@ -1,0 +1,44 @@
+= render :partial => 'common/header'
+
+#wrapper
+  .project_graph
+
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+
+    ul
+      li
+        .title デイリーPV
+        canvas#daily-graph
+      li
+        .title ウィークリーPV
+        canvas#weekly-graph
+      li
+        .title マンスリーPV
+        canvas#monthly-graph
+
+
+= javascript_include_tag 'Chart.min'
+javascript:
+  var lineChartData = {
+    labels : ["January","February","March","April","May","June","July"],
+    datasets : [
+      {
+        fillColor : "rgba(220,220,220,0.5)",
+        strokeColor : "rgba(220,220,220,1)",
+        pointColor : "rgba(220,220,220,1)",
+        pointStrokeColor : "#fff",
+        data : [65,59,90,81,56,55,40]
+      },
+      {
+        fillColor : "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,1)",
+        pointColor : "rgba(151,187,205,1)",
+        pointStrokeColor : "#fff",
+        data : [28,48,40,19,96,27,100]
+      }
+    ]
+  }
+
+  var myLine = new Chart(document.getElementById("daily-graph").getContext("2d")).Line(lineChartData);
+  var myLine = new Chart(document.getElementById("weekly-graph").getContext("2d")).Line(lineChartData);
+  var myLine = new Chart(document.getElementById("monthly-graph").getContext("2d")).Line(lineChartData);
