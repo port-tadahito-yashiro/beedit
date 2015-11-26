@@ -19,6 +19,8 @@ class SuperController < ApplicationController
   end
 
   def dashboard
+    now_time = DateTime.now
+    @events = Event.where(Event.arel_table[:start].lt(now_time).and(Event.arel_table[:end].gt(now_time))).all
   end
 
   def login

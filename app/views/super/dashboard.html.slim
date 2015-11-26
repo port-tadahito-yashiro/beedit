@@ -6,6 +6,19 @@
       .content1
         h1 制作案件カレンダー(仮)
       #calendar
+      h1 現在進行中のプロジェクト一覧
+      table.table.table-hover
+        tr
+          td id
+          td プロジェクト名
+          td 開始
+          td 終了
+          - @events.each do |event|
+            tr
+              td = event[:id]
+              td = event[:title]
+              td = event[:start]
+              td = event[:end]
 
     .col-lg-6
       .content2
