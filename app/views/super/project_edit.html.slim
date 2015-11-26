@@ -1,0 +1,72 @@
+= render :partial => 'common/header'
+
+#wrapper
+  .project_edit
+
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+
+    = form_tag '', :class => 'form-horizontal col-lg-11', :role => 'form', :multipart => true
+
+      .form-group
+        label.col-sm-2.control-label for="sales"
+          'セールス担当者'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', @project.sales_user_id, :class => 'form-control', :id => 'sales',:name => 'sales', :placeholder => 'セールス'
+
+
+      .form-group
+        label.col-sm-2.control-label for="company"
+          '企業情報'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', @project.company_id, :class => 'form-control', :id => 'company',:name => 'company', :placeholder => '企業名'
+
+      .form-group
+        label.col-sm-2.control-label for="name"
+          '名前'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', @project.name, :class => 'form-control', :id => 'name',:name => 'name', :placeholder => '名前'
+
+      .form-group
+        label.col-sm-2.control-label for="url"
+          'url'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', @project.url, :class => 'form-control', :id => 'url',:name => 'url', :placeholder => 'url'
+
+      .form-group
+        label.col-sm-2.control-label for="title"
+          'タイトル'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', @project.title, :class => 'form-control', :id => 'title',:name => 'title', :placeholder => 'タイトル'
+
+      .form-group
+        label.col-sm-2.control-label for="description"
+          'ディスクリプション'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', @project.description, :class => 'form-control', :id => 'description',:name => 'description', :placeholder => 'ディスクリプション'
+
+      .form-group
+        label.col-sm-2.control-label for="ogp_description"
+          'OGPディスクリプション'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', @project.ogp_description, :class => 'form-control', :id => 'ogp_description',:name => 'ogp_description', :placeholder => 'OGPディスクリプション'
+
+      .form-group
+        label.col-sm-2.control-label for="start_at"
+          '開始時間'
+          span.text-danger *
+        .input-group.date.datepicker4
+          = text_field_tag('', @project.start_at,  :class => 'form-control',:name => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+          span.input-group-addon
+            span.glyphicon.glyphicon-calendar
+
+      .form-group
+        label.col-sm-2.control-label for="finish_at"
+          '終了時間'
+          span.text-danger *
+        .input-group.date.datepicker4
+          = text_field_tag('', @project.finish_at,  :class => 'form-control',:name => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+          span.input-group-addon
+            span.glyphicon.glyphicon-calendar
+
+      .form-group
+        = submit_tag '登録', :class => 'btn btn-primary'

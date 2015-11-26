@@ -48,7 +48,7 @@ class SuperController < ApplicationController
         project_data.finish_at = params[:finish_at]
         project_data.save
 
-        Event.create(:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
+        Event.create(:project_id => project_data[:id] ,:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
 
       end
     end
@@ -56,6 +56,31 @@ class SuperController < ApplicationController
   end
 
   def project_edit
+
+    @project = Project.where(:id => params[:id]).first
+
+    if request.post? then
+      ActiveRecord::Base.transaction do
+        @project.sales_user_id = params[:sales].to_i
+        @project.company_id = params[:company].to_i
+        @project.name = params[:name]
+        @project.url = params[:url]
+        @project.page_type = 1
+        @project.title = params[:title]
+        @project.description = params[:description]
+        @project.ogp_description = params[:ogp_description]
+        @project.start_at = params[:start_at]
+        @project.finish_at = params[:finish_at]
+        @project.save
+
+        event_data       = Event.where(:project_id => params[:id]).first
+        event_data.title = params[:name]
+        event_data.start = params[:start_at]
+        event_data.end   = params[:finish_at]
+        event_data.save
+      end
+    end
+
   end
 
   def project_delete
