@@ -130,9 +130,18 @@ class SuperController < ApplicationController
   end
 
   def task_list
+    @tasks = Task.where(:finish_at => nil).all
   end
 
   def task_add
+    if request.post? then
+      task_data = Task.new
+      task_data.admin_id = params[:admin_id]
+      task_data.title = params[:title]
+      task_data.context = params[:context]
+      task_data.state = params[:state]
+      task_data.save
+    end
   end
 
   def task_delete
