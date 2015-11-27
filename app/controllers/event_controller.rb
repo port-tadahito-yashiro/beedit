@@ -31,9 +31,11 @@ class EventController < ApplicationController
    if request.post?
      #データの保存
      data = Event.new
-     data[:title]  = params[:event][:name]
-     data[:start] = Time.at((params[:event][:start].to_i))
-     data[:end] = Time.at((params[:event][:end].to_i))
+     data[:title] = params[:event][:name]
+     data[:start] = params[:event][:start]
+     data[:end] = params[:event][:end]
+     p "---------data.save------"
+     p data
      data.save
    end
    view_data = []

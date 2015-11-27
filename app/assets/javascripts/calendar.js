@@ -1,53 +1,105 @@
 $(document).ready(function() {
-    var select = function(start, end, allDay) {
+    select = function(start, end, allDay) {
+      calendar.fullCalendar('unselect');
 
-        var basicDay = new Date();
-        var title = window.prompt("タイトルを入力してください");
-        var data = {event: {name: title,
-                            start: ((basicDay.setTime(start)　/ 1000) - 32400),
-                            end: ((basicDay.setTime(end)　/ 1000) - 32400),
-                            allDay: 1}};
+      var basicDay = new Date();
+      $('#start').val(timestampToDatetime(((basicDay.setTime(start)　/ 1000) - 32400)));
+      $('#end').val(timestampToDatetime(((basicDay.setTime(end)　/ 1000) - 32400) ));
+      $('#calendarModal').modal();
 
-                            // 32400を引くのは日本時間に合わせるため
-                            console.log('start:' + (basicDay.setTime(start)　/ 1000) - 32400);
-                            console.log('end:' + (basicDay.setTime(end) / 1000) - 32400);
-                            console.log('allDay:' + allDay);
-                            console.log('calendar:' + calendar);
-
-        $.ajax({
-            type: "POST",
-            url: "/super/events",
-            data: data,
-            success: function() {
-                calendar.fullCalendar('refetchEvents');
-            }
+        //Cancel Click close form
+        $(document).on('click', '.close, .btnCancel', function(){
+          //$('#createEventModal').hide('fast');
+          $('#calendarModal').modal('hide');
+          document.getElementById("createEventForm").reset();
+          //calendar.fullCalendar('unselect');
+          calendar.fullCalendar('refetchEvents');
         });
-        calendar.fullCalendar('unselect');
+
+        //Submit event form click
+        $('#submitButton').on('click', function(e){
+          // We don't want this to act as a link so cancel the link action
+          e.preventDefault();
+          doSubmit();
+        });
+
+        function doSubmit(){
+          console.log("さぶみっとが行われた")
+          var title = $('#createEventForm #title').val();
+          var start = $('#createEventForm #start').val();
+          var end = $('#createEventForm #end').val();
+          console.log(start);
+          var data = {event: {name: title,
+                              start: start,
+                              end: end,
+                              allDay: 1}};
+          $.ajax({
+              type: "POST",
+              url: "/super/events",
+              data: data,
+              success: function(json) {
+                  console.log("ajax処理が行われた")
+                  document.getElementById("createEventForm").reset();
+
+                  $('#calendarModal').modal('hide');
+                  calendar.fullCalendar('refetchEvents');
+              }
+          });
+          calendar.fullCalendar('unselect');
+        };
     };
 
     var updateEvent = function(event, revertFunc) {
-    var basicDay = new Date();
-    var title = window.prompt("Edit title", event.title);
-    var url = "/super/events/" + event.id;
-    var data = {_method: 'PUT',
-            event: {name: title,
-                start: ((basicDay.setTime(event.start) / 1000) - 32400),
-                end: ((basicDay.setTime(event.end) / 1000) - 32400),
-                allDay: 1}};
 
-                console.log('aaaaaaa');
+      var basicDay = new Date();
 
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: data,
-        success: function() {
-        calendar.fullCalendar("refetchEvents");
-        },
-        error: revertFunc
-    });
+      $('#start').val(timestampToDatetime(((basicDay.setTime(start)　/ 1000) - 32400)));
+      $('#end').val(timestampToDatetime(((basicDay.setTime(end)　/ 1000) - 32400) ));
+      $('#calendarModal').modal();
+
+      $(document).on('click', '.close, .btnCancel', function(){
+        $('#calendarModal').modal('hide');
+        document.getElementById("createEventForm").reset();
+        calendar.fullCalendar('refetchEvents');
+      });
+
+      //Submit event form click
+      $('#submitButton').on('click', function(e){
+        // We don't want this to act as a link so cancel the link action
+        e.preventDefault();
+        doSubmit();
+      });
+
+      function doSubmit(){
+        console.log("さぶみっとが行われた")
+        var title = $('#createEventForm #title').val();
+        var start = $('#createEventForm #start').val();
+        var end = $('#createEventForm #end').val();
+        console.log(start);
+        var url = "/super/events/" + event.id;
+        var data = {_method: 'PUT',
+                event: {name: title,
+                    start: title,
+                    end: start,
+                    allDay: 1}};
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function(json) {
+                console.log("ajax処理が行われた")
+                document.getElementById("createEventForm").reset();
+
+                $('#calendarModal').modal('hide');
+                calendar.fullCalendar('refetchEvents');
+            },
+            error: revertFunc
+        });
+        calendar.fullCalendar('unselect');
+      };
     };
 
+    // デフォルトで読み込む部分　以下
     var calendar = $('#calendar').fullCalendar({
         //カレンダーの形の種類
         header: {
@@ -136,4 +188,16 @@ $(document).ready(function() {
         eventDrop: updateEvent
     });
 
+  function timestampToDatetime(timestamp){
+    console.log("タイムスタンプ変換が行われた")
+    var ts = timestamp;
+    var d = new Date( ts * 1000 );
+    var year  = d.getFullYear();
+    var month = d.getMonth() + 1;
+    var day  = d.getDate();
+    var hour = ( d.getHours()   < 10 ) ? '0' + d.getHours()   : d.getHours();
+    var min  = ( d.getMinutes() < 10 ) ? '0' + d.getMinutes() : d.getMinutes();
+    var sec   = ( d.getSeconds() < 10 ) ? '0' + d.getSeconds() : d.getSeconds();
+    return( year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec );
+  };
 });

@@ -6,6 +6,39 @@
       .content1
         h1 制作案件カレンダー(仮)
       #calendar
+
+      #calendarModal.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close data-dismiss="modal" type="button"
+                span aria-hidden="true"  ×
+                span.sr-only close
+              h4#modalTitle.modal-title
+
+            form#createEventForm.form-horizontal
+              .control-group
+                label.control-label for="inputEvent"  Event:
+                .controls
+                  input#title.form-control data-items="4" data-provide="typeahead" type="text"
+              .control-group
+                label.control-label for="inputUrl"  Start:
+                .controls
+                  input#start.form-control data-items="4" data-provide="typeahead" name="start" tyle=("margin: 0 auto;") type="text"
+              .control-group
+                label.control-label for="inputUrl"  End:
+                .controls
+                  input#end.form-control data-items="4" data-provide="typeahead" name="end" tyle=("margin: 0 auto;") type="text"
+              //.control-group
+                //label.control-label for="when"  Check for email alerts:
+                //.controls
+                  //input#emailalerts.emailalerts name="emailalerts" type="checkbox"
+            .modal-footer
+              button.btnCancel.btn.btn-primary aria-hidden="true" data-dismiss="modal"  Cancel
+              button#submitButton.btn.btn-primary type="submit"  Save
+
+
+
       h1 現在進行中のプロジェクト一覧
       table.table.table-hover
         tr
