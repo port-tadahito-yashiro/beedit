@@ -12,6 +12,10 @@
         .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'name', :name => 'name', :placeholder => '名前'
 
       .form-group
+        label.col-sm-2.control-label for="department" 部署
+        .col-sm-10 = select_tag '',options_from_collection_for_select(@departments, :id, :name),:name => 'department', :class => 'span2'
+
+      .form-group
         label.col-sm-2.control-label for="email" メールアドレス
         .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'email', :name => 'email', :placeholder => 'メールアドレス'
 

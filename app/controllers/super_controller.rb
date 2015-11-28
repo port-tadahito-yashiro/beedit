@@ -119,8 +119,11 @@ class SuperController < ApplicationController
   end
 
   def admin_add
+    @departments = Department.all
     if request.post? then
-      if Admin.regist(params[:name],params[:email],params[:password],params[:password_confirm]) then
+      p "-------"
+      p params[:department]
+      if Admin.regist(params[:name],params[:department],params[:email],params[:password],params[:password_confirm]) then
       end
     end
   end

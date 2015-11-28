@@ -2,6 +2,8 @@ require 'digest/sha1'
 
 class Admin < ActiveRecord::Base
 
+  has_one :department
+
   before_save do
 
   self.salt = Admin.new_salt
@@ -20,10 +22,11 @@ class Admin < ActiveRecord::Base
    self.updated_time = Time.now.to_i
  end
 
- def self.regist(name,email, password, password_confirm)
+ def self.regist(name,department,email,password,password_confirm)
     admin = Admin.new
     if password == password_confirm and !password.blank?
       admin.name = name
+      admin.department_id = department.to_i
       admin.email = email
       admin.password = password
       if admin.save then

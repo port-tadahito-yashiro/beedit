@@ -11,13 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128135156) do
+ActiveRecord::Schema.define(version: 20151128145620) do
 
   create_table "admins", force: true do |t|
-    t.string   "name",                     null: false
-    t.string   "email",                    null: false
-    t.string   "password",                 null: false
-    t.string   "salt",                     null: false
+    t.integer  "department_id",             null: false
+    t.string   "name",                      null: false
+    t.string   "email",                     null: false
+    t.string   "password",                  null: false
+    t.string   "salt",                      null: false
+    t.datetime "created_at",                null: false
+    t.integer  "created_time",              null: false
+    t.integer  "created_user",  default: 1, null: false
+    t.datetime "deleted_at"
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
+    t.datetime "updated_at",                null: false
+    t.integer  "updated_time",              null: false
+    t.integer  "updated_user",  default: 1, null: false
+  end
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "password"
+    t.string   "email"
+    t.string   "salt"
     t.datetime "created_at",               null: false
     t.integer  "created_time",             null: false
     t.integer  "created_user", default: 1, null: false
@@ -29,12 +47,9 @@ ActiveRecord::Schema.define(version: 20151128135156) do
     t.integer  "updated_user", default: 1, null: false
   end
 
-  create_table "companies", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "password"
-    t.string   "email"
-    t.string   "salt"
+  create_table "departments", force: true do |t|
+    t.string   "name",                     null: false
+    t.text     "description",              null: false
     t.datetime "created_at",               null: false
     t.integer  "created_time",             null: false
     t.integer  "created_user", default: 1, null: false

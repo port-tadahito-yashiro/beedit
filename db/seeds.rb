@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+def self.department
+  Department.connection.execute('TRUNCATE TABLE departments;')
+  Department.create(:id => 1,:name => '営業部',:description => 'テスト1',:created_at => Time.now, :created_time => Time.now.to_i, :created_user => 1, :updated_at => Time.now, :updated_time => Time.now.to_i, :updated_user => 1)
+  Department.create(:id => 2,:name => 'オペレーション部',:description => 'テスト2',:created_at => Time.now, :created_time => Time.now.to_i, :created_user => 1, :updated_at => Time.now, :updated_time => Time.now.to_i, :updated_user => 1)
+  Department.create(:id => 3,:name => '事業開発部',:description => 'テスト3',:created_at => Time.now, :created_time => Time.now.to_i, :created_user => 1, :updated_at => Time.now, :updated_time => Time.now.to_i, :updated_user => 1)
+  Department.create(:id => 4,:name => 'Web開発事業部',:description => 'テスト4',:created_at => Time.now, :created_time => Time.now.to_i, :created_user => 1, :updated_at => Time.now, :updated_time => Time.now.to_i, :updated_user => 1)
+  Department.create(:id => 5,:name => '総務・会計部',:description => 'テスト5',:created_at => Time.now, :created_time => Time.now.to_i, :created_user => 1, :updated_at => Time.now, :updated_time => Time.now.to_i, :updated_user => 1)
+end
