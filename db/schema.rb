@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126043311) do
+ActiveRecord::Schema.define(version: 20151128135156) do
 
   create_table "admins", force: true do |t|
     t.string   "name",                     null: false
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 20151126043311) do
     t.datetime "end"
     t.string   "color"
     t.boolean  "allDay"
+    t.datetime "deleted_at"
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
   end
 
   create_table "projects", force: true do |t|

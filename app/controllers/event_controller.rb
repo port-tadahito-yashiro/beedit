@@ -7,7 +7,7 @@ class EventController < ApplicationController
  # GET /events
  # GET /events.json
  def index
-   @events = Event.all
+   @events = Event.where(:deleted_at => nil).all
  end
 
  # GET /events/1
@@ -39,7 +39,7 @@ class EventController < ApplicationController
      data.save
    end
    view_data = []
-   Event.all.each do |item|
+   Event.where(:deleted_at => nil).all.each do |item|
      view_data.push(item)
    end
   render :json => ActiveSupport::JSON.encode(view_data)
@@ -69,21 +69,29 @@ class EventController < ApplicationController
       data.save
     end
     view_data = []
-    Event.all.each do |item|
+    Event.where(:deleted_at => nil).all.each do |item|
       view_data.push(item)
     end
    render :json => ActiveSupport::JSON.encode(view_data)
   end
 
- # DELETE /events/1
- # DELETE /events/1.json
- def destroy
-   @event.destroy
-   respond_to do |format|
-     format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-     format.json { head :no_content }
-   end
- end
+  # DELETE /events/1
+  # DELETE /events/1.json
+  def delete
+    if request.post?
+      p "-------デリート処理--------"
+      data = Event.where(:id => params[:id]).last
+      data[:deleted_at] = Time.now
+      data[:deleted_time] = Time.now.to_i
+      data[:deleted_user] = 1
+      data.save
+    end
+    view_data = []
+    Event.where(:deleted_at => nil).all.each do |item|
+      view_data.push(item)
+    end
+   render :json => ActiveSupport::JSON.encode(view_data)
+  end
 
  private
    # Use callbacks to share common setup or constraints between actions.

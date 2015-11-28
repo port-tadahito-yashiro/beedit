@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   match '/super/events'   => 'event#create', :via => [:get, :post]
   match '/super/events/:id'   => 'event#update', :via => [:put, :post]
+  match '/super/events/delete/:id'   => 'event#delete', :via => [:get, :post]
 
 
   #タスク管理
