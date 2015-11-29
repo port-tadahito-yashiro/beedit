@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   #管理ユーザー
   match '/super/admin/list'                    => 'super#admin_list', :via => [:get]
   match '/super/admin/add'                     => 'super#admin_add', :via => [:get,:post]
-  match '/super/admin/edit'                    => 'super#admin_edit', :via => [:get]
+  match '/super/admin/edit/:id'                => 'super#admin_edit', :via => [:get,:post]
   match '/super/admin/delete'                  => 'super#admin_delete', :via => [:get]
 
   #管理ユーザー

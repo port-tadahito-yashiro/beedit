@@ -35,6 +35,9 @@ class SuperController < ApplicationController
 
   def project_add
 
+    @saleses = Admin.where(:department_id => 1).all
+    @companies = Company.all
+
     if request.post? then
       ActiveRecord::Base.transaction do
         project_data = Project.new
@@ -123,12 +126,20 @@ class SuperController < ApplicationController
     if request.post? then
       p "-------"
       p params[:department]
-      if Admin.regist(params[:name],params[:department],params[:email],params[:password],params[:password_confirm]) then
+      if Admin.regist(params[:department],params[:name],params[:email],params[:password],params[:password_confirm]) then
       end
     end
   end
 
   def admin_edit
+    @admin = Admin.where(:id => params[:id]).first
+    @departments = Department.all
+    if request.post?
+      if Admin.updated(params[:id],params[:department],params[:name],params[:email],params[:password],params[:password_confirm]) then
+        p "リダイレクト"
+        redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
+      end
+    end
   end
 
   def admin_delete

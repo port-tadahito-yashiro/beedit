@@ -11,14 +11,16 @@
         label.col-sm-2.control-label for="sales"
           'セールス担当者'
           span.text-danger *
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'sales',:name => 'sales', :placeholder => 'セールス'
+        //.col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'sales',:name => 'sales', :placeholder => 'セールス'
+        .col-sm-10 = select_tag '',options_from_collection_for_select(@saleses, :id, :name),:name => 'sales', :class => 'span3'
 
 
       .form-group
         label.col-sm-2.control-label for="company"
           '企業情報'
           span.text-danger *
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'company',:name => 'company', :placeholder => '企業名'
+        //.col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'company',:name => 'company', :placeholder => '企業名'
+        .col-sm-10 = select_tag '',options_from_collection_for_select(@companies, :id, :name),:name => 'company', :class => 'span3'
 
       .form-group
         label.col-sm-2.control-label for="name"

@@ -6,23 +6,25 @@ class Admin < ActiveRecord::Base
 
   before_save do
 
-  self.salt = Admin.new_salt
-  self.password = Admin.crypt_password(self.password, self.salt)
+   self.salt = Admin.new_salt
+   self.password = Admin.crypt_password(self.password, self.salt)
 
-   self.created_at = Time.now
-   self.created_time = Time.now.to_i
-   self.created_user = 1
-   self.updated_at = Time.now
-   self.updated_time = Time.now.to_i
-   self.updated_user = 1
- end
+    self.created_at = Time.now
+    self.created_time = Time.now.to_i
+    self.created_user = 1
+    self.updated_at = Time.now
+    self.updated_time = Time.now.to_i
+    self.updated_user = 1
+  end
 
- before_update do
-   self.updated_at = Time.now
-   self.updated_time = Time.now.to_i
- end
+  before_update do
+    self.salt = Admin.new_salt
+    self.password = Admin.crypt_password(self.password, self.salt)
+    self.updated_at = Time.now
+    self.updated_time = Time.now.to_i
+  end
 
- def self.regist(name,department,email,password,password_confirm)
+  def self.regist(department,name,email,password,password_confirm)
     admin = Admin.new
     if password == password_confirm and !password.blank?
       admin.name = name
@@ -35,7 +37,23 @@ class Admin < ActiveRecord::Base
       return false
     end
    return false
- end
+  end
+
+  def self.updated(admin_id,department,name,email,password,password_confirm)
+    admin = Admin.where(:id => admin_id).first
+
+    if password == password_confirm and !password.blank?
+      admin.name = name
+      admin.department_id = department.to_i
+      admin.email = email
+      admin.password = password
+      if admin.save then
+        return true
+      end
+      return false
+    end
+    return false
+  end
 
   private
   #

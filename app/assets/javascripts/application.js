@@ -27,4 +27,17 @@ $(function(){
   $('.datepicker4').datetimepicker({
     format : 'YYYY/MM/DD hh:mm:ss'
   });
+
+
+  //Submit event form click
+  $(document).on('click','#deleteAdmin', function(){
+    var adminId = $('#deleteAdmin').attr("foo");
+
+    console.log(adminId);
+  });
+
+
 });
+
+
+// デリート処理
