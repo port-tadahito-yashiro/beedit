@@ -41,21 +41,21 @@ class SuperController < ApplicationController
 
     if request.post? then
       ActiveRecord::Base.transaction do
-        project_data = Project.new
-        project_data.sales_user_id = params[:sales].to_i
-        project_data.company_id = params[:company].to_i
-        project_data.name = params[:name]
-        project_data.url = params[:url]
-        project_data.page_type = 1
-        project_data.title = params[:title]
-        project_data.description = params[:description]
-        project_data.ogp_description = params[:ogp_description]
-        project_data.start_at = params[:start_at]
-        project_data.finish_at = params[:finish_at]
-        project_data.save
-
-        Event.create(:project_id => project_data[:id] ,:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
-
+        @project_data = Project.new
+        @project_data.sales_user_id = params[:sales].to_i
+        @project_data.company_id = params[:company].to_i
+        @project_data.name = params[:name]
+        @project_data.url = params[:url]
+        @project_data.page_type = 1
+        @project_data.title = params[:title]
+        @project_data.description = params[:description]
+        @project_data.ogp_description = params[:ogp_description]
+        @project_data.start_at = params[:start_at]
+        @project_data.finish_at = params[:finish_at]
+        if @project_data.save then
+          notify_to_slack_project
+        end
+        Event.create(:project_id => @project_data[:id] ,:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
       end
     end
 
@@ -155,13 +155,15 @@ class SuperController < ApplicationController
     @Admins = Admin.all
 
     if request.post? then
-      task_data = Task.new
-      task_data.admin_id = params[:admin_id]
-      task_data.title = params[:title]
-      task_data.context = params[:context]
-      task_data.state = params[:state]
-      task_data.save
-      notify_to_slack
+      @task_data = Task.new
+      @task_data.admin_id = params[:admin_id]
+      @task_data.title = params[:title]
+      @task_data.context = params[:context]
+      @task_data.state = params[:state]
+      if @task_data.save then
+        p @task_data
+        notify_to_slack_task
+      end
     end
   end
 
@@ -176,22 +178,50 @@ class SuperController < ApplicationController
   private
 
   #
-  # slackメッセージ
+  # slackメッセージ(task)
   # Author kazuki.yamaguchi
   #
   #
-  def notify_to_slack
+  def notify_to_slack_task
     text = <<-EOC
     -----------------------------
 
+    新しくタスクが追加されました。
 
-    ▼メールアドレス
-    test
+    ▼タスクタイトル
+    #{@task_data.title}
     ▼内容
-    test
-        EOC
+    #{@task_data.context}
 
-        Slack.chat_postMessage text: text, username: "Opinion Notifier", channel: "#general"
+
+    EOC
+
+    Slack.chat_postMessage text: text, username: "Opinion Notifier", channel: "#general"
+  end
+
+  def notify_to_slack_project
+    text = <<-EOC
+    -----------------------------
+
+    新規でプロジェクトが建てられました、
+    確認してください。
+
+    ▼プロジェクト名
+    #{@project_data.name}
+
+    ▼プロジェクトのタイトル
+    #{@project_data.title}
+
+    ▼プロジェクトdescription
+    #{@project_data.description}
+
+    ▼プロジェクトのURL
+    #{@project_data.url}
+
+
+    EOC
+
+    Slack.chat_postMessage text: text, username: "Opinion Notifier", channel: "#general"
   end
 
   #
