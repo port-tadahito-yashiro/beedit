@@ -9,7 +9,8 @@
 
       .form-group
         label.col-sm-2.control-label for="admin_id" admin_id
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'admin_id', :name => 'admin_id', :placeholder => 'タスクユーザー'
+        //.col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'admin_id', :name => 'admin_id', :placeholder => 'タスクユーザー'
+        .col-sm-10 = select_tag '',options_from_collection_for_select(@Admins, :id, :name),:name => 'admin_id', :class => 'span3'
 
       .form-group
         label.col-sm-2.control-label for="title" タイトル

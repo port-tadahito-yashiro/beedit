@@ -1,4 +1,10 @@
-class Department
+class TaskInitData
+
+
+  def self.init_all
+    # bundle exec rails runner TaskInitData::init_all 実行
+    self.department
+  end
 
   #rails runner Department::department　実行
   def self.department

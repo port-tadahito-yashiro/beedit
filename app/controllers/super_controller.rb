@@ -20,7 +20,8 @@ class SuperController < ApplicationController
 
   def dashboard
     now_time = DateTime.now
-    @events = Event.where(Event.arel_table[:start].lt(now_time).and(Event.arel_table[:end].gt(now_time)).and(:deleted_at => nil)).all
+    @events = Event.where(Event.arel_table[:start].lt(now_time).and(Event.arel_table[:end].gt(now_time)).and(Event.arel_table[:deleted_at].eq(nil))).all
+    p @events
   end
 
   def login
@@ -150,6 +151,9 @@ class SuperController < ApplicationController
   end
 
   def task_add
+
+    @Admins = Admin.all
+
     if request.post? then
       task_data = Task.new
       task_data.admin_id = params[:admin_id]
