@@ -59,39 +59,39 @@
         h1.btn-port  タスク管理
         ul
           li.btn-default
-            = link_to '一覧',{:controller => 'super',:action => 'task_list'}
+            = link_to '一覧',{:controller => 'task',:action => 'list'}
           li.btn-default
-            = link_to '新規作成',{:controller => 'super',:action => 'task_add'}
+            = link_to '新規作成',{:controller => 'task',:action => 'add'}
           li.btn-default
-            = link_to '編集',{:controller => 'super',:action => 'task_list'}
+            = link_to '編集',{:controller => 'task',:action => 'list'}
           li.btn-default
-            = link_to '削除',{:controller => 'super',:action => 'task_list'}
+            = link_to '削除',{:controller => 'task',:action => 'list'}
 
         h1.btn-port  プロジェクト管理
         ul
           li.btn-default
-            = link_to '一覧',{:controller => 'super',:action => 'project_list'}
+            = link_to '一覧',{:controller => 'project',:action => 'list'}
           li.btn-default
-            = link_to '新規作成',{:controller => 'super',:action => 'project_add'}
+            = link_to '新規作成',{:controller => 'project',:action => 'add'}
           li.btn-default
-            = link_to '編集',{:controller => 'super',:action => 'project_list'}
+            = link_to '編集',{:controller => 'project',:action => 'list'}
           li.btn-default
-            = link_to '削除',{:controller => 'super',:action => 'project_list'}
+            = link_to '削除',{:controller => 'project',:action => 'list'}
 
         h1.btn-port  企業管理
         ul
           li.btn-default
-            = link_to '一覧',{:controller => 'super',:action => 'company_list'}
+            = link_to '一覧',{:controller => 'company',:action => 'list'}
           li.btn-default
-            = link_to '新規作成',{:controller => 'super',:action => 'company_add'}
+            = link_to '新規作成',{:controller => 'company',:action => 'add'}
           li.btn-default
-            = link_to '編集',{:controller => 'super',:action => 'company_edit'}
+            = link_to '編集',{:controller => 'company',:action => 'edit'}
           li.btn-default
-            = link_to '削除',{:controller => 'super',:action => 'company_delete'}
+            = link_to '削除',{:controller => 'company',:action => 'delete'}
 
         h1.btn-port  ユーザー管理
         ul
           li.btn-default
-            = link_to '一覧',{:controller => 'super',:action => 'admin_list'}
+            = link_to '一覧',{:controller => 'admin',:action => 'list'}
           li.btn-default
-            = link_to '新規作成',{:controller => 'super',:action => 'admin_add'}
+            = link_to '新規作成',{:controller => 'admin',:action => 'add'}

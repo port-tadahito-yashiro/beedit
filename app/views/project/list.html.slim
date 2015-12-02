@@ -1,0 +1,22 @@
+= render :partial => 'common/header'
+
+#wrapper
+  .project-list
+
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+
+
+    table.table.table-hover.col-lg-4
+      tr
+        td id
+        td タイトル
+        td グラフ / プレビュー / 編集 / 削除
+      - @projects.each do |project|
+        tr
+          td = project.id
+          td = project.title
+          td
+            = link_to 'グラフ',url_for(:controller => 'super', :action => 'project_graph', :id => project[:id]), :class => 'btn btn-primary'
+            = link_to 'プレビュー',url_for(:controller => 'super', :action => 'dashboard'), :class => 'btn btn-success'
+            = link_to '編集',url_for(:controller => 'super', :action => 'project_edit', :id => project[:id]), :class => 'btn btn-info'
+            = link_to '削除',url_for(:controller => 'super', :action => 'project_delete', :id => project[:id]), :class => 'btn btn-danger'
