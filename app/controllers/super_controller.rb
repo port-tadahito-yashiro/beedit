@@ -161,6 +161,7 @@ class SuperController < ApplicationController
       task_data.context = params[:context]
       task_data.state = params[:state]
       task_data.save
+      notify_to_slack
     end
   end
 
@@ -173,6 +174,25 @@ class SuperController < ApplicationController
 
 
   private
+
+  #
+  # slackメッセージ
+  # Author kazuki.yamaguchi
+  #
+  #
+  def notify_to_slack
+    text = <<-EOC
+    -----------------------------
+
+
+    ▼メールアドレス
+    test
+    ▼内容
+    test
+        EOC
+
+        Slack.chat_postMessage text: text, username: "Opinion Notifier", channel: "#general"
+  end
 
   #
   # authenticatedSuperId

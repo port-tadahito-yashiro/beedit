@@ -35,6 +35,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 #
+# slackとRailsを連携
+# Author:: kazuki.yamaguchi
+# Create:: 2015/12/02
+# Copyright:: Copyright 2015 POT INC.
+#
+gem 'slack-api'
+
+
+#
 # viewテンプレート
 # Author:: kazuki.yamaguchi
 # Create:: 2014/11/19
