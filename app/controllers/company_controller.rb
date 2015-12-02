@@ -12,6 +12,7 @@ class CompanyController < ApplicationController
   end
 
   def edit
+    @projects = Project.where(:company_id => params[:id]).all
   end
 
   def delete

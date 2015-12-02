@@ -1,10 +1,10 @@
 class AdminController < ApplicationController
 
-  def admin_list
+  def list
     @admins = Admin.all
   end
 
-  def admin_add
+  def add
     @departments = Department.all
     if request.post? then
       p "-------"
@@ -14,7 +14,7 @@ class AdminController < ApplicationController
     end
   end
 
-  def admin_edit
+  def edit
     @admin = Admin.where(:id => params[:id]).first
     @departments = Department.all
     if request.post?
@@ -25,7 +25,7 @@ class AdminController < ApplicationController
     end
   end
 
-  def admin_delete
+  def delete
   end
 
 end
