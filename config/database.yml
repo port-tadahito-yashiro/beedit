@@ -52,3 +52,18 @@ production:
   database: beedit_production
   username: beedit
   password: <%= ENV['BEEDIT_DATABASE_PASSWORD'] %>
+
+
+#
+#
+#
+
+beedit_api:
+  adapter: mysql2
+  encoding: utf8
+  database: beedit_api
+  pool: 5
+  username: root
+  password: sriasia
+  host: localhost
+  socket: /tmp/mysql.sock

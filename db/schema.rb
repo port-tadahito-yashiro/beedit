@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203020341) do
+ActiveRecord::Schema.define(version: 20151203055645) do
 
   create_table "admins", force: true do |t|
     t.integer  "department_id",             null: false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20151203020341) do
     t.integer  "sales_user_id",               null: false
     t.integer  "company_id",                  null: false
     t.string   "name",                        null: false
+    t.string   "table_name"
     t.string   "url",                         null: false
     t.integer  "page_type",                   null: false
     t.string   "title"

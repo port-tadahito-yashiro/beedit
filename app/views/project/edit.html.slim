@@ -21,6 +21,12 @@
         .col-sm-10 = text_field_tag '', @project.company_id, :class => 'form-control', :id => 'company',:name => 'company', :placeholder => '企業名'
 
       .form-group
+        label.col-sm-2.control-label for="table_name"
+          'テーブル名'
+          span.text-danger * テーブル名
+        .col-sm-10 = text_field_tag '', @project.table_name, :class => 'form-control', :id => 'table_name',:name => 'table_name', :placeholder => '企業名_プロジェクト名'
+
+      .form-group
         label.col-sm-2.control-label for="name"
           '名前'
           span.text-danger *

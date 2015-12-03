@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   match '/super/project/delete/list'         => 'project#delete_list',:via => [:get, :post]
   match '/super/project/delete/restore/:id'  => 'project#delete_restore',:via => [:get, :post]
   match '/super/project/graph/:id'           => 'project#graph',:via => [:get]
+  match '/super/project/user/:id'            => 'project#user',:via => [:get,:post]
 
   #企業
   match '/super/company/list'                => 'company#list',:via => [:get]

@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require Chart.min.js
 //= require twitter/bootstrap
+//= require jquery.turbolinks
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
