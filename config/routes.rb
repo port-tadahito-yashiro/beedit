@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   #企業
   match '/super/company/list'                => 'company#list',:via => [:get]
   match '/super/company/add'                 => 'company#add',:via => [:get, :post]
-  match '/super/company/edit/:id'               => 'company#edit',:via => [:get, :post]
+  match '/super/company/edit/:id'            => 'company#edit',:via => [:get, :post]
   match '/super/company/delete'              => 'company#delete',:via => [:get, :post]
 
   #タグ

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128145620) do
+ActiveRecord::Schema.define(version: 20151203020341) do
 
   create_table "admins", force: true do |t|
     t.integer  "department_id",             null: false
@@ -84,6 +84,9 @@ ActiveRecord::Schema.define(version: 20151128145620) do
     t.text     "ogp_description"
     t.datetime "start_at"
     t.datetime "finish_at"
+    t.string   "domain_name"
+    t.datetime "deadline_at"
+    t.integer  "deadline_time"
     t.datetime "created_at",                  null: false
     t.integer  "created_time",                null: false
     t.integer  "created_user",    default: 1, null: false

@@ -71,4 +71,20 @@
             span.glyphicon.glyphicon-calendar
 
       .form-group
+        label.col-sm-2.control-label for="domain_name"
+          'ドメイン名'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', '',:class => 'form-control', :id => 'domain_name',:name => 'domain_name', :placeholder => 'ドメイン名'
+
+      .form-group
+        label.col-sm-2.control-label for="domain_name"
+          'ドメイン期限'
+          span.text-danger *
+        .col-sm-10.input-group.date.datepicker4
+          = text_field_tag('', '',  :class => 'form-control',:name => 'deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+          span.input-group-addon
+            span.glyphicon.glyphicon-calendar
+
+
+      .form-group
         = submit_tag '登録', :class => 'btn btn-primary'

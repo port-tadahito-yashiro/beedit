@@ -2,7 +2,7 @@ class ProjectController < ApplicationController
 
 
   def list
-    @projects = Project.all
+    @projects = Project.where(:deleted_at => nil).all
   end
 
   def add
@@ -12,21 +12,23 @@ class ProjectController < ApplicationController
 
     if request.post? then
       ActiveRecord::Base.transaction do
-        @project_data = Project.new
-        @project_data.sales_user_id = params[:sales].to_i
-        @project_data.company_id = params[:company].to_i
-        @project_data.name = params[:name]
-        @project_data.url = params[:url]
-        @project_data.page_type = 1
-        @project_data.title = params[:title]
-        @project_data.description = params[:description]
-        @project_data.ogp_description = params[:ogp_description]
-        @project_data.start_at = params[:start_at]
-        @project_data.finish_at = params[:finish_at]
-        if @project_data.save then
+        @project = Project.new
+        @project.sales_user_id = params[:sales].to_i
+        @project.company_id = params[:company].to_i
+        @project.name = params[:name]
+        @project.url = params[:url]
+        @project.page_type = 1
+        @project.title = params[:title]
+        @project.description = params[:description]
+        @project.ogp_description = params[:ogp_description]
+        @project.start_at = params[:start_at]
+        @project.finish_at = params[:finish_at]
+        @project.domain_name = params[:domain_name]
+        @project.deadline_at = params[:deadline_at]
+        if @project.save then
           notify_to_slack_project
         end
-        Event.create(:project_id => @project_data[:id] ,:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
+        Event.create(:project_id => @project[:id] ,:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
       end
     end
 
@@ -61,6 +63,14 @@ class ProjectController < ApplicationController
   end
 
   def delete
+    project = Project.where(:id => params[:id]).first
+    project.deleted_at = Time.now
+    project.deleted_time = Time.now.to_i
+    project.deleted_user = 1
+    if project.save then
+      p "成功した"
+    end
+    redirect_to :controller => 'project', :action => 'list'
   end
 
   def delete_list
@@ -83,16 +93,16 @@ class ProjectController < ApplicationController
     確認してください。
 
     ▼プロジェクト名
-    #{@project_data.name}
+    #{@project.name}
 
     ▼プロジェクトのタイトル
-    #{@project_data.title}
+    #{@project.title}
 
     ▼プロジェクトdescription
-    #{@project_data.description}
+    #{@project.description}
 
     ▼プロジェクトのURL
-    #{@project_data.url}
+    #{@project.url}
 
 
     EOC

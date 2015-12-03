@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
   def list
-    @admins = Admin.all
+    @admins = Admin.where(:deleted_at => nil).all
   end
 
   def add
@@ -26,6 +26,14 @@ class AdminController < ApplicationController
   end
 
   def delete
+    admin = Admin.where(:id => params[:id]).first
+    admin.deleted_at = Time.now
+    admin.deleted_time = Time.now.to_i
+    admin.deleted_user = 1
+    if admin.save then
+      "成功した"
+    end
+    redirect_to :controller => "admin",:action => "list"
   end
 
 end

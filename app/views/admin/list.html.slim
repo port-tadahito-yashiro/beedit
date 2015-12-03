@@ -18,4 +18,4 @@
           td = admin.email
           td
             = link_to('編集',url_for(:controller => 'admin', :action => 'edit',:id => admin[:id]), :class => 'btn btn-info')
-            button.btn.btn-danger#deleteAdmin foo=admin.id 削除
+            = link_to('削除',url_for(:controller => 'admin', :action => 'delete', :id => admin[:id]), :class => 'btn btn-danger')

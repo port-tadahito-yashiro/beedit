@@ -36,6 +36,11 @@ $(function(){
     console.log(adminId);
   });
 
+  //Cancel Click close form
+  $(document).on('click', '#project_delete', function(){
+    console.log("押された！");
+    $('#projectModal').modal();
+  });
 
 });
 
