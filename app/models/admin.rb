@@ -24,6 +24,26 @@ class Admin < ActiveRecord::Base
     self.updated_time = Time.now.to_i
   end
 
+
+  #
+  # authenticate
+  # Author kazuki.yamaguchi
+  # Created 2015/12/03
+  #
+  #
+  def self.authenticate(email,password)
+    # パラメータ:emailを持つUserが存在しない場合nilを返す
+    return if !(admin = Admin.where(:email => email).first)
+    saltpass = admin.salt + password
+    p saltpass
+    sha1p = Digest::SHA1.hexdigest(saltpass)
+
+    p sha1p
+    return admin if admin.deleted_at.blank? && sha1p == admin.password
+  end
+
+
+
   #
   # regist
   # Author kazuki.yamaguchi
