@@ -19,9 +19,10 @@ class SuperController < ApplicationController
   end
 
   def dashboard
+    @Cproject = Project.all.count
+    p @Cproject
     now_time = DateTime.now
     @events = Event.where(Event.arel_table[:start].lt(now_time).and(Event.arel_table[:end].gt(now_time)).and(Event.arel_table[:deleted_at].eq(nil))).all
-    p @events
   end
 
   def login
@@ -31,7 +32,7 @@ class SuperController < ApplicationController
   end
 
   private
-  
+
   #
   # authenticatedSuperId
   # Author kazuki.yamaguchi

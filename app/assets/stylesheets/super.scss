@@ -16,6 +16,21 @@
       }
 
       .content2{
+        .content2-top{
+          height: 100px;
+          width: 100%;
+          border-bottom: 1px solid #999;
+          .content-message{
+            margin-top: 30px;
+            h2{
+              font-family: "ＭＳ Ｐゴシック","ＭＳ ゴシック",sans-serif;
+              font-weight: 500;
+              float:right;
+              margin-right: 80px;
+              font-size: 30px;
+            }
+          }
+        }
         .btn-port{
           background-color: #f2f2f2;
           color: #2f363b;
