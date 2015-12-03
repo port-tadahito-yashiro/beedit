@@ -24,6 +24,12 @@ class Admin < ActiveRecord::Base
     self.updated_time = Time.now.to_i
   end
 
+  #
+  # regist
+  # Author kazuki.yamaguchi
+  # Created 2015/12/03
+  #
+  #
   def self.regist(department,name,email,password,password_confirm)
     admin = Admin.new
     if password == password_confirm and !password.blank?

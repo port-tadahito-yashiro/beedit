@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   match '/super/company/list'                => 'company#list',:via => [:get]
   match '/super/company/add'                 => 'company#add',:via => [:get, :post]
   match '/super/company/edit/:id'            => 'company#edit',:via => [:get, :post]
-  match '/super/company/delete'              => 'company#delete',:via => [:get, :post]
+  match '/super/company/delete/:id'          => 'company#delete',:via => [:get, :post]
 
   #タグ
   match '/super/tag/list'                     => 'tag#list', :via => [:get]

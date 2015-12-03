@@ -1,9 +1,21 @@
 class TaskController < ApplicationController
 
+  #
+  # list
+  # Author kazuki.yamaguchi
+  # Created 2015/12/03
+  #
+  #
   def list
     @tasks = Task.where(:finish_at => nil).all
   end
 
+  #
+  # add
+  # Author kazuki.yamaguchi
+  # Created 2015/12/03
+  #
+  #
   def add
 
     @Admins = Admin.all
@@ -21,9 +33,12 @@ class TaskController < ApplicationController
     end
   end
 
-  def delete
-  end
-
+  #
+  # delete
+  # Author kazuki.yamaguchi
+  # Created 2015/12/03
+  #
+  #
   def delete
   end
 

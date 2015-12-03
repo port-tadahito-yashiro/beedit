@@ -11,13 +11,13 @@
       label.col-sm-2.control-label for="name"
         '名前'
         span.text-danger *
-      .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'name',:name => 'name', :placeholder => '名前'
+      .col-sm-10 = text_field_tag '', @company.name, :class => 'form-control', :id => 'name',:name => 'name', :placeholder => '名前'
 
     .form-group
       label.col-sm-2.control-label for="description"
         'ディスクリプション'
         span.text-danger *
-      .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'description',:name => 'description', :placeholder => 'ディスクリプション'
+      .col-sm-10 = text_field_tag '', @company.description, :class => 'form-control', :id => 'description',:name => 'description', :placeholder => 'ディスクリプション'
 
     .form-group
       label.col-sm-2.control-label for="password"

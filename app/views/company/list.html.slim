@@ -1,6 +1,9 @@
 = render :partial => 'common/header'
 
 #wrapper
+
+  == showFlashMessages
+
   .company-list
 
     = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
@@ -10,8 +13,11 @@
         td id
         td 企業名
         td メール
+        td 削除
       - @companies.each do |company|
         tr
           td = company.id
           td = link_to("#{company.name}",url_for({:controller => 'company',:action => 'edit',:id => company.id}))
           td = company.email
+          td
+            = link_to('削除',url_for(:controller => 'company', :action => 'delete', :id => company[:id]), :class => 'btn btn-danger')

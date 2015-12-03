@@ -1,6 +1,9 @@
 = render :partial => 'common/header'
 
 #wrapper
+
+  == showFlashMessages
+
   .project_add
 
     = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'

@@ -31,6 +31,12 @@ class ProjectController < ApplicationController
     @companies = Company.all
 
     if request.post? then
+      if params[:name].blank? ||
+         params[:start_at].blank? ||
+         params[:finish_at].blank?
+        flash[:error] = 'データを挿入できませんでした。'
+        return redirect_to(url_for({:controller => 'project', :action => 'add'}))
+      end
       ActiveRecord::Base.transaction do
         @project = Project.new
         @project.sales_user_id = params[:sales].to_i
@@ -47,9 +53,11 @@ class ProjectController < ApplicationController
         @project.domain_name = params[:domain_name]
         @project.deadline_at = params[:deadline_at]
         if @project.save then
+          flash[:notice] = '新しくプロジェクトを作成しました'
           notify_to_slack_project
+          Event.create(:project_id => @project[:id] ,:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
+          redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
         end
-        Event.create(:project_id => @project[:id] ,:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
       end
     end
 
@@ -65,6 +73,12 @@ class ProjectController < ApplicationController
     @project = Project.where(:id => params[:id]).first
 
     if request.post? then
+      if params[:name].blank? ||
+         params[:start_at].blank? ||
+         params[:finish_at].blank?
+        flash[:error] = 'データを挿入できませんでした。'
+        return redirect_to(url_for({:controller => 'project', :action => 'edit', :id => params[:id]}))
+      end
       ActiveRecord::Base.transaction do
         @project.sales_user_id = params[:sales].to_i
         @project.company_id = params[:company].to_i
@@ -77,13 +91,15 @@ class ProjectController < ApplicationController
         @project.ogp_description = params[:ogp_description]
         @project.start_at = params[:start_at]
         @project.finish_at = params[:finish_at]
-        @project.save
-
-        event_data       = Event.where(:project_id => params[:id]).first
-        event_data.title = params[:name]
-        event_data.start = params[:start_at]
-        event_data.end   = params[:finish_at]
-        event_data.save
+        if @project.save then
+          flash[:notice] = 'プロジェクト情報を編集しました'
+          event       = Event.where(:project_id => params[:id]).first
+          event.title = params[:name]
+          event.start = params[:start_at]
+          event.end   = params[:finish_at]
+          event.save
+          redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
+        end
       end
     end
 
@@ -100,9 +116,9 @@ class ProjectController < ApplicationController
     project.deleted_time = Time.now.to_i
     project.deleted_user = 1
     if project.save then
-      p "成功した"
+      flash[:notice] = 'プロジェクトを削除しました'
+      redirect_to(url_for({:controller => 'project',:action => 'list'}))
     end
-    redirect_to :controller => 'project', :action => 'list'
   end
 
   #
@@ -143,11 +159,6 @@ class ProjectController < ApplicationController
     tabele_name = Project.where(:id => params[:id]).first
     #apiは"/models/concerns/beedit_api"にあります
     result = Beedit_api.api(BEEDIT_API_URL,"table_name=#{tabele_name.table_name}")
-
-    p "--------------"
-    p result
-    p ">>>>>>>>>>>>>"
-
     @records = result
 
     respond_to do |format|
