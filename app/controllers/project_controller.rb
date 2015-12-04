@@ -10,6 +10,9 @@ BEEDIT_API_URL = ("http://localhost:3001/api/stage.json")
 
 class ProjectController < ApplicationController
 
+  #未ログインの場合はログイン画面へ移動
+  before_action :authenticate
+
 
   #
   # list
@@ -52,6 +55,10 @@ class ProjectController < ApplicationController
         @project.finish_at = params[:finish_at]
         @project.domain_name = params[:domain_name]
         @project.deadline_at = params[:deadline_at]
+
+        p "-------------------"
+        p params[:deadline_at]
+
         if @project.save then
           flash[:notice] = '新しくプロジェクトを作成しました'
           notify_to_slack_project

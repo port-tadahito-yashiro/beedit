@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def authenticate
     return if logged_in?
     flash[:error] = 'ログインしてください'
-    redirect_to url_for({:controller => 'super',:action => 'login'})
+    redirect_to url_for({:controller => 'super',:action => 'index'})
   end
 
 

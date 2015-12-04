@@ -8,11 +8,18 @@
     .col-lg-6{
       .content1{
         background-color: #f2f2f2;
+        margin-top: 130px;
+        h1{
+          font-size:20px;
+          width: 100%;
+        }
       }
       h1{
         background-color: #f2f2f2;
         padding: 15px;
-        margin-top: 30px;
+        width: 100%;
+        margin-top: 20px;
+        font-size: 13px;
       }
 
       .content2{
@@ -34,7 +41,12 @@
         .btn-port{
           background-color: #f2f2f2;
           color: #2f363b;
-          padding: 10px;
+          margin-top: 20px;
+          width: 100%;
+          font-size: 13px;
+          .fa{
+            margin-left: 3px;
+          }
         }
         ul{
           padding: 10px;
@@ -80,9 +92,6 @@
     table.table{
     }
   }
-
-
-
   .project_graph{
   ul{
     li{

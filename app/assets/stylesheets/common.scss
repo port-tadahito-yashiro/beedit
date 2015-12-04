@@ -1,0 +1,21 @@
+
+header{
+  background-color: #2f363b;
+  width: 100%;
+  height: 70px;
+  margin-bottom: 30px;
+}
+
+
+footer{
+  background-color: #2f363b;
+  width: 100%;
+  margin-top: 20px !important;
+  position:absolute;
+  bottom:0;
+  p{
+    text-align: center;
+    color: white;
+    padding: 20px;
+  }
+}

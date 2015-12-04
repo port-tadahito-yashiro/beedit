@@ -2,6 +2,9 @@ require 'time'
 
 class SuperController < ApplicationController
 
+  #未ログインの場合はログイン画面へ移動
+  before_action :authenticate, except: [:index]
+
   #
   # ログイン画面
   # Author:: kazuki.yamaguchi
@@ -51,6 +54,8 @@ class SuperController < ApplicationController
   #
   #
   def logout
+    session[:adminId] = nil
+    redirect_to url_for({:controller => 'super',:action => 'index'})
   end
 
   private
