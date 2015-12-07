@@ -1,0 +1,35 @@
+= render :partial => 'common/header'
+
+#wrapper
+
+  == showFlashMessages
+
+  .project-list
+
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+
+
+    table.table.table-hover.col-lg-4
+      tr
+        td id
+        td タイトル
+        td デットライン
+        td 残り日数
+        td 参加者 / グラフ / プレビュー / 編集 / 削除
+      - @projects.each do |project|
+        tr
+          td = project.id
+          td = project.title
+          td = project.deadline_at
+          //td = project.deadline_at
+          == deadLine(project.deadline_at)
+          td
+            = link_to('参加者情報',url_for(:controller => 'project',:action => 'user',:id => project[:id]),:class => 'btn btn-warning')
+            = link_to('グラフ',url_for(:controller => 'project', :action => 'graph', :id => project[:id]), :class => 'btn btn-primary')
+            - if project.url.blank? then
+              = link_to('プレビュー',url_for(:controller => 'project', :action => 'list'), :class => 'btn btn-success')
+            - else
+              = link_to('プレビュー',url_for(project.url), :target=>["_blank"], :class => 'btn btn-success')
+
+            = link_to '編集',url_for(:controller => 'project', :action => 'edit', :id => project[:id]), :class => 'btn btn-info'
+            = link_to '削除',url_for(:controller => 'project', :action => 'delete', :id => project[:id]), :class => 'btn btn-danger'

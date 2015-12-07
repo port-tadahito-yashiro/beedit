@@ -35,6 +35,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 #
+# slackとRailsを連携
+# Author:: kazuki.yamaguchi
+# Create:: 2015/12/02
+# Copyright:: Copyright 2015 POT INC.
+#
+gem 'slack-api'
+
+
+#
 # viewテンプレート
 # Author:: kazuki.yamaguchi
 # Create:: 2014/11/19
@@ -72,6 +81,13 @@ gem 'jquery-turbolinks'
 # Copyright:: Copyright 2014 PORT INC.
 #
 gem 'twitter-bootstrap3-rails'
+
+#
+# いい感じのアイコンを追加してくれるやつ
+#
+#
+gem "font-awesome-rails"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

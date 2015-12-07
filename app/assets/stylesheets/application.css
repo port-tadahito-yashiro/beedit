@@ -12,8 +12,10 @@
  *
  *= require fullcalendar
  *= require bootstrap-datetimepicker
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
 
 @import "reset";
+@import "font-awesome";

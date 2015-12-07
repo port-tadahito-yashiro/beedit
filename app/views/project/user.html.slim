@@ -1,0 +1,25 @@
+= render :partial => 'common/header'
+
+#wrapper
+  .user-list
+
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+
+    .title.h2 データベース
+
+    table.table.table-striped.table-bordered.table-hover
+      - if !@records.blank?
+        thead
+        - @records.first(1).each do |data|
+          tr
+          - data.each do |key, value|
+              th = key
+
+        tbody
+          - @records.each do |data|
+            tr
+            - data.each do |key, value|
+                td = value
+
+      - else
+        h2 データが存在しません

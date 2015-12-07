@@ -2,9 +2,11 @@
 
 .container
   .row
+    == showFlashMessages
+
     .col-lg-6
       .content1
-        h1 制作案件カレンダー(仮)
+        h1.fa.fa-calendar 制作案件カレンダー(仮)
       #calendar
 
       #calendarModal.modal.fade
@@ -40,7 +42,7 @@
 
 
 
-      h1 現在進行中のプロジェクト一覧
+      h1.fa.fa-file-code-o 現在進行中のプロジェクト一覧
       table.table.table-hover
         tr
           td id
@@ -56,42 +58,48 @@
 
     .col-lg-6
       .content2
-        h1.btn-port  タスク管理
-        ul
-          li.btn-default
-            = link_to '一覧',{:controller => 'super',:action => 'task_list'}
-          li.btn-default
-            = link_to '新規作成',{:controller => 'super',:action => 'task_add'}
-          li.btn-default
-            = link_to '編集',{:controller => 'super',:action => 'task_list'}
-          li.btn-default
-            = link_to '削除',{:controller => 'super',:action => 'task_list'}
+        .content2-top
+          .content-message
+            h2 総プロジェクト数 : #{@Cproject}
+            h2 現在未完了のタスク : #{@Cproject}
 
-        h1.btn-port  プロジェクト管理
-        ul
-          li.btn-default
-            = link_to '一覧',{:controller => 'super',:action => 'project_list'}
-          li.btn-default
-            = link_to '新規作成',{:controller => 'super',:action => 'project_add'}
-          li.btn-default
-            = link_to '編集',{:controller => 'super',:action => 'project_list'}
-          li.btn-default
-            = link_to '削除',{:controller => 'super',:action => 'project_list'}
 
-        h1.btn-port  企業管理
+        h1.btn-port.fa.fa-check  タスク管理
         ul
           li.btn-default
-            = link_to '一覧',{:controller => 'super',:action => 'company_list'}
+            = link_to '一覧',{:controller => 'task',:action => 'list'}
           li.btn-default
-            = link_to '新規作成',{:controller => 'super',:action => 'company_add'}
-          li.btn-default
-            = link_to '編集',{:controller => 'super',:action => 'company_edit'}
-          li.btn-default
-            = link_to '削除',{:controller => 'super',:action => 'company_delete'}
+            = link_to '新規作成',{:controller => 'task',:action => 'add'}
+          //li.btn-default
+          //  = link_to '編集',{:controller => 'task',:action => 'list'}
+          //li.btn-default
+          //  = link_to '削除',{:controller => 'task',:action => 'list'}
 
-        h1.btn-port  ユーザー管理
+        h1.btn-port.fa.fa-file  プロジェクト管理
         ul
           li.btn-default
-            = link_to '一覧',{:controller => 'super',:action => 'admin_list'}
+            = link_to '一覧',{:controller => 'project',:action => 'list'}
           li.btn-default
-            = link_to '新規作成',{:controller => 'super',:action => 'admin_add'}
+            = link_to '新規作成',{:controller => 'project',:action => 'add'}
+          //li.btn-default
+          //  = link_to '編集',{:controller => 'project',:action => 'list'}
+          //li.btn-default
+          //  = link_to '削除',{:controller => 'project',:action => 'list'}
+
+        h1.btn-port.fa.fa-flag  企業管理
+        ul
+          li.btn-default
+            = link_to '一覧',{:controller => 'company',:action => 'list'}
+          li.btn-default
+            = link_to '新規作成',{:controller => 'company',:action => 'add'}
+          //li.btn-default
+          //  = link_to '編集',{:controller => 'company',:action => 'edit'}
+          //li.btn-default
+          //  = link_to '削除',{:controller => 'company',:action => 'delete'}
+
+        h1.btn-port.fa.fa-users  ユーザー管理
+        ul
+          li.btn-default
+            = link_to '一覧',{:controller => 'admin',:action => 'list'}
+          li.btn-default
+            = link_to '新規作成',{:controller => 'admin',:action => 'add'}

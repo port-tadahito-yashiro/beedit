@@ -16,6 +16,7 @@
 //= require Chart.min.js
 //= require jquery.todate.js
 //= require twitter/bootstrap
+//= require jquery.turbolinks
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
@@ -37,13 +38,20 @@ $(function(){
     console.log(adminId);
   });
 
+
   $(document).ready(function() {
     $('#date').toDate({
         format : 'Y年m月d日 （W） h時i分s秒'
     });
-    
+
 });
 
+
+  //Cancel Click close form
+  $(document).on('click', '#project_delete', function(){
+    console.log("押された！");
+    $('#projectModal').modal();
+  });
 
 });
 

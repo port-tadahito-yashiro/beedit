@@ -1,0 +1,20 @@
+
+#wrapper{
+  .project-list{
+    table{
+      tbody{
+        tr{
+          td{
+
+          }
+          td#dead-danger{
+            color: #FF0000 !important;
+          }
+          td#dead-caution{
+            color: #FFFF33 !important;
+          }
+        }
+      }
+    }
+  }
+}

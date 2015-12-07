@@ -1,0 +1,24 @@
+= render :partial => 'common/header'
+
+#wrapper
+
+  == showFlashMessages
+
+  .task-list
+
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+
+    table.table.table-hover.col-lg-4
+      tr
+        td id
+        td タスク名
+        td タスク詳細
+        td 編集 / 削除
+      - @tasks.each do |task|
+        tr
+          td = task.id
+          td = task.title
+          td = task.context
+          td
+            = link_to '編集',url_for(:controller => 'task', :action => 'edit', :id => task[:id]), :class => 'btn btn-info'
+            = link_to '削除',url_for(:controller => 'task', :action => 'delete', :id => task[:id]), :class => 'btn btn-danger'

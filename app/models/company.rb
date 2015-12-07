@@ -21,9 +21,14 @@ class Company < ActiveRecord::Base
  end
 
 
+  #
+  # self.regist
+  # Author kazuki.yamaguchi
+  # Created 2015/12/03
+  #
+  #
   def self.regist(name,description,password,email, password_confirm)
     company_data = Company.new
-    p password
     if password == password_confirm and !password.blank?
       company_data.name = name
       company_data.description = description
@@ -38,8 +43,30 @@ class Company < ActiveRecord::Base
    return false
   end
 
+  #
+  # updated
+  # Author kazuki.yamaguchi
+  # Created 2015/12/03
+  #
+  #
+  def self.updated(company_id,name,description,password,email, email_confirm)
+    company = Company.where(:id => company_id),first
+    if password == password_confirm and !password.blank?
+      company.name = name
+      company.description = description
+      company.email = email
+      company.password = password
+      if company.save then
+        return true
+      end
+      return false
+    end
+    return false
+  end
+
 
   private
+  
   #
   # self.crypt_password
   # Author
