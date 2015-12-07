@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require Chart.min.js
+//= require jquery.todate.js
 //= require twitter/bootstrap
 //= require turbolinks
 //= require moment
@@ -35,6 +36,13 @@ $(function(){
 
     console.log(adminId);
   });
+
+  $(document).ready(function() {
+    $('#date').toDate({
+        format : 'Y年m月d日 （W） h時i分s秒'
+    });
+    
+});
 
 
 });
