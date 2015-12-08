@@ -39,12 +39,18 @@ $(function(){
   });
 
 
-  $(document).ready(function() {
-    $('#date').toDate({
-        format : 'Y年m月d日 （W） h時i分s秒'
-    });
+  $(document).ready(function(){
+    $('#date-month').toDate({
+        format : 'Y年m月d日 （W）'
+    })
+  });
 
-});
+
+  $(document).ready(function() {
+    $('#date-time').toDate({
+        format : 'h時i分s秒'
+    });
+  });
 
 
   //Cancel Click close form
