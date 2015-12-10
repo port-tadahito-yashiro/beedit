@@ -31,7 +31,7 @@ class TaskController < ApplicationController
       @task_data.state = params[:state]
       if @task_data.save then
         p @task_data
-        notify_to_slack_task
+        #notify_to_slack_task
       end
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203055645) do
+ActiveRecord::Schema.define(version: 20151209052729) do
 
   create_table "admins", force: true do |t|
     t.integer  "department_id",             null: false
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20151203055645) do
   end
 
   create_table "tasks", force: true do |t|
+    t.integer  "project_id"
     t.integer  "admin_id"
     t.string   "title"
     t.text     "context"

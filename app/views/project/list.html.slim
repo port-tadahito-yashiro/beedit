@@ -11,11 +11,11 @@
 
     table.table.table-hover.col-lg-4
       tr
-        td id
-        td タイトル
-        td デットライン
-        td 残り日数
-        td 参加者 / グラフ / プレビュー / 編集 / 削除
+        th id
+        th タイトル
+        th デットライン
+        th 残り日数
+        th 参加者 / グラフ / プレビュー / 編集 / 削除
       - @projects.each do |project|
         tr
           td = project.id

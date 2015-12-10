@@ -92,7 +92,18 @@
           span.input-group-addon
             span.glyphicon.glyphicon-calendar
 
-
-
       .form-group
-        = submit_tag '登録', :class => 'btn btn-primary'
+        table.table.table-striped.table-bordered.table-hover#task-list
+          thead
+            tr
+              th 担当者
+              th タスク名
+              th 詳細
+          tbody.task-data
+
+        .btn.btn-danger#task-add タスク追加
+
+
+
+      .submit
+        .project-edit-submit.btn.btn-primary 保存

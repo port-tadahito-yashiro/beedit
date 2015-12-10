@@ -4,6 +4,10 @@ class Project < ActiveRecord::Base
 
   has_many :events
 
+
+  has_many :tasks
+  accepts_nested_attributes_for :tasks, allow_destroy: true # この行を追記
+
   before_save do
     self.created_at = Time.now
     self.created_time = Time.now.to_i

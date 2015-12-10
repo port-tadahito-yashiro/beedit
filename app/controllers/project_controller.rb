@@ -30,44 +30,34 @@ class ProjectController < ApplicationController
   #
   def add
 
+    #select_tagで使う値を取得
     @saleses = Admin.where(:department_id => 1).all
+    @taskers = Admin.where(:department_id => 1).all
     @companies = Company.all
 
     if request.post? then
-      if params[:name].blank? ||
-         params[:start_at].blank? ||
-         params[:finish_at].blank?
-        flash[:error] = 'データを挿入できませんでした。'
-        return redirect_to(url_for({:controller => 'project', :action => 'add'}))
-      end
-      ActiveRecord::Base.transaction do
-        @project = Project.new
-        @project.sales_user_id = params[:sales].to_i
-        @project.company_id = params[:company].to_i
-        @project.name = params[:name]
-        @project.table_name = params[:table_name]
-        @project.url = params[:url]
-        @project.page_type = 1
-        @project.title = params[:title]
-        @project.description = params[:description]
-        @project.ogp_description = params[:ogp_description]
-        @project.start_at = params[:start_at]
-        @project.finish_at = params[:finish_at]
-        @project.domain_name = params[:domain_name]
-        @project.deadline_at = params[:deadline_at]
 
-        p "-------------------"
-        p params[:deadline_at]
+      # 値を取得する
+      project_data = params[:project]
+      task_data = params[:tasks]
 
-        if @project.save then
+        ActiveRecord::Base.transaction do
+          #新規プロジェクトの作成
+          @project = Project.create(:sales_user_id => project_data[:sales].to_i, :company_id => project_data[:company].to_i, :name => project_data[:name], :table_name => project_data[:table_name], :url => project_data[:url],:page_type => 1, :title => project_data[:title], :description => project_data[:description],
+                                   :ogp_description => project_data[:ogp_description],:start_at => project_data[:start_at], :finish_at => project_data[:finish_at],:domain_name => project_data[:domain_name], :deadline_at => project_data[:deadline_at])
+          # 新規タスクの作成
+          unless task_data.blank? then
+            task_data.each_with_index do |task, i|
+              Task.create(:project_id => @project[:id].to_i,:admin_id => task[1][:user_id].to_i,:title => task[1][:name],:context => task[1][:detail])
+            end
+          end
           flash[:notice] = '新しくプロジェクトを作成しました'
-          notify_to_slack_project
-          Event.create(:project_id => @project[:id] ,:title => params[:name],:start => params[:start_at],:end => params[:finish_at])
-          redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
+          # slackへの通知
+          #notify_to_slack_project
+          Event.create(:project_id => @project[:id] ,:title => project_data[:name],:start => project_data[:start_at],:end => project_data[:finish_at])
         end
-      end
+        render :json => {:success => true, :id => @project.id}
     end
-
   end
 
   #
@@ -76,37 +66,48 @@ class ProjectController < ApplicationController
   # Created 2015/12/03
   #
   def edit
+    #select_tagで使う値を取得
+    @saleses = Admin.where(:department_id => 1).all
+    @taskers = Admin.where(:department_id => 1).all
+    @companies = Company.all
 
     @project = Project.where(:id => params[:id]).first
 
     if request.post? then
-      if params[:name].blank? ||
-         params[:start_at].blank? ||
-         params[:finish_at].blank?
-        flash[:error] = 'データを挿入できませんでした。'
-        return redirect_to(url_for({:controller => 'project', :action => 'edit', :id => params[:id]}))
-      end
+      # 値を取得する
+      project_data = params[:project]
+      task_data = params[:tasks]
+
       ActiveRecord::Base.transaction do
-        @project.sales_user_id = params[:sales].to_i
-        @project.company_id = params[:company].to_i
-        @project.name = params[:name]
-        @project.url = params[:url]
+        @project.sales_user_id = project_data[:sales].to_i
+        @project.company_id = project_data[:company].to_i
+        @project.name = project_data[:name]
+        @project.url = project_data[:url]
         @project.page_type = 1
-        @project.title = params[:title]
-        @project.table_name = params[:table_name]
+        @project.title = project_data[:title]
+        @project.table_name = project_data[:table_name]
         @project.description = params[:description]
-        @project.ogp_description = params[:ogp_description]
-        @project.start_at = params[:start_at]
-        @project.finish_at = params[:finish_at]
+        @project.ogp_description = project_data[:ogp_description]
+        @project.start_at = project_data[:start_at]
+        @project.finish_at = project_data[:finish_at]
+        @project.domain_name = project_data[:domain_name]
+        @project.deadline_at = project_data[:deadline_at]
         if @project.save then
           flash[:notice] = 'プロジェクト情報を編集しました'
+
+          # 新規タスクの作成
+          unless task_data.blank? then
+            task_data.each_with_index do |task, i|
+              Task.create(:project_id => @project[:id].to_i,:admin_id => task[1][:user_id].to_i,:title => task[1][:name],:context => task[1][:detail])
+            end
+          end
           event       = Event.where(:project_id => params[:id]).first
-          event.title = params[:name]
-          event.start = params[:start_at]
-          event.end   = params[:finish_at]
+          event.title = project_data[:name]
+          event.start = project_data[:start_at]
+          event.end   = project_data[:finish_at]
           event.save
-          redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
         end
+        render :json => {:success => true, :id => @project.id}
       end
     end
 
@@ -174,7 +175,18 @@ class ProjectController < ApplicationController
     end
   end
 
+  def get_form
+    render :json => {'data' => ProjectController.helpers.getTask}
+  end
+
+
   private
+
+  def tasks_params
+        params.require(:task).permit(
+          :project_id,:admin_id,:title,:context
+        )
+  end
 
 
   #

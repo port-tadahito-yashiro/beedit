@@ -59,6 +59,25 @@ $(function(){
     $('#projectModal').modal();
   });
 
+  //$(document).on('click', '#task-add', function(){
+  //  console.log("押された！");
+  //  $.ajax({
+  //    async: true,
+  //    type: "GET",
+  //    url: '/project/getform/task',
+  //    success: function(data, status, xhr) {
+  //      $('tbody').append(data.data);
+  //      return
+  //    },
+  //    error: function(xhr, status, error){
+  //      return
+  //    },
+  //    complete: function(xhr, status){
+  //      return
+  //    }
+  //  });
+  //});
+
 });
 
 

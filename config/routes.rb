@@ -7,12 +7,11 @@ Rails.application.routes.draw do
   match '/super/dashboard'     => 'super#dashboard', :via => [:get]
 
   # イベント周り
-  #match '/events', :controller => 'events', :action => ''
-  #resources :event
-
   match '/super/events'   => 'event#create', :via => [:get, :post]
   match '/super/events/:id'   => 'event#update', :via => [:put, :post]
   match '/super/events/delete/:id'   => 'event#delete', :via => [:get, :post]
+  # フォーム取得
+  match  '/project/getform/task'     => 'project#get_form', :via => [:get]
 
 
   #タスク管理

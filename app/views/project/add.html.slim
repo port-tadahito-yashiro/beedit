@@ -14,59 +14,57 @@
         label.col-sm-2.control-label for="sales"
           'セールス担当者'
           span.text-danger *
-        //.col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'sales',:name => 'sales', :placeholder => 'セールス'
-        .col-sm-10 = select_tag '',options_from_collection_for_select(@saleses, :id, :name),:name => 'sales', :class => 'span3'
+        .col-sm-10 = select_tag '',options_from_collection_for_select(@saleses, :id, :name),:name => 'sales',:id => 'sales', :class => 'span3 form-control'
 
 
       .form-group
         label.col-sm-2.control-label for="company"
           '企業情報'
           span.text-danger *
-        //.col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'company',:name => 'company', :placeholder => '企業名'
-        .col-sm-10 = select_tag '',options_from_collection_for_select(@companies, :id, :name),:name => 'company', :class => 'span3'
+        .col-sm-10 = select_tag '',options_from_collection_for_select(@companies, :id, :name),:name => 'company',:id => 'company' ,:class => 'span3 form-control'
 
       .form-group
         label.col-sm-2.control-label for="name"
           '名前'
           span.text-danger *
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'name',:name => 'name', :placeholder => '名前'
+        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'name',:name => 'name',:id => 'name', :placeholder => '名前'
 
       .form-group
         label.col-sm-2.control-label for="table_name"
           'テーブル名'
-          span.text-danger * テーブル名
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'table_name',:name => 'table_name', :placeholder => '企業名_プロジェクト名'
+          span.text-danger *
+        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'table_name',:name => 'table_name',:id => 'table_name', :placeholder => '企業名_プロジェクト名'
 
       .form-group
         label.col-sm-2.control-label for="url"
           'url'
           span.text-danger *
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'url',:name => 'url', :placeholder => 'url'
+        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'url',:name => 'url',:id => 'url', :placeholder => 'url'
 
       .form-group
         label.col-sm-2.control-label for="title"
           'タイトル'
           span.text-danger *
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'title',:name => 'title', :placeholder => 'タイトル'
+        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'title',:name => 'title',:id => 'title', :placeholder => 'タイトル'
 
       .form-group
         label.col-sm-2.control-label for="description"
           'ディスクリプション'
           span.text-danger *
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'description',:name => 'description', :placeholder => 'ディスクリプション'
+        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'description',:name => 'description',:id =>'description', :placeholder => 'ディスクリプション'
 
       .form-group
         label.col-sm-2.control-label for="ogp_description"
           'OGPディスクリプション'
           span.text-danger *
-        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'ogp_description',:name => 'ogp_description', :placeholder => 'OGPディスクリプション'
+        .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'ogp_description',:name => 'ogp_description',:id => 'ogp_description', :placeholder => 'OGPディスクリプション'
 
       .form-group
         label.col-sm-2.control-label for="start_at"
           '開始時間'
           span.text-danger *
-        .input-group.date.datepicker4
-          = text_field_tag('', '',  :class => 'form-control',:name => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+        .input-group.date.datepicker4.col-sm-10
+          = text_field_tag('', '',  :class => 'form-control',:name => 'start_at',:id => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
             span.glyphicon.glyphicon-calendar
 
@@ -74,8 +72,8 @@
         label.col-sm-2.control-label for="finish_at"
           '終了時間'
           span.text-danger *
-        .input-group.date.datepicker4
-          = text_field_tag('', '',  :class => 'form-control',:name => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+        .input-group.date.datepicker4.col-sm-10
+          = text_field_tag('', '',  :class => 'form-control',:name => 'finish_at',:id => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
             span.glyphicon.glyphicon-calendar
 
@@ -83,17 +81,30 @@
         label.col-sm-2.control-label for="domain_name"
           'ドメイン名'
           span.text-danger *
-        .col-sm-10 = text_field_tag '', '',:class => 'form-control', :id => 'domain_name',:name => 'domain_name', :placeholder => 'ドメイン名'
+        .col-sm-10 = text_field_tag '', '',:class => 'form-control',:name => 'domain_name',:id => 'domain_name', :placeholder => 'ドメイン名'
 
       .form-group
         label.col-sm-2.control-label for="domain_name"
           'ドメイン期限'
           span.text-danger *
         .col-sm-10.input-group.date.datepicker4
-          = text_field_tag('', '',  :class => 'form-control',:name => 'deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+          = text_field_tag('', '',  :class => 'form-control',:name => 'deadline_at',:id => 'deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
             span.glyphicon.glyphicon-calendar
 
-
       .form-group
-        = submit_tag '登録', :class => 'btn btn-primary'
+        table.table.table-striped.table-bordered.table-hover#task-list
+          thead
+            tr
+              th 担当者
+              th タスク名
+              th 詳細
+          tbody.task-data
+
+        .btn.btn-danger#task-add タスク追加
+
+
+
+
+      .submit
+        .project-add-submit.btn.btn-primary 保存
