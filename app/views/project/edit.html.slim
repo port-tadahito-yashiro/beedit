@@ -26,7 +26,7 @@
       .form-group
         label.col-sm-2.control-label for="table_name"
           'テーブル名'
-          span.text-danger * テーブル名
+          span.text-danger *
         .col-sm-10 = text_field_tag '', @project.table_name, :class => 'form-control', :id => 'table_name',:name => 'table_name', :placeholder => '企業名_プロジェクト名'
 
       .form-group
@@ -63,7 +63,7 @@
         label.col-sm-2.control-label for="start_at"
           '開始時間'
           span.text-danger *
-        .input-group.date.datepicker4
+        .input-group.date.datepicker4.col-sm-10
           = text_field_tag('', @project.start_at,  :class => 'form-control',:name => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
             span.glyphicon.glyphicon-calendar
@@ -72,7 +72,7 @@
         label.col-sm-2.control-label for="finish_at"
           '終了時間'
           span.text-danger *
-        .input-group.date.datepicker4
+        .input-group.date.datepicker4.col-sm-10.col-sm-10
           = text_field_tag('', @project.finish_at,  :class => 'form-control',:name => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
             span.glyphicon.glyphicon-calendar
@@ -88,12 +88,12 @@
           'ドメイン期限'
           span.text-danger *
         .col-sm-10.input-group.date.datepicker4
-          = text_field_tag('', @project.deadline_at,  :class => 'form-control',:name => 'deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+          = text_field_tag('', @project.domain_deadline_at,  :class => 'form-control',:name => 'deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
             span.glyphicon.glyphicon-calendar
 
       .form-group
-        table.table.table-striped.table-bordered.table-hover#task-list
+        table.table.table-striped.table-bordered.table-hover#task-list.col-sm-8
           thead
             tr
               th 担当者

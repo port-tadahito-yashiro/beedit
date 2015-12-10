@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209052729) do
+ActiveRecord::Schema.define(version: 20151210105624) do
 
   create_table "admins", force: true do |t|
     t.integer  "department_id",             null: false
@@ -74,29 +74,31 @@ ActiveRecord::Schema.define(version: 20151209052729) do
   end
 
   create_table "projects", force: true do |t|
-    t.integer  "sales_user_id",               null: false
-    t.integer  "company_id",                  null: false
-    t.string   "name",                        null: false
+    t.integer  "sales_user_id",                    null: false
+    t.integer  "company_id",                       null: false
+    t.string   "name",                             null: false
     t.string   "table_name"
-    t.string   "url",                         null: false
-    t.integer  "page_type",                   null: false
+    t.string   "url",                              null: false
+    t.integer  "page_type",                        null: false
     t.string   "title"
     t.text     "description"
     t.text     "ogp_description"
     t.datetime "start_at"
     t.datetime "finish_at"
     t.string   "domain_name"
-    t.datetime "deadline_at"
-    t.integer  "deadline_time"
-    t.datetime "created_at",                  null: false
-    t.integer  "created_time",                null: false
-    t.integer  "created_user",    default: 1, null: false
+    t.datetime "domain_deadline_at"
+    t.integer  "domain_deadline_time"
+    t.datetime "ssl_deadline_at"
+    t.integer  "ssl_deadline_time"
+    t.datetime "created_at",                       null: false
+    t.integer  "created_time",                     null: false
+    t.integer  "created_user",         default: 1, null: false
     t.datetime "deleted_at"
     t.integer  "deleted_time"
     t.integer  "deleted_user"
-    t.datetime "updated_at",                  null: false
-    t.integer  "updated_time",                null: false
-    t.integer  "updated_user",    default: 1, null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "updated_time",                     null: false
+    t.integer  "updated_user",         default: 1, null: false
   end
 
   create_table "supers", force: true do |t|

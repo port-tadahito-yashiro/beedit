@@ -48,7 +48,7 @@ $(function(){
 
   $(document).ready(function() {
     $('#date-time').toDate({
-        format : 'h時i分s秒'
+        format : 'H時i分s秒'
     });
   });
 
