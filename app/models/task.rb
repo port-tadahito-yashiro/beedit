@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
 
   belongs_to :project
+  belongs_to :admin
 
   before_save do
     self.created_at = Time.now

@@ -10,7 +10,9 @@ class TaskController < ApplicationController
   #
   #
   def list
-    @tasks = Task.where(:finish_at => nil).all
+    now_time = DateTime.now
+    @tasks = Task.where(:finish_at => nil,:deleted_at => nil).all
+    @deleteTasks = Task.where(Task.arel_table[:finish_at].gt(now_time).or(Task.arel_table[:deleted_at].not_eq(nil))).all
   end
 
   #
@@ -43,6 +45,15 @@ class TaskController < ApplicationController
   #
   #
   def delete
+    task = Task.where(:id => params[:id]).first
+    p task
+    task.deleted_at = Time.now
+    task.deleted_time = Time.now.to_i
+    task.deleted_user = 1
+    if task.save then
+      flash[:notice] = 'プロジェクトを削除しました'
+      redirect_to(url_for({:controller => 'task',:action => 'list'}))
+    end
   end
 
   private

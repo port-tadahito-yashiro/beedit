@@ -96,7 +96,8 @@ $ ->
       start_at: $(form).find('#start_at').val()
       finish_at: $(form).find('#finish_at').val()
       domain_name: $(form).find('#domain_name').val()
-      deadline_at: $(form).find('#deadline_at').val()
+      domain_deadline_at: $(form).find('#domain_deadline_at').val()
+      ssl_deadline_at: $(form).find('#ssl_deadline_at').val()
     }
     $.each project, (key, val) ->
       formData.append('project['+key+']', val)

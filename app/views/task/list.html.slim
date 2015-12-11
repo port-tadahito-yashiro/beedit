@@ -8,17 +8,42 @@
 
     = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
 
+    h1 現在進行中のタスク
     table.table.table-hover.col-lg-4
       tr
         td id
+        td プロジェクト名
         td タスク名
         td タスク詳細
+        td 担当者
         td 編集 / 削除
       - @tasks.each do |task|
         tr
           td = task.id
+          td = task.project.name
           td = task.title
           td = task.context
+          td = task.admin.name
           td
             = link_to '編集',url_for(:controller => 'task', :action => 'edit', :id => task[:id]), :class => 'btn btn-info'
             = link_to '削除',url_for(:controller => 'task', :action => 'delete', :id => task[:id]), :class => 'btn btn-danger'
+
+    h1 削除or終了したタスク一覧
+    table.table.table-hover.col-lg-4
+      tr
+        td id
+        td プロジェクト名
+        td タスク名
+        td タスク詳細
+        td 担当者
+        td 編集 / 戻す
+      - @deleteTasks.each do |task|
+        tr
+          td = task.id
+          td = task.project.name
+          td = task.title
+          td = task.context
+          td = task.admin.name
+          td
+            = link_to '編集',url_for(:controller => 'task', :action => 'edit', :id => task[:id]), :class => 'btn btn-info'
+            = link_to '戻す',url_for(:controller => 'task', :action => 'delete', :id => task[:id]), :class => 'btn btn-danger'

@@ -3,6 +3,7 @@ require 'digest/sha1'
 class Admin < ActiveRecord::Base
 
   has_one :department
+  has_many :tasks
 
   before_save do
 

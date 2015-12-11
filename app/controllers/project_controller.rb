@@ -44,7 +44,7 @@ class ProjectController < ApplicationController
         ActiveRecord::Base.transaction do
           #新規プロジェクトの作成
           @project = Project.create(:sales_user_id => project_data[:sales].to_i, :company_id => project_data[:company].to_i, :name => project_data[:name], :table_name => project_data[:table_name], :url => project_data[:url],:page_type => 1, :title => project_data[:title], :description => project_data[:description],
-                                   :ogp_description => project_data[:ogp_description],:start_at => project_data[:start_at], :finish_at => project_data[:finish_at],:domain_name => project_data[:domain_name], :domain_deadline_at => project_data[:deadline_at])
+                                   :ogp_description => project_data[:ogp_description],:start_at => project_data[:start_at], :finish_at => project_data[:finish_at],:domain_name => project_data[:domain_name], :domain_deadline_at => project_data[:domain_deadline_at], :ssl_deadline_at => project_data[:ssl_deadline_at])
           # 新規タスクの作成
           unless task_data.blank? then
             task_data.each_with_index do |task, i|
@@ -91,7 +91,8 @@ class ProjectController < ApplicationController
         @project.start_at = project_data[:start_at]
         @project.finish_at = project_data[:finish_at]
         @project.domain_name = project_data[:domain_name]
-        @project.domain_deadline_at = project_data[:deadline_at]
+        @project.domain_deadline_at = project_data[:domain_deadline_at]
+        @project.ssl_deadline_at = project_data[:ssl_deadline_at]
         if @project.save then
           flash[:notice] = 'プロジェクト情報を編集しました'
 

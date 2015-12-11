@@ -66,7 +66,7 @@
         .input-group.date.datepicker4.col-sm-10
           = text_field_tag('', '',  :class => 'form-control',:name => 'start_at',:id => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
-            span.glyphicon.glyphicon-calendar
+            span.fa.fa-calendar
 
       .form-group
         label.col-sm-2.control-label for="finish_at"
@@ -75,7 +75,7 @@
         .input-group.date.datepicker4.col-sm-10
           = text_field_tag('', '',  :class => 'form-control',:name => 'finish_at',:id => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
-            span.glyphicon.glyphicon-calendar
+            span.fa.fa-calendar
 
       .form-group
         label.col-sm-2.control-label for="domain_name"
@@ -84,13 +84,25 @@
         .col-sm-10 = text_field_tag '', '',:class => 'form-control',:name => 'domain_name',:id => 'domain_name', :placeholder => 'ドメイン名'
 
       .form-group
-        label.col-sm-2.control-label for="domain_name"
+        label.col-sm-2.control-label for="domain_deadline_at"
           'ドメイン期限'
           span.text-danger *
         .col-sm-10.input-group.date.datepicker4
-          = text_field_tag('', '',  :class => 'form-control',:name => 'deadline_at',:id => 'deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+          = text_field_tag('', '',  :class => 'form-control',:name => 'deadline_at',:id => 'domain_deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
           span.input-group-addon
-            span.glyphicon.glyphicon-calendar
+            span.fa.fa-calendar
+
+      .form-group
+        label.col-sm-2.control-label for="ssl_deadline_at"
+          'SSL期限'
+          span.text-danger *
+        .col-sm-10.input-group.date.datepicker4
+          = text_field_tag('', '',  :class => 'form-control datepicker',:name => 'ssl_deadline_at',:id => 'ssl_deadline_at datetime_picker', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+          span.input-group-addon
+            span.fa.fa-calendar
+
+
+
 
       .form-group
         table.table.table-striped.table-bordered.table-hover#task-list

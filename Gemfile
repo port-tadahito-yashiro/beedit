@@ -77,7 +77,7 @@ gem 'jquery-turbolinks'
 #
 # css bootstrap
 # Author:: kazuki.yamaguchi
-# Create:: 2014/11/19
+# Create:: 2015/12/02
 # Copyright:: Copyright 2014 PORT INC.
 #
 gem 'twitter-bootstrap3-rails'
