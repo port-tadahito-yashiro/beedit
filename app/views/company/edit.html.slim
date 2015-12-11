@@ -40,10 +40,10 @@
       = submit_tag '登録', :class => 'btn btn-primary'
 
   .company-project-list.col-sm-8
-    h1 ◯◯企業のプロジェクト
+    h1 #{@company.name} のプロジェクト
     table.table.table-hover
       tr
         td テスト
       - @projects.each do |project|
         tr
-          td = project[:name]
+          td = link_to("#{project.name}",url_for({:controller => 'project',:action => 'edit',:id => project.id}))

@@ -33,7 +33,8 @@ class SuperController < ApplicationController
   #
   #
   def dashboard
-    @Cproject = Project.all.count
+    @AllProject = Project.all.count
+    #@NoFinishTask = Task
     now_time = DateTime.now
     @events = Event.where(Event.arel_table[:start].lt(now_time).and(Event.arel_table[:end].gt(now_time)).and(Event.arel_table[:deleted_at].eq(nil))).all
   end

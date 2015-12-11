@@ -25,6 +25,8 @@ class AdminController < ApplicationController
       if Admin.regist(params[:department],params[:name],params[:email],params[:password],params[:password_confirm]) then
         flash[:notice] = '新規ユーザーを作成しました'
         redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
+      else
+        flash[:error] = '新規ユーザー作成に失敗しました'
       end
     end
   end
@@ -42,6 +44,8 @@ class AdminController < ApplicationController
       if Admin.updated(params[:id],params[:department],params[:name],params[:email],params[:password],params[:password_confirm]) then
         flash[:notice] = 'ユーザー情報を編集しました'
         redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
+      else
+        flash[:error] = 'ユーザ-の情報編集に失敗しました'
       end
     end
   end
@@ -60,6 +64,8 @@ class AdminController < ApplicationController
     if admin.save then
       flash[:notice] = 'ユーザー情報を削除しました'
       return redirect_to(url_for({:controller => "admin",:action => "list"}))
+    else
+      flash[:error] = 'ユーザー情報の削除に失敗しました'
     end
   end
 

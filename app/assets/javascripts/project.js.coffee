@@ -44,6 +44,8 @@ $ ->
           window.location = '/super/project/edit/' + msg.id
         return
       error: (XMLHttpRequest, textStatus, errorThrown) ->
+        console.log('挿入に失敗')
+        window.location = '/super/project/add'
         return
     return
 
@@ -56,6 +58,7 @@ $ ->
     form = $('.project_edit').children()
     formData = upload_data(form)
     project_id = location.pathname.split('/super/project/edit/')[1]
+    console.log('aaaa')
     # タスクの追加　及び　更新
     $.ajax
       async: true
@@ -66,6 +69,7 @@ $ ->
       url: '/super/project/edit/' + project_id
       data: formData
       success: (msg, status)->
+        console.log('aaaa')
         if(msg.success)
           window.location = '/super/project/edit/' + msg.id
         return

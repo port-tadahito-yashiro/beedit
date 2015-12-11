@@ -11,8 +11,8 @@ class TaskController < ApplicationController
   #
   def list
     now_time = DateTime.now
-    @tasks = Task.where(:finish_at => nil,:deleted_at => nil).all
-    @deleteTasks = Task.where(Task.arel_table[:finish_at].gt(now_time).or(Task.arel_table[:deleted_at].not_eq(nil))).all
+    @tasks = Task.where(:finish_at => nil,:deleted_at => nil,:state => 0).all
+    @deleteTasks = Task.where(Task.arel_table[:finish_at].gt(now_time).or(Task.arel_table[:deleted_at].not_eq(nil)).or(Task.arel_table[:state].not_eq(0))).all
   end
 
   #
@@ -30,7 +30,7 @@ class TaskController < ApplicationController
       @task_data.admin_id = params[:admin_id]
       @task_data.title = params[:title]
       @task_data.context = params[:context]
-      @task_data.state = params[:state]
+      @task_data.state = 0
       if @task_data.save then
         p @task_data
         #notify_to_slack_task
@@ -51,9 +51,22 @@ class TaskController < ApplicationController
     task.deleted_time = Time.now.to_i
     task.deleted_user = 1
     if task.save then
-      flash[:notice] = 'プロジェクトを削除しました'
+      flash[:notice] = 'タスクを削除しました'
       redirect_to(url_for({:controller => 'task',:action => 'list'}))
     end
+  end
+
+  def finish
+    task = Task.where(:id => params[:id]).first
+    task.state = 1
+    if task.save then
+        flash[:notice] = 'タスクを完了しました'
+        redirect_to(url_for({:controller => 'task',:action => 'list'}))
+      else
+        flash[:error] = 'エラーが起きました'
+        redirect_to(url_for({:controller => 'task',:action => 'list'}))
+    end
+
   end
 
   private

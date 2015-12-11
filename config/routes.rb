@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   match '/super/task/list'                   => 'task#list',:via => [:get]
   match '/super/task/add'                    => 'task#add',:via => [:get,:post]
   match '/super/task/edit'                   => 'task#edit',:via => [:get,:post]
-  match '/super/task/delete/:id'                 => 'task#delete',:via => [:get,:post]
+  match '/super/task/delete/:id'             => 'task#delete',:via => [:get,:post]
+  match '/super/task/finish/:id'             => 'task#finish',:via => [:get,:post]
 
   #プロジェクト
   match '/super/project/list'                => 'project#list',:via => [:get]

@@ -80,7 +80,7 @@ gem 'jquery-turbolinks'
 # Create:: 2015/12/02
 # Copyright:: Copyright 2014 PORT INC.
 #
-gem 'twitter-bootstrap3-rails'
+gem 'twitter-bootstrap-rails'
 
 #
 # いい感じのアイコンを追加してくれるやつ

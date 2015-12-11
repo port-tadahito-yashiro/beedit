@@ -53,7 +53,9 @@ class Admin < ActiveRecord::Base
   #
   def self.regist(department,name,email,password,password_confirm)
     admin = Admin.new
-    if password == password_confirm and !password.blank?
+    if password == password_confirm and !password.blank? ||
+       !name.blank? ||
+       !email.blank?
       admin.name = name
       admin.department_id = department.to_i
       admin.email = email
@@ -69,7 +71,9 @@ class Admin < ActiveRecord::Base
   def self.updated(admin_id,department,name,email,password,password_confirm)
     admin = Admin.where(:id => admin_id).first
 
-    if password == password_confirm and !password.blank?
+    if password == password_confirm and !password.blank? ||
+       !name.blank? ||
+       !email.blank? 
       admin.name = name
       admin.department_id = department.to_i
       admin.email = email
