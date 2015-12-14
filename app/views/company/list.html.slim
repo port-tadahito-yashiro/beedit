@@ -4,20 +4,22 @@
 
   == showFlashMessages
 
-  .company-list
+  #wrapper-company
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
 
-    table.table.table-hover
-      tr
-        td id
-        td 企業名
-        td メール
-        td 削除
-      - @companies.each do |company|
+    .company-list
+
+      table.table.table-hover.col-lg-4
         tr
-          td = company.id
-          td = link_to("#{company.name}",url_for({:controller => 'company',:action => 'edit',:id => company.id}))
-          td = company.email
-          td
-            = link_to('削除',url_for(:controller => 'company', :action => 'delete', :id => company[:id]), :class => 'btn btn-danger')
+          th id
+          th 企業名
+          th メール
+          th 削除
+        - @companies.each do |company|
+          tr
+            td = company.id
+            td = link_to("#{company.name}",url_for({:controller => 'company',:action => 'edit',:id => company.id}))
+            td = company.email
+            td
+              = link_to('削除',url_for(:controller => 'company', :action => 'delete', :id => company[:id]), :class => 'btn btn-danger')

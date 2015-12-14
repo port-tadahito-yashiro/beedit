@@ -1,11 +1,21 @@
 
 #wrapper{
-  .project-list{
-    table{
-      tbody{
+  #wrapper-project{
+    .dashboard{
+      margin: 50px;
+    }
+    .project-list{
+      margin: 0 50px;
+      .dashboard{
+        margin: 50px;
+      }
+      table{
         tr{
+          th{
+            font-size: 15px;
+          }
           td{
-
+            font-size: 15px;
           }
           td#dead-danger{
             color: #FF0000 !important;

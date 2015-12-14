@@ -1,0 +1,24 @@
+
+#wrapper{
+  #wrapper-company{
+    .dashboard{
+      margin: 50px;
+    }
+    .company-list{
+      margin: 0 50px;
+      .dashboard{
+        margin: 50px;
+      }
+      table{
+        tr{
+          th{
+            font-size: 15px;
+          }
+          td{
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}

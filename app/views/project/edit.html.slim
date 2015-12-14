@@ -4,116 +4,118 @@
 
   == showFlashMessages
 
-  .project_edit
+  #wrapper-project
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
 
-    = form_tag '', :class => 'form-horizontal col-lg-11', :role => 'form', :multipart => true
+    .project-edit
 
-      .form-group
-        label.col-sm-2.control-label for="sales"
-          'セールス担当者'
-          span.text-danger *
-        .col-sm-10 = select_tag '',options_from_collection_for_select(@saleses, :id, :name),:name => 'sales',:id => 'sales', :class => 'span3 form-control'
+      = form_tag '', :class => 'form-horizontal col-lg-11', :role => 'form', :multipart => true
 
-
-      .form-group
-        label.col-sm-2.control-label for="company"
-          '企業情報'
-          span.text-danger *
-        .col-sm-10 = select_tag '',options_from_collection_for_select(@companies, :id, :name),:name => 'company',:id => 'company' ,:class => 'span3 form-control'
-
-      .form-group
-        label.col-sm-2.control-label for="table_name"
-          'テーブル名'
-          span.text-danger *
-        .col-sm-10 = text_field_tag '', @project.table_name, :class => 'form-control', :id => 'table_name',:name => 'table_name', :placeholder => '企業名_プロジェクト名'
-
-      .form-group
-        label.col-sm-2.control-label for="name"
-          '名前'
-          span.text-danger *
-        .col-sm-10 = text_field_tag '', @project.name, :class => 'form-control', :id => 'name',:name => 'name', :placeholder => '名前'
-
-      .form-group
-        label.col-sm-2.control-label for="url"
-          'url'
-          span.text-danger *
-        .col-sm-10 = text_field_tag '', @project.url, :class => 'form-control', :id => 'url',:name => 'url', :placeholder => 'url'
-
-      .form-group
-        label.col-sm-2.control-label for="title"
-          'タイトル'
-          span.text-danger *
-        .col-sm-10 = text_field_tag '', @project.title, :class => 'form-control', :id => 'title',:name => 'title', :placeholder => 'タイトル'
-
-      .form-group
-        label.col-sm-2.control-label for="description"
-          'ディスクリプション'
-          span.text-danger *
-        .col-sm-10 = text_field_tag '', @project.description, :class => 'form-control', :id => 'description',:name => 'description', :placeholder => 'ディスクリプション'
-
-      .form-group
-        label.col-sm-2.control-label for="ogp_description"
-          'OGPディスクリプション'
-          span.text-danger *
-        .col-sm-10 = text_field_tag '', @project.ogp_description, :class => 'form-control', :id => 'ogp_description',:name => 'ogp_description', :placeholder => 'OGPディスクリプション'
-
-      .form-group
-        label.col-sm-2.control-label for="start_at"
-          '開始時間'
-          span.text-danger *
-        .input-group.date.datepicker4.col-sm-10
-          = text_field_tag('', @project.start_at,  :class => 'form-control',:name => 'start_at',:id => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
-          span.input-group-addon
-            span.fa.fa-calendar
-
-      .form-group
-        label.col-sm-2.control-label for="finish_at"
-          '終了時間'
-          span.text-danger *
-        .input-group.date.datepicker4.col-sm-10.col-sm-10
-          = text_field_tag('', @project.finish_at,  :class => 'form-control',:name => 'finish_at',:id => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
-          span.input-group-addon
-            span.fa.fa-calendar
-
-      .form-group
-        label.col-sm-2.control-label for="domain_name"
-          'ドメイン名'
-          span.text-danger *
-        .col-sm-10 = text_field_tag '', @project.domain_name,:class => 'form-control', :id => 'domain_name',:name => 'domain_name',:id => 'domain_name', :placeholder => 'ドメイン名'
-
-      .form-group
-        label.col-sm-2.control-label for="domain_name"
-          'ドメイン期限'
-          span.text-danger *
-        .col-sm-10.input-group.date.datepicker4
-          = text_field_tag('', @project.domain_deadline_at,  :class => 'form-control',:name => 'deadline_at',:id => 'domain_deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
-          span.input-group-addon
-            span.fa.fa-calendar
-
-      .form-group
-        label.col-sm-2.control-label for="ssl_deadline_at"
-          'SSL期限'
-          span.text-danger *
-        .col-sm-10.input-group.date.datepicker4
-          = text_field_tag('', @project.ssl_deadline_at,  :class => 'form-control datepicker',:name => 'ssl_deadline_at',:id => 'ssl_deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
-          span.input-group-addon
-            span.fa.fa-calendar
+        .form-group
+          label.col-sm-2.control-label for="sales"
+            'セールス担当者'
+            span.text-danger *
+          .col-sm-10 = select_tag '',options_from_collection_for_select(@saleses, :id, :name),:name => 'sales',:id => 'sales', :class => 'span3 form-control'
 
 
-      .form-group
-        table.table.table-striped.table-bordered.table-hover#task-list.col-sm-8
-          thead
-            tr
-              th 担当者
-              th タスク名
-              th 詳細
-          tbody.task-data
+        .form-group
+          label.col-sm-2.control-label for="company"
+            '企業情報'
+            span.text-danger *
+          .col-sm-10 = select_tag '',options_from_collection_for_select(@companies, :id, :name),:name => 'company',:id => 'company' ,:class => 'span3 form-control'
 
-        .btn.btn-danger#task-add タスク追加
+        .form-group
+          label.col-sm-2.control-label for="table_name"
+            'テーブル名'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', @project.table_name, :class => 'form-control', :id => 'table_name',:name => 'table_name', :placeholder => '企業名_プロジェクト名'
+
+        .form-group
+          label.col-sm-2.control-label for="name"
+            '名前'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', @project.name, :class => 'form-control', :id => 'name',:name => 'name', :placeholder => '名前'
+
+        .form-group
+          label.col-sm-2.control-label for="url"
+            'url'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', @project.url, :class => 'form-control', :id => 'url',:name => 'url', :placeholder => 'url'
+
+        .form-group
+          label.col-sm-2.control-label for="title"
+            'タイトル'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', @project.title, :class => 'form-control', :id => 'title',:name => 'title', :placeholder => 'タイトル'
+
+        .form-group
+          label.col-sm-2.control-label for="description"
+            'ディスクリプション'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', @project.description, :class => 'form-control', :id => 'description',:name => 'description', :placeholder => 'ディスクリプション'
+
+        .form-group
+          label.col-sm-2.control-label for="ogp_description"
+            'OGPディスクリプション'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', @project.ogp_description, :class => 'form-control', :id => 'ogp_description',:name => 'ogp_description', :placeholder => 'OGPディスクリプション'
+
+        .form-group
+          label.col-sm-2.control-label for="start_at"
+            '開始時間'
+            span.text-danger *
+          .input-group.date.datepicker4.col-sm-10
+            = text_field_tag('', @project.start_at,  :class => 'form-control',:name => 'start_at',:id => 'start_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+            span.input-group-addon
+              span.fa.fa-calendar
+
+        .form-group
+          label.col-sm-2.control-label for="finish_at"
+            '終了時間'
+            span.text-danger *
+          .input-group.date.datepicker4.col-sm-10.col-sm-10
+            = text_field_tag('', @project.finish_at,  :class => 'form-control',:name => 'finish_at',:id => 'finish_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+            span.input-group-addon
+              span.fa.fa-calendar
+
+        .form-group
+          label.col-sm-2.control-label for="domain_name"
+            'ドメイン名'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', @project.domain_name,:class => 'form-control', :id => 'domain_name',:name => 'domain_name',:id => 'domain_name', :placeholder => 'ドメイン名'
+
+        .form-group
+          label.col-sm-2.control-label for="domain_name"
+            'ドメイン期限'
+            span.text-danger *
+          .col-sm-10.input-group.date.datepicker4
+            = text_field_tag('', @project.domain_deadline_at,  :class => 'form-control',:name => 'deadline_at',:id => 'domain_deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+            span.input-group-addon
+              span.fa.fa-calendar
+
+        .form-group
+          label.col-sm-2.control-label for="ssl_deadline_at"
+            'SSL期限'
+            span.text-danger *
+          .col-sm-10.input-group.date.datepicker4
+            = text_field_tag('', @project.ssl_deadline_at,  :class => 'form-control datepicker',:name => 'ssl_deadline_at',:id => 'ssl_deadline_at', :placeholder => 'YYYY/MM/DD hh:mm:ss')
+            span.input-group-addon
+              span.fa.fa-calendar
+
+
+        .form-group
+          table.table.table-striped.table-bordered.table-hover#task-list.col-sm-8
+            thead
+              tr
+                th 担当者
+                th タスク名
+                th 詳細
+            tbody.task-data
+
+          .btn.btn-danger#task-add タスク追加
 
 
 
-      .submit
-        .project-edit-submit.btn.btn-primary 保存
+        .submit
+          .project-edit-submit.btn.btn-primary 保存

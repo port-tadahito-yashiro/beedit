@@ -1,18 +1,34 @@
 
 #wrapper{
-  .btn{
-    margin: 13px
-  }
-  .task-list{
-    margin: 0 50px;
-    h1{
-      font-size: 15px;
+  #wrapper-task{
+    .dashboard{
+      margin: 50px;
     }
-    table{
-      tr{
-        td{
-          font-size: 15px;
+    .task-list{
+      margin: 0 50px;
+      .dashboard{
+        margin: 50px;
+      }
+      h1{
+        font-size: 15px;
+      }
+      table{
+        tr{
+          th{
+            font-size: 15px;
+          }
+          td{
+            font-size: 15px;
+          }
         }
+      }
+    }
+    .task-add{
+      width: 80%;
+      background-color: black;
+      margin: 0 auto;
+      .task-add{
+        margin: 50px;
       }
     }
   }

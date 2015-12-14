@@ -4,22 +4,23 @@
 
   == showFlashMessages
 
-  .project-list
+  #wrapper-admin
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
 
+    .admin-list
 
-    table.table.table-hover
-      tr
-        td ユーザーID
-        td ユーザー名
-        td ユーザーemail
-        td 編集 / 削除
-      - @admins.each do |admin|
+      table.table.table-hover.col-lg-4
         tr
-          td = admin.id
-          td = admin.name
-          td = admin.email
-          td
-            = link_to('編集',url_for(:controller => 'admin', :action => 'edit',:id => admin[:id]), :class => 'btn btn-info')
-            = link_to('削除',url_for(:controller => 'admin', :action => 'delete', :id => admin[:id]), :class => 'btn btn-danger')
+          th ユーザーID
+          th ユーザー名
+          th ユーザーemail
+          th 編集 / 削除
+        - @admins.each do |admin|
+          tr
+            td = admin.id
+            td = admin.name
+            td = admin.email
+            td
+              = link_to('編集',url_for(:controller => 'admin', :action => 'edit',:id => admin[:id]), :class => 'btn btn-info')
+              = link_to('削除',url_for(:controller => 'admin', :action => 'delete', :id => admin[:id]), :class => 'btn btn-danger')

@@ -1,25 +1,28 @@
 = render :partial => 'common/header'
 
 #wrapper
-  .user-list
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+  #wrapper-project
 
-    .title.h2 データベース
+    .user-list
 
-    table.table.table-striped.table-bordered.table-hover
-      - if !@records.blank?
-        thead
-        - @records.first(1).each do |data|
-          tr
-          - data.each do |key, value|
-              th = key
+      = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
 
-        tbody
-          - @records.each do |data|
+      .title.h2 データベース
+
+      table.table.table-striped.table-bordered.table-hover
+        - if !@records.blank?
+          thead
+          - @records.first(1).each do |data|
             tr
             - data.each do |key, value|
-                td = value
+                th = key
 
-      - else
-        h2 データが存在しません
+          tbody
+            - @records.each do |data|
+              tr
+              - data.each do |key, value|
+                  td = value
+
+        - else
+          h2 データが存在しません
