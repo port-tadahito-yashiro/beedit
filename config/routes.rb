@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   match '/super/events/:id'   => 'event#update', :via => [:put, :post]
   match '/super/events/delete/:id'   => 'event#delete', :via => [:get, :post]
   # フォーム取得
-  match  '/project/getform/task'     => 'project#get_form', :via => [:get]
+  match '/project/getform/task'     => 'project#get_form', :via => [:get]
 
 
   #タスク管理

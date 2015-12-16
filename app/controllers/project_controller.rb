@@ -20,7 +20,7 @@ class ProjectController < ApplicationController
   # Created 2015/12/03
   #
   def list
-    @projects = Project.where(:deleted_at => nil).all
+    @projects = Project.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(2)
   end
 
   #
@@ -56,9 +56,11 @@ class ProjectController < ApplicationController
         end
 
           # 新規タスクの作成
+        if !task_data.blank?
           task_data.each_with_index do |task, i|
             Task.create(:project_id => @project[:id].to_i,:admin_id => task[1][:user_id].to_i,:title => task[1][:name],:context => task[1][:detail],:state => '1')
           end
+        end
 
         render :json => {:success => true, :id => @project.id}
       else
@@ -86,6 +88,8 @@ class ProjectController < ApplicationController
       # 値を取得する
       project_data = params[:project]
       task_data = params[:tasks]
+
+      p project_data
 
         ActiveRecord::Base.transaction do
           @project.sales_user_id = project_data[:sales].to_i
@@ -135,7 +139,9 @@ class ProjectController < ApplicationController
     project.deleted_user = 1
     if project.save then
       flash[:notice] = 'プロジェクトを削除しました'
-      redirect_to(url_for({:controller => 'project',:action => 'list'}))
+      render :json => {:success => true}
+    else
+      render :json => {:success => false}
     end
   end
 

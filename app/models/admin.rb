@@ -5,6 +5,8 @@ class Admin < ActiveRecord::Base
   has_one :department
   has_many :tasks
 
+  paginates_per 5
+
   before_save do
 
    self.salt = Admin.new_salt
@@ -73,7 +75,7 @@ class Admin < ActiveRecord::Base
 
     if password == password_confirm and !password.blank? ||
        !name.blank? ||
-       !email.blank? 
+       !email.blank?
       admin.name = name
       admin.department_id = department.to_i
       admin.email = email

@@ -9,7 +9,7 @@ class CompanyController < ApplicationController
   # Created 2015/12/03
   #
   def list
-    @companies = Company.where(:deleted_at => nil).all
+    @companies = Company.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(2)
   end
 
   #

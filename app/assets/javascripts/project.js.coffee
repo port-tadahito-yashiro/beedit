@@ -26,7 +26,7 @@ $ ->
   #
   $('.project-add-submit').click ->
     # htmlのデータを取得する
-    form = $('.project_add').children()
+    form = $('.project-add').children()
     formData = upload_data(form)
 
     # タスクの追加　及び　更新
@@ -55,10 +55,10 @@ $ ->
   #
   $('#wrapper .project-edit-submit').click ->
     # htmlのデータを取得する
-    form = $('.project_edit').children()
+    form = $('.project-edit').children()
+    console.log(form)
     formData = upload_data(form)
     project_id = location.pathname.split('/super/project/edit/')[1]
-    console.log('aaaa')
     # タスクの追加　及び　更新
     $.ajax
       async: true

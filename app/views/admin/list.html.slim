@@ -24,3 +24,5 @@
             td
               = link_to('編集',url_for(:controller => 'admin', :action => 'edit',:id => admin[:id]), :class => 'btn btn-info')
               = link_to('削除',url_for(:controller => 'admin', :action => 'delete', :id => admin[:id]), :class => 'btn btn-danger')
+
+      = paginate @admins

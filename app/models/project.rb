@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
   has_many :events
   has_many :tasks
 
+  #paginates_per 5
+
   before_save do
     self.created_at = Time.now
     self.created_time = Time.now.to_i

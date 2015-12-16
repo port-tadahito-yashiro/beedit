@@ -35,6 +35,8 @@
               = link_to '完了',url_for(:controller => 'task', :action => 'finish', :id => task[:id]), :class => 'btn btn-success'
               = link_to '削除',url_for(:controller => 'task', :action => 'delete', :id => task[:id]), :class => 'btn btn-danger'
 
+      = paginate @tasks
+
       h1 削除or終了したタスク一覧
       table.table.table-hover.col-lg-4
         tr
