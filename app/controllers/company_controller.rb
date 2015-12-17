@@ -9,7 +9,7 @@ class CompanyController < ApplicationController
   # Created 2015/12/03
   #
   def list
-    @companies = Company.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(2)
+    @companies = Company.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(15)
   end
 
   #
@@ -32,7 +32,7 @@ class CompanyController < ApplicationController
   # Created 2015/12/03
   #
   def edit
-    @projects = Project.where(:company_id => params[:id]).all
+    @projects = Project.where(:company_id => params[:id]).order("id DESC").page(params[:page]).per(10)
     @company = Company.where(:id => params[:id]).first
     if request.post?
       if Company.updated(params[:id],params[:name],params[:description],params[:password],params[:email],params[:password_confirm]) then
@@ -54,7 +54,10 @@ class CompanyController < ApplicationController
     company.deleted_user = 1
     if company.save then
       flash[:notice] = '企業情報を削除しました'
-      return redirect_to(url_for({:controller => "company",:action => "list"}))
+      render :json => {:success => true}
+    else
+      flash[:error] = '企業情報の削除に失敗しました'
+      render :json => {:success => false}
     end
   end
 

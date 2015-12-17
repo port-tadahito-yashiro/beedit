@@ -5,10 +5,8 @@
       margin: 50px;
     }
     .company-list{
-      margin: 0 50px;
-      .dashboard{
-        margin: 50px;
-      }
+      width: 100%;
+      padding: 0 100px;
       table{
         tr{
           th{
@@ -20,5 +18,18 @@
         }
       }
     }
+    .company-add{
+      width: 100%;
+      padding: 0 100px;
+    }
+    .company-edit{
+      width: 100%;
+      padding: 0 100px;
+    }
+    .company-project-list{
+      width: 100%;
+      padding: 0 100px;
+    }
+
   }
 }

@@ -54,6 +54,7 @@ $(function(){
 
 
   //Cancel Click close form
+  // プロジェクトの削除
   $(document).on('click', '#project_delete', function(){
     console.log("押された！");
     $('#projectModal').modal();
@@ -84,6 +85,7 @@ $(function(){
 
 
   //
+  // ユーザーの削除
   $(document).on('click', '#admin-confirm', function(){
 
     var html = $(this);
@@ -100,13 +102,33 @@ $(function(){
           window.location = '/super/admin/list'
         },
         error: function(json) {
-          windor.location = '/super/admin/list'
+          window.location = '/super/admin/list'
+        }
+      });
+    });
+  });
+
+  //
+  //　企業の削除
+  $(document).on('click', '#company-confirm', function(){
+    var html = $(this);
+    var id = (html.attr('for'));
+
+    $('#companyModal').modal();
+
+    $(document).on('click', '#compnayDelete', function(){
+      var url = "/super/company/delete/" + id
+      $.ajax({
+        type: "POST",
+        url: url,
+        success: function(json) {
+          window.location = '/super/company/list'
+        },
+        error: function(json) {
+          window.location = '/super/company/list'
         }
       });
     });
   });
 
 });
-
-
-// デリート処理

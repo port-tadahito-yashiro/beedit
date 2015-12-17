@@ -8,7 +8,8 @@
       margin: 50px;
     }
     .admin-list{
-      margin: 0 50px;
+      width: 100%;
+      padding: 0 100px;
       .dashboard{
         margin: 50px;
       }
@@ -24,8 +25,18 @@
       }
     }
     .admin-add{
+      width: 100%;
+      padding: 0 100px;
+      .admin-add-submit{
+        float:right;
+      }
     }
     .admin-edit{
+      width: 100%;
+      padding: 0 100px;
+      .admin-edit-submit{
+        float:right;
+      }
     }
   }
 }

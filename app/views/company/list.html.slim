@@ -7,6 +7,7 @@
   #wrapper-company
 
     = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
+    = link_to '企業の新規作成へ', '/super/company/add', :class => 'btn btn-primary btn-prev dashboard'
 
     .company-list
 
@@ -22,6 +23,23 @@
             td = link_to("#{company.name}",url_for({:controller => 'company',:action => 'edit',:id => company.id}))
             td = company.email
             td
-              = link_to('削除',url_for(:controller => 'company', :action => 'delete', :id => company[:id]), :class => 'btn btn-danger')
+              //= link_to('削除',url_for(:controller => 'company', :action => 'delete', :id => company[:id]), :class => 'btn btn-danger')
+              .btn.btn-danger#company-confirm for="#{company.id}" 削除
+
+              #companyModal.modal.fade
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      button.close data-dismiss="modal" type="button"
+                        span aria-hidden="true" ×
+                        span.sr-only#confirm-out close
+                    .content
+                      #confirm-context　削除してもよろしいですか？
+
+                    .modal-footer
+                      button#compnayDelete.btn.btn-danger 削除
+                      button.btn.btn-primary#confirm-out aria-hidden="true" data-dismiss="modal"  Cancel
+
+
 
       = paginate @companies

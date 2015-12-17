@@ -1,20 +1,24 @@
 = render :partial => 'common/header'
 
 #wrapper
-  .project_graph
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev'
+  #wrapper-project
 
-    ul
-      li
-        .title デイリーPV
-        canvas#daily-graph
-      li
-        .title ウィークリーPV
-        canvas#weekly-graph
-      li
-        .title マンスリーPV
-        canvas#monthly-graph
+    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
+    = link_to 'プロジェクトの一覧へ', '/super/project/list', :class => 'btn btn-info btn-prev dashboard'
+
+    .project_graph
+
+      ul
+        li
+          .title デイリーPV
+          canvas#daily-graph
+        li
+          .title ウィークリーPV
+          canvas#weekly-graph
+        li
+          .title マンスリーPV
+          canvas#monthly-graph
 
 
 = javascript_include_tag 'Chart.min'

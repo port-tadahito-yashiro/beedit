@@ -7,10 +7,10 @@
   #wrapper-project
 
     = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
+    = link_to 'プロジェクトの新規作成へ', '/super/project/add', :class => 'btn btn-primary btn-prev dashboard'
 
     .project-list
-
-      table.table.table-hover.col-lg-4
+      table.table.table-hover
         tr
           th id
           th タイトル
@@ -20,7 +20,7 @@
         - @projects.each do |project|
           tr
             td = project.id
-            td[id="#{project.id}"] = project.title
+            td = project.title
             td = project.domain_deadline_at
             //td = project.deadline_at
             == deadLine(project.domain_deadline_at)

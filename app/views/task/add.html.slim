@@ -7,6 +7,7 @@
   #wrapper-task
 
     = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
+    = link_to 'タスクの一覧へ', '/super/task/list', :class => 'btn btn-info btn-prev dashboard'
 
     .task-add
 
@@ -26,4 +27,4 @@
           .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'context', :name => 'context', :placeholder => 'タスク詳細'
 
         .form-group
-          = submit_tag '登録', :class => 'btn btn-primary'
+          = submit_tag '登録', :class => 'btn btn-primary task-add-submit'

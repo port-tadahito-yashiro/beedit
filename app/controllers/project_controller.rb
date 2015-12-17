@@ -20,7 +20,7 @@ class ProjectController < ApplicationController
   # Created 2015/12/03
   #
   def list
-    @projects = Project.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(2)
+    @projects = Project.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(15)
   end
 
   #

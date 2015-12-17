@@ -11,8 +11,8 @@ class TaskController < ApplicationController
   #
   def list
     now_time = DateTime.now
-    @tasks = Task.where(:finish_at => nil,:deleted_at => nil,:state => 0).order("id DESC").page(params[:page]).per(2)
-    @deleteTasks = Task.where(Task.arel_table[:finish_at].gt(now_time).or(Task.arel_table[:deleted_at].not_eq(nil)).or(Task.arel_table[:state].not_eq(0))).all
+    @tasks = Task.where(:finish_at => nil,:deleted_at => nil,:state => 0).order("id DESC").page(params[:page]).per(15)
+    @deleteTasks = Task.where(Task.arel_table[:finish_at].gt(now_time).or(Task.arel_table[:deleted_at].not_eq(nil)).or(Task.arel_table[:state].not_eq(0))).order("deleted_at").limit(6)
   end
 
   #

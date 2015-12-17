@@ -10,7 +10,7 @@ class AdminController < ApplicationController
   # Created 2015/12/03
   #
   def list
-    @admins = Admin.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(2)
+    @admins = Admin.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(15)
   end
 
 

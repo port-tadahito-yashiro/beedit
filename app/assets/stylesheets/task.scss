@@ -5,7 +5,8 @@
       margin: 50px;
     }
     .task-list{
-      margin: 0 50px;
+      width: 100%;
+      padding: 0 100px;
       .dashboard{
         margin: 50px;
       }
@@ -27,8 +28,8 @@
       width: 80%;
       background-color: black;
       margin: 0 auto;
-      .task-add{
-        margin: 50px;
+      .task-add-submit{
+        float: right;
       }
     }
   }

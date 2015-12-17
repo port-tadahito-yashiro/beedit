@@ -5,7 +5,8 @@
       margin: 50px;
     }
     .project-list{
-      margin: 0 50px;
+      width: 100%;
+      padding: 0 100px;
       .dashboard{
         margin: 50px;
       }
@@ -24,6 +25,41 @@
           td#dead-caution{
             color: #FFCC33 !important;
             font-size: 20px;
+          }
+        }
+      }
+    }
+    .project-add{
+      width: 100%;
+      padding: 0 100px;
+      .submit{
+        .project-add-submit{
+          float:right;
+        }
+      }
+    }
+    .project-edit{
+      width: 100%;
+      padding: 0 100px;
+      .submit{
+        .project-edit-submit{
+          float:right;
+        }
+      }
+    }
+    .project_graph{
+      ul{
+        li{
+          margin-bottom: 20px;
+          .title{
+            width: 100%;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 20px;
+          }
+          canvas{
+            width: 100%;
+            height: 300px;
           }
         }
       }
