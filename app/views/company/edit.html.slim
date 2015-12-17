@@ -43,15 +43,13 @@
           .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'email',:name => 'email', :placeholder => 'メール'
 
         .form-group
-          = submit_tag '登録', :class => 'btn btn-primary'
+          = submit_tag '登録', :class => 'btn btn-primary company-edit-submit'
 
-    .company-project-list
-      h1 #{@company.name} のプロジェクト
-      table.table.table-hover
-        tr
-          td テスト
-        - @projects.each do |project|
-          tr
-            td = link_to("#{project.name}",url_for({:controller => 'project',:action => 'edit',:id => project.id}))
+      .company-project-list
+        h1 #{@company.name} のプロジェクト
+        table.table.table-hover
+          - @projects.each do |project|
+            tr
+              td = link_to("#{project.name}",url_for({:controller => 'project',:action => 'edit',:id => project.id}))
 
-      = paginate @projects
+        = paginate @projects

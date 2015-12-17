@@ -1,4 +1,8 @@
 
+html,body{
+  height: 100%;
+}
+
 header{
   background-color: #2f363b;
   width: 100%;
@@ -6,13 +10,19 @@ header{
   margin-bottom: 30px;
 }
 
+#wrapper{
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
 
 footer{
   background-color: #2f363b;
+  position: absolute;  /* フッターを絶対配置に指定する設定 */
+  bottom: 0;           /* フッターを一番下に置くぜ！ */
   width: 100%;
-  margin-top: 20px !important;
-  position:absolute;
-  bottom:0;
+  height: 50px;        /* フッターの高さ */
   p{
     text-align: center;
     color: white;

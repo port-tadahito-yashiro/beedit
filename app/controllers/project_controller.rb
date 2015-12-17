@@ -194,11 +194,13 @@ class ProjectController < ApplicationController
     tabele_name = Project.where(:id => params[:id]).first
     #apiは"/models/concerns/beedit_api"にあります
     result = Beedit_api.api(BEEDIT_API_URL,"table_name=#{tabele_name.table_name}")
+
+    @id = params[:id]
     @records = result
 
     respond_to do |format|
       format.html
-      #foramt.csv { send_data to_csv(result) ,type: 'data/csv; charset=shift_jis', filename: "顧客データ.csv"}
+      format.csv { send_data to_csv(result) ,type: 'data/csv; charset=shift_jis', filename: tabele_name[:name]}
     end
   end
 
