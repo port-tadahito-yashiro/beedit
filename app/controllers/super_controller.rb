@@ -36,7 +36,9 @@ class SuperController < ApplicationController
     @AllProject = Project.all.count
     @NoFinishTask = Task.where(:deleted_at => nil,:state => 0).count
     now_time = DateTime.now
+    evAll = Event.all
     @events = Event.where(Event.arel_table[:start].lt(now_time).and(Event.arel_table[:end].gt(now_time)).and(Event.arel_table[:deleted_at].eq(nil))).all
+    p @events
   end
 
   #

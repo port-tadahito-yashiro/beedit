@@ -81,6 +81,31 @@ $(function(){
       });
     });
   });
+
+
+  //
+  $(document).on('click', '#admin-confirm', function(){
+
+    var html = $(this);
+    var id = (html.attr('for'));
+
+    $('#adminModal').modal();
+
+    $(document).on('click', '#adminDelete',function(){
+      var url = "/super/admin/delete/" + id
+      $.ajax({
+        type: "POST",
+        url: url,
+        success: function(json) {
+          window.location = '/super/admin/list'
+        },
+        error: function(json) {
+          windor.location = '/super/admin/list'
+        }
+      });
+    });
+  });
+
 });
 
 

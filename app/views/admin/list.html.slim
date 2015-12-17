@@ -23,6 +23,23 @@
             td = admin.email
             td
               = link_to('編集',url_for(:controller => 'admin', :action => 'edit',:id => admin[:id]), :class => 'btn btn-info')
-              = link_to('削除',url_for(:controller => 'admin', :action => 'delete', :id => admin[:id]), :class => 'btn btn-danger')
+              //= link_to('削除',url_for(:controller => 'admin', :action => 'delete', :id => admin[:id]), :class => 'btn btn-danger')
+              .btn.btn-danger#admin-confirm for="#{admin.id}" 削除
+
+              #adminModal.modal.fade
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      button.close data-dismiss="modal" type="button"
+                        span aria-hidden="true" ×
+                        span.sr-only#confirm-out close
+                    .content
+                      #confirm-context　削除してもよろしいですか？
+
+                    .modal-footer
+                      button#adminDelete.btn.btn-danger 削除
+                      button.btn.btn-primary#confirm-out aria-hidden="true" data-dismiss="modal"  Cancel
+
+
 
       = paginate @admins

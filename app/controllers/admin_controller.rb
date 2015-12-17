@@ -63,9 +63,10 @@ class AdminController < ApplicationController
     admin.deleted_user = 1
     if admin.save then
       flash[:notice] = 'ユーザー情報を削除しました'
-      return redirect_to(url_for({:controller => "admin",:action => "list"}))
+      render :json => {:success => true}
     else
       flash[:error] = 'ユーザー情報の削除に失敗しました'
+      render :json => {:success => false}
     end
   end
 

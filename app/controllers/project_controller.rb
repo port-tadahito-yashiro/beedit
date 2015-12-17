@@ -134,14 +134,25 @@ class ProjectController < ApplicationController
   #
   def delete
     project = Project.where(:id => params[:id]).first
-    project.deleted_at = Time.now
-    project.deleted_time = Time.now.to_i
-    project.deleted_user = 1
-    if project.save then
-      flash[:notice] = 'プロジェクトを削除しました'
-      render :json => {:success => true}
-    else
-      render :json => {:success => false}
+    ActiveRecord::Base.transaction do
+      project.deleted_at = Time.now
+      project.deleted_time = Time.now.to_i
+      project.deleted_user = 1
+      if project.save then
+        ActiveRecord::Base.transaction do
+          project.events.each do |event|
+            event.deleted_at = Time.now
+            event.deleted_time = Time.now.to_i
+            event.deleted_user = 1
+            event.save
+          end
+        end
+        flash[:notice] = 'プロジェクトを削除しました'
+        render :json => {:success => true}
+      else
+        flash[:error] = 'プロジェクトの削除に失敗しました'
+        render :json => {:success => false}
+      end
     end
   end
 
