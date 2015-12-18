@@ -94,6 +94,19 @@ gem "font-awesome-rails"
 #
 gem 'kaminari', '~> 0.16.3'
 
+#
+# サーバーへのデプロイ用
+#
+#
+gem 'unicorn'
+
+group :deployment do
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rails', '~> 1.1',   require: false
+  gem 'capistrano-rbenv', '~> 2.0',   require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano3-unicorn' #unicornを使っている場合のみ
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

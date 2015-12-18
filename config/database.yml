@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: sriasia
+  password: root
   socket: /tmp/mysql.sock
 
 development:
@@ -48,10 +48,14 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: beedit_production
-  username: beedit
-  password: <%= ENV['BEEDIT_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  #database: beedit_production
+  database: beedit_development
+  username: root
+  password: root
+  host: 52.33.117.149
 
 
 #
