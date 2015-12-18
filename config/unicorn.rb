@@ -12,7 +12,7 @@ preload_app true
 
 # ソケット！　一番重要！
 listen "#{app_path}/tmp/sockets/unicorn.sock"
-pid "#{app_path}/tmp/unicorn.pid"
+pid "#{app_path}/tmp/pids/unicorn.pid"
 
 
 
