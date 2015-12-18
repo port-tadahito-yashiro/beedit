@@ -11,8 +11,8 @@ preload_app true
 
 
 # ソケット！　一番重要！
-listen "#{app_path}/shared/tmp/sockets/unicorn.sock"
-pid "#{app_path}/current/tmp/unicorn.pid"
+listen "#{app_path}/tmp/sockets/unicorn.sock"
+pid "#{app_path}/tmp/unicorn.pid"
 
 
 
@@ -28,8 +28,8 @@ if ENV['RAILS_ENV'] == 'production'
   shared_path = "/var/www/#{application}/shared"
 
   # Unicornのエラーログと通常ログの位置を指定。
-  stderr_path = "#{app_path}/current/log/unicorn.stderr.log"
-  stdout_path = "#{app_path}/current/log/unicorn.stdout.log"
+  stderr_path = "#{app_path}/log/unicorn.stderr.log"
+  stdout_path = "#{app_path}/log/unicorn.stdout.log"
 end
 
 # Unicornのエラーログと通常ログの位置を指定。
