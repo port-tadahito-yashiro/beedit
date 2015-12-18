@@ -12,8 +12,14 @@ preload_app true
 
 # ソケット！　一番重要！
 listen "#{app_path}/tmp/sockets/unicorn.sock"
+
+#listen "/tmp/unicorn.sock", :backlog => 64
+
 pid "#{app_path}/tmp/pids/unicorn.pid"
 
+# Unicornのエラーログと通常ログの位置を指定。
+stderr_path "#{app_path}/log/unicorn.stderr.log"
+stdout_path "#{app_path}/log/unicorn.stdout.log"
 
 
 # capistrano 用に RAILS_ROOT を指定
@@ -24,17 +30,15 @@ working_directory "/var/www/#{application}"
 timeout 30
 
 # 環境の判別
-if ENV['RAILS_ENV'] == 'production'
-  shared_path = "/var/www/#{application}/shared"
+#if ENV['RAILS_ENV'] == 'production'
+#  shared_path = "/var/www/#{application}/shared"
 
   # Unicornのエラーログと通常ログの位置を指定。
-  stderr_path = "#{app_path}/log/unicorn.stderr.log"
-  stdout_path = "#{app_path}/log/unicorn.stdout.log"
-end
+#  stderr_path = "#{app_path}/log/unicorn.stderr.log"
+#  stdout_path = "#{app_path}/log/unicorn.stdout.log"
+#end
 
-# Unicornのエラーログと通常ログの位置を指定。
-stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+
 
 
 # USR2シグナルを受けると古いプロセスを止める
