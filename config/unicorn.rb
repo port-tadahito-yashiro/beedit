@@ -1,45 +1,35 @@
-application = 'beedit'
-
 
 # Unicornは複数のワーカーで起動するのでワーカーの数を定義する
 # サーバーのメモリなどに寄って変更すること
 worker_processes 2
 
-app_path = "/var/www/beedit"
+@app_path = "/var/www/beedit"
+@application = 'beedit'
 # 基本的には'true'を指定する。Unicornの再起動時にダウンタイムなしで再起動が行われる
 preload_app true
 
 
 # ソケット！　一番重要！
-listen "#{app_path}/tmp/sockets/unicorn.sock"
-
+# Nginxのconfig内にあるupstreamで、このパスを指定
+listen "/var/www/beedit/tmp/sockets/unicorn.sock"
 #listen "/tmp/unicorn.sock", :backlog => 64
 
-pid "#{app_path}/tmp/pids/unicorn.pid"
+# pidを保存するファイル
+pid "/var/www/beedit/tmp/pids/unicorn.pid"
 
 # Unicornのエラーログと通常ログの位置を指定。
-stderr_path "#{app_path}/log/unicorn.stderr.log"
-stdout_path "#{app_path}/log/unicorn.stdout.log"
+stderr_path "/var/www/beedit/log/unicorn.stderr.log"
+stdout_path "/var/www/beedit/log/unicorn.stdout.log"
+# stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+# stdout_parh File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 
 
 # capistrano 用に RAILS_ROOT を指定
 # Unicornの起動コマンドを実行するディレクトリを指定します
-working_directory "/var/www/#{application}"
+working_directory "/var/www/beedit"
 
 # 接続タイムアウト時間
 timeout 30
-
-# 環境の判別
-#if ENV['RAILS_ENV'] == 'production'
-#  shared_path = "/var/www/#{application}/shared"
-
-  # Unicornのエラーログと通常ログの位置を指定。
-#  stderr_path = "#{app_path}/log/unicorn.stderr.log"
-#  stdout_path = "#{app_path}/log/unicorn.stdout.log"
-#end
-
-
-
 
 # USR2シグナルを受けると古いプロセスを止める
 #
