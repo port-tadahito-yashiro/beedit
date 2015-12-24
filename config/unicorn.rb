@@ -3,23 +3,23 @@
 # サーバーのメモリなどに寄って変更すること
 worker_processes 2
 
-@app_path = "/var/www/beedit"
-@application = 'beedit'
 # 基本的には'true'を指定する。Unicornの再起動時にダウンタイムなしで再起動が行われる
 preload_app true
 
 
 # ソケット！　一番重要！
 # Nginxのconfig内にあるupstreamで、このパスを指定
-listen "/var/www/beedit/tmp/sockets/unicorn.sock"
+listen "/tmp/unicorn.sock"
 #listen "/tmp/unicorn.sock", :backlog => 64
 
 # pidを保存するファイル
-pid "/var/www/beedit/tmp/pids/unicorn.pid"
+pid "/tmp/unicorn.pid"
 
 # Unicornのエラーログと通常ログの位置を指定。
+# ファイルの書き込み権限を変更しておくこと
 stderr_path "/var/www/beedit/log/unicorn.stderr.log"
 stdout_path "/var/www/beedit/log/unicorn.stdout.log"
+
 # stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 # stdout_parh File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 
