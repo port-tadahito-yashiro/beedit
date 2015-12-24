@@ -52,7 +52,7 @@ production:
   encoding: utf8
   pool: 5
   #database: beedit_production
-  database: beedit_development
+  database: beedit_production
   username: root
   password: root
   host: 52.35.80.140
