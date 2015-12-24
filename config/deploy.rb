@@ -2,16 +2,16 @@
 lock '3.2.1'
 
 set :application, 'beedit'
-set :repo_url, 'git@github.com:port-kazuki-yamaguchi/beedit.git'
-set :deploy_to, '/var/www/beedit'
+set :repo_url, 'https://github.com/port-kazuki-yamaguchi/beedit.git'
+set :deploy_to, '/var/www/'
 set :keep_releases, 5
 
 set :rbenv_type, :user # :system or :user
 set :rbenv_ruby, '2.1.3'
 #set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
-set :rbenv_roles, :all # default value
-set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}
+#set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+#set :rbenv_roles, :all # default value
+#set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 
 set :bundle_jobs, 4

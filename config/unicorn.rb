@@ -9,11 +9,11 @@ preload_app true
 
 # ソケット！　一番重要！
 # Nginxのconfig内にあるupstreamで、このパスを指定
-listen "/tmp/unicorn.sock"
+listen "/var/www/beedit/tmp/sockets/unicorn.sock"
 #listen "/tmp/unicorn.sock", :backlog => 64
 
 # pidを保存するファイル
-pid "/tmp/unicorn.pid"
+pid "/var/www/beedit/tmp/pids/unicorn.pid"
 
 # Unicornのエラーログと通常ログの位置を指定。
 # ファイルの書き込み権限を変更しておくこと

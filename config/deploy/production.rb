@@ -9,13 +9,19 @@ role :web, %w{deploy@example.com}
 role :db,  %w{deploy@example.com}
 
 
+# production環境のサーバー情報
+#下記を追記する
+server '52.35.80.140', user: 'kazuki', roles: %w{app} #serverのipとuser名は適宜
+set :ssh_options, keys: '~/.ssh/id_rsa.pub' #ssh_keyの名前は適宜
+
+
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server definition into the
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+#server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 
 
 # Custom SSH Options
