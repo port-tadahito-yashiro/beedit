@@ -14,4 +14,4 @@
       .form-group
         = label_tag :password, 'パスワード', {'class' => 'col-sm-2 control-label'}
         = password_field_tag '', '', :name => 'password' ,:placeholder => 'パスワードを入力してください。', :class => 'form-control'
-      = button_tag 'ログイン', :type => 'submit'
+      = button_tag 'ログイン', :type => 'submit',:class => 'btn btn-primary'

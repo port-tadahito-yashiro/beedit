@@ -14,3 +14,5 @@ def self.department
   Department.create(:id => 4,:name => 'Web開発事業部',:description => 'テスト4',:created_at => Time.now, :created_time => Time.now.to_i, :created_user => 1, :updated_at => Time.now, :updated_time => Time.now.to_i, :updated_user => 1)
   Department.create(:id => 5,:name => '総務・会計部',:description => 'テスト5',:created_at => Time.now, :created_time => Time.now.to_i, :created_user => 1, :updated_at => Time.now, :updated_time => Time.now.to_i, :updated_user => 1)
 end
+
+Admin.create(:id => 1,:department_id => 1,:name => 'root',:email => 'root',:password => '6a08867492fbfbeaaf697466b79ee5b03715d016',:salt => '0.7717607766381626',:created_at => Time.now, :created_time => Time.now.to_i, :created_user => 1, :updated_at => Time.now, :updated_time => Time.now.to_i, :updated_user => 1)
