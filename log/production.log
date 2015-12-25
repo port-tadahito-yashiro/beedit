@@ -1,0 +1,261 @@
+D, [2015-12-25T12:34:10.047158 #26394] DEBUG -- :   [1m[36m (162.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+D, [2015-12-25T12:34:10.159584 #26394] DEBUG -- :   [1m[35m (105.7ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+D, [2015-12-25T12:34:10.163061 #26394] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+I, [2015-12-25T12:34:10.168754 #26394]  INFO -- : Migrating to CreateProjects (20151119060742)
+D, [2015-12-25T12:34:10.230888 #26394] DEBUG -- :   [1m[35m (59.2ms)[0m  CREATE TABLE `projects` (`id` int(11) auto_increment PRIMARY KEY, `sales_user_id` int(11) NOT NULL, `company_id` int(11) NOT NULL, `name` varchar(255) NOT NULL, `url` varchar(255) NOT NULL, `page_type` int(11) NOT NULL, `title` varchar(255), `description` text, `ogp_description` text, `start_at` datetime, `finish_at` datetime, `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB
+D, [2015-12-25T12:34:10.246468 #26394] DEBUG -- :   [1m[36m (1.1ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:10.269741 #26394] DEBUG -- :   [1m[35mSQL (18.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151119060742')
+D, [2015-12-25T12:34:10.275443 #26394] DEBUG -- :   [1m[36m (5.3ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:10.275589 #26394]  INFO -- : Migrating to CreateCompanies (20151119062632)
+D, [2015-12-25T12:34:10.342863 #26394] DEBUG -- :   [1m[35m (65.0ms)[0m  CREATE TABLE `companies` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `description` text, `password` varchar(255), `email` varchar(255), `salt` varchar(255), `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB
+D, [2015-12-25T12:34:10.343740 #26394] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:10.345258 #26394] DEBUG -- :   [1m[35mSQL (0.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151119062632')
+D, [2015-12-25T12:34:10.346030 #26394] DEBUG -- :   [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:10.346128 #26394]  INFO -- : Migrating to CreateSupers (20151119063838)
+D, [2015-12-25T12:34:10.428342 #26394] DEBUG -- :   [1m[35m (80.1ms)[0m  CREATE TABLE `supers` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL, `password` varchar(255) NOT NULL, `salt` varchar(255) NOT NULL, `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB
+D, [2015-12-25T12:34:10.429130 #26394] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:10.429944 #26394] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151119063838')
+D, [2015-12-25T12:34:10.430627 #26394] DEBUG -- :   [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:10.430721 #26394]  INFO -- : Migrating to CreateTags (20151119064053)
+D, [2015-12-25T12:34:10.468933 #26394] DEBUG -- :   [1m[35m (36.1ms)[0m  CREATE TABLE `tags` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL, `description` text NOT NULL, `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB
+D, [2015-12-25T12:34:10.470059 #26394] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:10.470917 #26394] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151119064053')
+D, [2015-12-25T12:34:10.471528 #26394] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:10.471600 #26394]  INFO -- : Migrating to AddEmailToSupers (20151119064559)
+D, [2015-12-25T12:34:10.552393 #26394] DEBUG -- :   [1m[35m (79.3ms)[0m  ALTER TABLE `supers` ADD `email` varchar(255) AFTER `name`
+D, [2015-12-25T12:34:10.553245 #26394] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:10.554114 #26394] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151119064559')
+D, [2015-12-25T12:34:10.554825 #26394] DEBUG -- :   [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:10.554921 #26394]  INFO -- : Migrating to CreateEvents (20151119102727)
+D, [2015-12-25T12:34:10.714774 #26394] DEBUG -- :   [1m[35m (155.7ms)[0m  CREATE TABLE `events` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `start_at` datetime, `finish_at` datetime, `color` varchar(255), `allDay` int(11), `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB
+D, [2015-12-25T12:34:10.715703 #26394] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:10.716608 #26394] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151119102727')
+D, [2015-12-25T12:34:10.717236 #26394] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:10.717341 #26394]  INFO -- : Migrating to ChangeAllDayToEvents (20151119114240)
+D, [2015-12-25T12:34:10.833175 #26394] DEBUG -- :   [1m[35m (87.4ms)[0m  ALTER TABLE `events` CHANGE `allDay` `allDay` tinyint(1) DEFAULT NULL
+D, [2015-12-25T12:34:10.834081 #26394] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:10.834934 #26394] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151119114240')
+D, [2015-12-25T12:34:10.835788 #26394] DEBUG -- :   [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:10.835891 #26394]  INFO -- : Migrating to RemoveCreatedAtFromEvents (20151119115827)
+D, [2015-12-25T12:34:11.325199 #26394] DEBUG -- :   [1m[35m (485.7ms)[0m  ALTER TABLE `events` DROP `created_at`
+D, [2015-12-25T12:34:11.393848 #26394] DEBUG -- :   [1m[36m (68.3ms)[0m  [1mALTER TABLE `events` DROP `created_time`[0m
+D, [2015-12-25T12:34:11.460078 #26394] DEBUG -- :   [1m[35m (65.8ms)[0m  ALTER TABLE `events` DROP `created_user`
+D, [2015-12-25T12:34:11.543320 #26394] DEBUG -- :   [1m[36m (82.9ms)[0m  [1mALTER TABLE `events` DROP `deleted_at`[0m
+D, [2015-12-25T12:34:11.626932 #26394] DEBUG -- :   [1m[35m (83.2ms)[0m  ALTER TABLE `events` DROP `deleted_time`
+D, [2015-12-25T12:34:11.702132 #26394] DEBUG -- :   [1m[36m (74.8ms)[0m  [1mALTER TABLE `events` DROP `deleted_user`[0m
+D, [2015-12-25T12:34:11.769168 #26394] DEBUG -- :   [1m[35m (66.6ms)[0m  ALTER TABLE `events` DROP `updated_at`
+D, [2015-12-25T12:34:11.861180 #26394] DEBUG -- :   [1m[36m (91.6ms)[0m  [1mALTER TABLE `events` DROP `updated_time`[0m
+D, [2015-12-25T12:34:11.985469 #26394] DEBUG -- :   [1m[35m (123.9ms)[0m  ALTER TABLE `events` DROP `updated_user`
+D, [2015-12-25T12:34:11.986494 #26394] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:11.987335 #26394] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151119115827')
+D, [2015-12-25T12:34:11.987947 #26394] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:11.988051 #26394]  INFO -- : Migrating to RenameFinishAtColumnToEvents (20151120074728)
+D, [2015-12-25T12:34:12.087942 #26394] DEBUG -- :   [1m[35m (61.5ms)[0m  ALTER TABLE `events` CHANGE `finish_at` `end` datetime DEFAULT NULL
+D, [2015-12-25T12:34:12.168465 #26394] DEBUG -- :   [1m[36m (74.7ms)[0m  [1mALTER TABLE `events` CHANGE `start_at` `start` datetime DEFAULT NULL[0m
+D, [2015-12-25T12:34:12.169928 #26394] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2015-12-25T12:34:12.171043 #26394] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151120074728')[0m
+D, [2015-12-25T12:34:12.171835 #26394] DEBUG -- :   [1m[35m (0.5ms)[0m  COMMIT
+I, [2015-12-25T12:34:12.171985 #26394]  INFO -- : Migrating to RenameNameToEvents (20151120163809)
+D, [2015-12-25T12:34:12.275248 #26394] DEBUG -- :   [1m[36m (74.4ms)[0m  [1mALTER TABLE `events` CHANGE `name` `title` varchar(255) DEFAULT NULL[0m
+D, [2015-12-25T12:34:12.277050 #26394] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2015-12-25T12:34:12.278290 #26394] DEBUG -- :   [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151120163809')[0m
+D, [2015-12-25T12:34:12.284419 #26394] DEBUG -- :   [1m[35m (5.8ms)[0m  COMMIT
+I, [2015-12-25T12:34:12.284552 #26394]  INFO -- : Migrating to CreateAdmins (20151122045831)
+D, [2015-12-25T12:34:12.421699 #26394] DEBUG -- :   [1m[36m (135.1ms)[0m  [1mCREATE TABLE `admins` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `password` varchar(255) NOT NULL, `salt` varchar(255) NOT NULL, `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB[0m
+D, [2015-12-25T12:34:12.422451 #26394] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2015-12-25T12:34:12.423081 #26394] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151122045831')[0m
+D, [2015-12-25T12:34:12.428927 #26394] DEBUG -- :   [1m[35m (5.6ms)[0m  COMMIT
+I, [2015-12-25T12:34:12.429066 #26394]  INFO -- : Migrating to CreateTasks (20151125054206)
+D, [2015-12-25T12:34:12.624721 #26394] DEBUG -- :   [1m[36m (193.3ms)[0m  [1mCREATE TABLE `tasks` (`id` int(11) auto_increment PRIMARY KEY, `admin_id` int(11), `title` varchar(255), `context` text, `state` int(11), `finish_at` datetime, `start_at` datetime, `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB[0m
+D, [2015-12-25T12:34:12.625610 #26394] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2015-12-25T12:34:12.626441 #26394] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151125054206')[0m
+D, [2015-12-25T12:34:12.675225 #26394] DEBUG -- :   [1m[35m (48.5ms)[0m  COMMIT
+I, [2015-12-25T12:34:12.675386 #26394]  INFO -- : Migrating to AddProjectIdToEvents (20151126043311)
+D, [2015-12-25T12:34:12.795847 #26394] DEBUG -- :   [1m[36m (118.4ms)[0m  [1mALTER TABLE `events` ADD `project_id` int(11) AFTER `id`[0m
+D, [2015-12-25T12:34:12.796552 #26394] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2015-12-25T12:34:12.798894 #26394] DEBUG -- :   [1m[36mSQL (1.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151126043311')[0m
+D, [2015-12-25T12:34:12.800123 #26394] DEBUG -- :   [1m[35m (0.5ms)[0m  COMMIT
+I, [2015-12-25T12:34:12.800252 #26394]  INFO -- : Migrating to AddDeletedAtToEvents (20151128135156)
+D, [2015-12-25T12:34:12.973104 #26394] DEBUG -- :   [1m[36m (171.6ms)[0m  [1mALTER TABLE `events` ADD `deleted_at` datetime[0m
+D, [2015-12-25T12:34:13.106183 #26394] DEBUG -- :   [1m[35m (132.7ms)[0m  ALTER TABLE `events` ADD `deleted_time` int(11)
+D, [2015-12-25T12:34:13.190639 #26394] DEBUG -- :   [1m[36m (84.0ms)[0m  [1mALTER TABLE `events` ADD `deleted_user` int(11)[0m
+D, [2015-12-25T12:34:13.191496 #26394] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2015-12-25T12:34:13.192296 #26394] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151128135156')[0m
+D, [2015-12-25T12:34:13.192874 #26394] DEBUG -- :   [1m[35m (0.4ms)[0m  COMMIT
+I, [2015-12-25T12:34:13.192956 #26394]  INFO -- : Migrating to CreateDepartments (20151128144909)
+D, [2015-12-25T12:34:13.269541 #26394] DEBUG -- :   [1m[36m (74.8ms)[0m  [1mCREATE TABLE `departments` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL, `description` text NOT NULL, `created_at` datetime NOT NULL, `created_time` int(11) NOT NULL, `created_user` int(11) DEFAULT 1 NOT NULL, `deleted_at` datetime, `deleted_time` int(11), `deleted_user` int(11), `updated_at` datetime NOT NULL, `updated_time` int(11) NOT NULL, `updated_user` int(11) DEFAULT 1 NOT NULL) ENGINE=InnoDB[0m
+D, [2015-12-25T12:34:13.270364 #26394] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2015-12-25T12:34:13.271369 #26394] DEBUG -- :   [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151128144909')[0m
+D, [2015-12-25T12:34:13.272041 #26394] DEBUG -- :   [1m[35m (0.4ms)[0m  COMMIT
+I, [2015-12-25T12:34:13.272128 #26394]  INFO -- : Migrating to AddDepartmentIdToAdmins (20151128145620)
+D, [2015-12-25T12:34:13.371388 #26394] DEBUG -- :   [1m[36m (97.9ms)[0m  [1mALTER TABLE `admins` ADD `department_id` int(11) NOT NULL AFTER `id`[0m
+D, [2015-12-25T12:34:13.372347 #26394] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2015-12-25T12:34:13.373184 #26394] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151128145620')[0m
+D, [2015-12-25T12:34:13.373905 #26394] DEBUG -- :   [1m[35m (0.5ms)[0m  COMMIT
+I, [2015-12-25T12:34:13.374005 #26394]  INFO -- : Migrating to AddDomainNameFromProjects (20151203020341)
+D, [2015-12-25T12:34:13.450110 #26394] DEBUG -- :   [1m[36m (74.2ms)[0m  [1mALTER TABLE `projects` ADD `domain_name` varchar(255) AFTER `finish_at`[0m
+D, [2015-12-25T12:34:13.550845 #26394] DEBUG -- :   [1m[35m (100.2ms)[0m  ALTER TABLE `projects` ADD `deadline_at` datetime AFTER `domain_name`
+D, [2015-12-25T12:34:13.667535 #26394] DEBUG -- :   [1m[36m (116.2ms)[0m  [1mALTER TABLE `projects` ADD `deadline_time` int(11) AFTER `deadline_at`[0m
+D, [2015-12-25T12:34:13.668495 #26394] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2015-12-25T12:34:13.669437 #26394] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151203020341')[0m
+D, [2015-12-25T12:34:13.669998 #26394] DEBUG -- :   [1m[35m (0.4ms)[0m  COMMIT
+I, [2015-12-25T12:34:13.670097 #26394]  INFO -- : Migrating to AddTableNameToProjects (20151203055645)
+D, [2015-12-25T12:34:13.745185 #26394] DEBUG -- :   [1m[36m (68.0ms)[0m  [1mALTER TABLE `projects` ADD `table_name` varchar(255) AFTER `name`[0m
+D, [2015-12-25T12:34:13.745945 #26394] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2015-12-25T12:34:13.746595 #26394] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151203055645')[0m
+D, [2015-12-25T12:34:13.747176 #26394] DEBUG -- :   [1m[35m (0.4ms)[0m  COMMIT
+I, [2015-12-25T12:34:13.747261 #26394]  INFO -- : Migrating to AddProjectIdFromTasks (20151209052729)
+D, [2015-12-25T12:34:13.841087 #26394] DEBUG -- :   [1m[36m (92.8ms)[0m  [1mALTER TABLE `tasks` ADD `project_id` int(11) AFTER `id`[0m
+D, [2015-12-25T12:34:13.841812 #26394] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2015-12-25T12:34:13.842532 #26394] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151209052729')[0m
+D, [2015-12-25T12:34:13.843098 #26394] DEBUG -- :   [1m[35m (0.4ms)[0m  COMMIT
+I, [2015-12-25T12:34:13.843177 #26394]  INFO -- : Migrating to RenameDeadlineAtColumnToProjects (20151210105256)
+D, [2015-12-25T12:34:13.935617 #26394] DEBUG -- :   [1m[36m (61.7ms)[0m  [1mALTER TABLE `projects` CHANGE `deadline_at` `domain_deadline_at` datetime DEFAULT NULL[0m
+D, [2015-12-25T12:34:14.005568 #26394] DEBUG -- :   [1m[35m (62.9ms)[0m  ALTER TABLE `projects` CHANGE `deadline_time` `domain_deadline_time` int(11) DEFAULT NULL
+D, [2015-12-25T12:34:14.006896 #26394] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+D, [2015-12-25T12:34:14.007783 #26394] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151210105256')
+D, [2015-12-25T12:34:14.008413 #26394] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+I, [2015-12-25T12:34:14.008500 #26394]  INFO -- : Migrating to AddSslDeadlineAtToProjects (20151210105624)
+D, [2015-12-25T12:34:14.077140 #26394] DEBUG -- :   [1m[35m (67.0ms)[0m  ALTER TABLE `projects` ADD `ssl_deadline_at` datetime AFTER `domain_deadline_time`
+D, [2015-12-25T12:34:14.160526 #26394] DEBUG -- :   [1m[36m (82.9ms)[0m  [1mALTER TABLE `projects` ADD `ssl_deadline_time` int(11) AFTER `ssl_deadline_at`[0m
+D, [2015-12-25T12:34:14.161586 #26394] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2015-12-25T12:34:14.162320 #26394] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151210105624')[0m
+D, [2015-12-25T12:34:14.162910 #26394] DEBUG -- :   [1m[35m (0.4ms)[0m  COMMIT
+I, [2015-12-25T12:38:11.245493 #26878]  INFO -- : Started GET "/super/dashboard" for 127.0.0.1 at 2015-12-25 12:38:11 +0900
+I, [2015-12-25T12:38:11.272041 #26878]  INFO -- : Processing by SuperController#dashboard as HTML
+I, [2015-12-25T12:38:11.280775 #26878]  INFO -- : Redirected to http://localhost:3000/super/login
+I, [2015-12-25T12:38:11.280882 #26878]  INFO -- : Filter chain halted as :authenticate rendered or redirected
+I, [2015-12-25T12:38:11.281025 #26878]  INFO -- : Completed 302 Found in 9ms (ActiveRecord: 0.0ms)
+I, [2015-12-25T12:38:11.286143 #26878]  INFO -- : Started GET "/super/login" for 127.0.0.1 at 2015-12-25 12:38:11 +0900
+I, [2015-12-25T12:38:11.287092 #26878]  INFO -- : Processing by SuperController#index as HTML
+I, [2015-12-25T12:38:11.326677 #26878]  INFO -- :   Rendered common/_header.html.slim (3.8ms)
+I, [2015-12-25T12:38:11.327859 #26878]  INFO -- :   Rendered super/index.html.slim within layouts/application (36.1ms)
+I, [2015-12-25T12:38:11.335692 #26878]  INFO -- : Completed 200 OK in 48ms (Views: 47.8ms | ActiveRecord: 0.0ms)
+I, [2015-12-25T12:38:14.868996 #26878]  INFO -- : Started GET "/super/log" for 127.0.0.1 at 2015-12-25 12:38:14 +0900
+F, [2015-12-25T12:38:14.870321 #26878] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/super/log"):
+  actionpack (4.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.5) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.4) lib/rails/engine.rb:514:in `call'
+  railties (4.1.4) lib/rails/application.rb:144:in `call'
+  rack (1.5.5) lib/rack/lock.rb:17:in `call'
+  rack (1.5.5) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.5) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-12-25T12:38:46.069457 #27005]  INFO -- : Started GET "/super/log" for 127.0.0.1 at 2015-12-25 12:38:46 +0900
+F, [2015-12-25T12:38:46.110127 #27005] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/super/log"):
+  actionpack (4.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.5) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.4) lib/rails/engine.rb:514:in `call'
+  railties (4.1.4) lib/rails/application.rb:144:in `call'
+  rack (1.5.5) lib/rack/lock.rb:17:in `call'
+  rack (1.5.5) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.5) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-12-25T12:38:48.860730 #27005]  INFO -- : Started GET "/super" for 127.0.0.1 at 2015-12-25 12:38:48 +0900
+F, [2015-12-25T12:38:48.861993 #27005] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/super"):
+  actionpack (4.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.5) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.4) lib/rails/engine.rb:514:in `call'
+  railties (4.1.4) lib/rails/application.rb:144:in `call'
+  rack (1.5.5) lib/rack/lock.rb:17:in `call'
+  rack (1.5.5) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.5) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-12-25T12:38:51.670680 #27005]  INFO -- : Started GET "/" for 127.0.0.1 at 2015-12-25 12:38:51 +0900
+F, [2015-12-25T12:38:51.672228 #27005] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (4.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.5) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.4) lib/rails/engine.rb:514:in `call'
+  railties (4.1.4) lib/rails/application.rb:144:in `call'
+  rack (1.5.5) lib/rack/lock.rb:17:in `call'
+  rack (1.5.5) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.5) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/yamaguchikazuteru/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-12-25T12:38:57.262741 #27005]  INFO -- : Started GET "/super/dashboard" for 127.0.0.1 at 2015-12-25 12:38:57 +0900
+I, [2015-12-25T12:38:57.266283 #27005]  INFO -- : Processing by SuperController#dashboard as HTML
+I, [2015-12-25T12:38:57.277507 #27005]  INFO -- : Redirected to http://localhost:3000/super/login
+I, [2015-12-25T12:38:57.277597 #27005]  INFO -- : Filter chain halted as :authenticate rendered or redirected
+I, [2015-12-25T12:38:57.277714 #27005]  INFO -- : Completed 302 Found in 11ms (ActiveRecord: 0.0ms)
+I, [2015-12-25T12:38:57.282937 #27005]  INFO -- : Started GET "/super/login" for 127.0.0.1 at 2015-12-25 12:38:57 +0900
+I, [2015-12-25T12:38:57.283879 #27005]  INFO -- : Processing by SuperController#index as HTML
+I, [2015-12-25T12:38:57.314012 #27005]  INFO -- :   Rendered common/_header.html.slim (3.6ms)
+I, [2015-12-25T12:38:57.314718 #27005]  INFO -- :   Rendered super/index.html.slim within layouts/application (26.1ms)
+I, [2015-12-25T12:38:57.319085 #27005]  INFO -- : Completed 200 OK in 35ms (Views: 34.5ms | ActiveRecord: 0.0ms)
+I, [2015-12-25T12:46:00.948936 #27005]  INFO -- : Started POST "/super/login" for 127.0.0.1 at 2015-12-25 12:46:00 +0900
+I, [2015-12-25T12:46:00.967955 #27005]  INFO -- : Processing by SuperController#index as HTML
+I, [2015-12-25T12:46:00.968059 #27005]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"puDf9XIUy/InSiBAtKShwK4BybE2HiyHSSYo+EEtaYQ=", "email"=>"root ", "password"=>"[FILTERED]", "button"=>""}
+I, [2015-12-25T12:46:00.980505 #27005]  INFO -- : Redirected to http://localhost:3000/super/login
+I, [2015-12-25T12:46:00.981332 #27005]  INFO -- : Completed 302 Found in 13ms (ActiveRecord: 0.0ms)
+I, [2015-12-25T12:46:00.990385 #27005]  INFO -- : Started GET "/super/login" for 127.0.0.1 at 2015-12-25 12:46:00 +0900
+I, [2015-12-25T12:46:00.991560 #27005]  INFO -- : Processing by SuperController#index as HTML
+I, [2015-12-25T12:46:00.997646 #27005]  INFO -- :   Rendered common/_header.html.slim (0.2ms)
+I, [2015-12-25T12:46:01.000834 #27005]  INFO -- :   Rendered super/index.html.slim within layouts/application (4.3ms)
+I, [2015-12-25T12:46:01.002795 #27005]  INFO -- : Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.0ms)

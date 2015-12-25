@@ -55,7 +55,7 @@ production:
   database: beedit_production
   username: root
   password: root
-  host: 52.35.80.140
+  #host: 52.35.80.140
 
 #
 #

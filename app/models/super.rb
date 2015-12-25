@@ -20,13 +20,13 @@ class Super < ActiveRecord::Base
     self.updated_time = Time.now.to_i
   end
 
-  
 
 
-  #def self.authenticate(email, password)
-  #  super = self.where(:email => email, :password => Digest::SHA1.hexdigest("#{Rails.application.secrets[:salt]}#{password}")).first)
-  #  return super
-  #end
+
+  def self.authenticate(email,password)
+    auth = Super.where(:email => email, :password => Digest::SHA1.hexdigest("#{Rails.application.secrets[:salt]}#{password}").first)
+    return auth
+  end
 
   private
 
