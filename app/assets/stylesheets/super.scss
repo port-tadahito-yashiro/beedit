@@ -2,6 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#wrapper{
+  .login{
+    .form-horizontal{
+      text-align: center;
+      width: 100%;
+        .regend{
+          margin: 20px;
+          font-size: 25px;
+        }
+        .form-group{
+          margin: 10px 70px;
+          .control-label{
+            float:left;
+            font-size:15px;
+          }
+        }
+        #submit{
+          margin-right: 70px;
+        }
+      #submit{
+        float:right;
+      }
+    }
+  }
+}
 
 .container{
   .row{
@@ -35,6 +60,21 @@
         width: 100%;
         margin-top: 20px;
         font-size: 13px;
+      }
+      #calendarModal{
+        .modal-dialog{
+          .modal-content{
+            .modal-header{
+              padding: 30px;
+            }
+            .form-horizontal{
+              padding: 20px 20px 20px 20px;
+            }
+            .modal-footer{
+              padding: 30px;
+            }
+          }
+        }
       }
 
       .content2{

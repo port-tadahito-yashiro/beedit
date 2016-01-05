@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   # ログイン画面
-  match '/super/login' => 'super#index', :via => [:get, :post]
+  #match '/super/login' => 'super#index', :via => [:get, :post]
+  root 'super#index'
   match '/super/logout' => 'super#logout', :via => [:get, :post]
 
   # ダッシュボード

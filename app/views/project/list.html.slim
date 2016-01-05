@@ -25,7 +25,8 @@
             //td = project.deadline_at
             == deadLine(project.domain_deadline_at)
             td
-              = link_to('参加者情報',url_for(:controller => 'project',:action => 'user',:id => project[:id]),:class => 'btn btn-warning')
+              //= link_to('参加者情報',url_for(:controller => 'project',:action => 'user',:id => project[:id]),:class => 'btn btn-warning')
+              = link_to('参加者情報',url_for(:controller => 'super',:action => 'dashboard'),:class => 'btn btn-warning')
               = link_to('グラフ',url_for(:controller => 'project', :action => 'graph', :id => project[:id]), :class => 'btn btn-primary')
               - if project.url.blank? then
                 = link_to('プレビュー',url_for(:controller => 'project', :action => 'list'), :class => 'btn btn-success')

@@ -6,12 +6,13 @@
 
   .login
     = form_tag '', :class => 'form-horizontal col-lg-11 clearfix', 'role' => 'form' do
-      .regend
-        'Beedit 管理画面'
+      label.regend Beedit 管理画面
       .form-group
-        = label_tag :email, 'ID', {'class' => 'col-sm-2 control-label'}
+        label.control-label ID
         = text_field_tag '', '', :name => 'email',:placeholder => 'IDを入力してください。', :class => 'form-control'
+
       .form-group
-        = label_tag :password, 'パスワード', {'class' => 'col-sm-2 control-label'}
+        label.control-label パスワード
         = password_field_tag '', '', :name => 'password' ,:placeholder => 'パスワードを入力してください。', :class => 'form-control'
-      = button_tag 'ログイン', :type => 'submit',:class => 'btn btn-primary'
+
+      = button_tag 'ログイン', :type => 'submit',:class => 'btn btn-primary',:id => 'submit'

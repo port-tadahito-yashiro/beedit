@@ -19,7 +19,7 @@
           .modal-content
             .modal-header
               button.close data-dismiss="modal" type="button"
-                span aria-hidden="true"  ×
+                span aria-hidden="true" ×
                 span.sr-only close
               h4#modalTitle.modal-title
 
@@ -30,12 +30,16 @@
                   input#title.form-control data-items="4" data-provide="typeahead" type="text"
               .control-group
                 label.control-label for="inputUrl"  Start:
-                .controls
-                  input#start.form-control data-items="4" data-provide="typeahead" name="start" tyle=("margin: 0 auto;") type="text"
+                .controls.input-group.date.datepicker4
+                  input#start.form-control data-items="4" data-provide="typeahead" name="start" type="text"
+                  span.input-group-addon
+                    span.fa.fa-calendar
               .control-group
                 label.control-label for="inputUrl"  End:
-                .controls
-                  input#end.form-control data-items="4" data-provide="typeahead" name="end" tyle=("margin: 0 auto;") type="text"
+                .controls.input-group.date.datepicker4
+                  input#end.form-control data-items="4" data-provide="typeahead" name="end" type="text"
+                  span.input-group-addon
+                    span.fa.fa-calendar
               //.control-group
                 //label.control-label for="when"  Check for email alerts:
                 //.controls

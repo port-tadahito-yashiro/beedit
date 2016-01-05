@@ -14,6 +14,24 @@
           }
           td{
             font-size: 15px;
+            #companyModal{
+              .modal-dialog{
+                .modal-content{
+                  .modal-header{
+                    padding: 30px;
+                  }
+                  .content{
+                    padding: 20px;
+                    #confirm-context{
+                      font-size: 20px;
+                    }
+                  }
+                  .modal-footer{
+                    padding: 20px;
+                  }
+                }
+              }
+            }
           }
         }
       }
