@@ -10,23 +10,23 @@ preload_app true
 # ソケット！　一番重要！
 # Nginxのconfig内にあるupstreamで、このパスを指定
 listen "/tmp/unicorn.sock"
-#listen "/tmp/unicorn.sock", :backlog => 64
+#listen "/tmp/unicorn.beedit.sock", :backlog => 64
 
 # pidを保存するファイル
 pid "/tmp/unicorn.pid"
+#pid "/var/www/app/beedit/tmp/pids/unicorn.beedit.pid"
 
 # Unicornのエラーログと通常ログの位置を指定。
 # ファイルの書き込み権限を変更しておくこと
 stderr_path "/var/www/beedit/log/unicorn.stderr.log"
 stdout_path "/var/www/beedit/log/unicorn.stdout.log"
-
-# stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-# stdout_parh File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-
+#stderr_path "/var/www/app/beedit/log/unicorn.stderr.log"
+#stdout_path "/var/www/app/beedit/log/unicorn.stdout.log"
 
 # capistrano 用に RAILS_ROOT を指定
 # Unicornの起動コマンドを実行するディレクトリを指定します
 working_directory "/var/www/beedit"
+#working_directory "/var/www/app/beedit"
 
 # 接続タイムアウト時間
 timeout 30
