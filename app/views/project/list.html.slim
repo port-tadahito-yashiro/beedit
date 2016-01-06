@@ -6,8 +6,9 @@
 
   #wrapper-project
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
-    = link_to 'プロジェクトの新規作成へ', '/super/project/add', :class => 'btn btn-primary btn-prev dashboard'
+    = link_to 'ダッシュボードへ戻る',{:controller => 'super',:action => 'dashboard'}, :class => 'btn btn-default btn-prev dashboard'
+    = link_to 'プロジェクトの新規作成へ',{:controller => 'project',:action => 'add'}, :class => 'btn btn-primary btn-prev dashboard'
+
 
     .project-list
       table.table.table-hover

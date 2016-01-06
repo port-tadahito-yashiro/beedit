@@ -6,8 +6,8 @@
 
   #wrapper-task
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
-    = link_to 'タスクの一覧へ', '/super/task/list', :class => 'btn btn-info btn-prev dashboard'
+    = link_to 'ダッシュボードへ戻る',{:controller => 'super',:action => 'dashboard'}, :class => 'btn btn-default btn-prev dashboard'
+    = link_to 'タスクの一覧へ',{:controller => 'task',:action => 'list'}, :class => 'btn btn-info btn-prev dashboard'
 
     .task-add
 

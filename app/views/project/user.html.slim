@@ -4,8 +4,8 @@
 
   #wrapper-project
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
-    = link_to 'プロジェクトの一覧へ', '/super/project/list', :class => 'btn btn-info btn-prev dashboard'
+    = link_to 'ダッシュボードへ戻る',{:controller => 'super',:action => 'dashboard'}, :class => 'btn btn-default btn-prev dashboard'
+    = link_to 'プロジェクトの一覧へ',{:controller => 'project',:action => 'list'}, :class => 'btn btn-default btn-prev dashboard'
     - if !@records.blank?
       = link_to('CSVダウンロード',url_for(:controller => 'project',:action => 'user',:id => "#{@id}.csv"),:class => 'btn btn-success csv dashboard')
     - else

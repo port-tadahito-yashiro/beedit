@@ -6,8 +6,8 @@
 
   #wrapper-company
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
-    = link_to '企業の新規作成へ', '/super/company/add', :class => 'btn btn-primary btn-prev dashboard'
+    = link_to 'ダッシュボードへ戻る',{:controller => 'super',:action => 'dashboard'}, :class => 'btn btn-default btn-prev dashboard'
+    = link_to '企業の新規作成へ',{:controller => 'company',:action => 'add'}, :class => 'btn btn-primary btn-prev dashboard'
 
     .company-list
 

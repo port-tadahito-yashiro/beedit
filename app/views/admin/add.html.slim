@@ -6,12 +6,15 @@
 
   #wrapper-admin
 
-    = link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
-    = link_to 'ユーザーの一覧へ', '/super/admin/list', :class => 'btn btn-info btn-prev dashboard'
+    //= link_to 'ダッシュボードへ戻る', '/super/dashboard', :class => 'btn btn-default btn-prev dashboard'
+    = link_to 'ダッシュボードへ戻る',{:controller => 'super',:action => 'dashboard'}, :class => 'btn btn-default btn-prev dashboard'
+
+    //= link_to 'ユーザーの一覧へ', '/super/admin/list', :class => 'btn btn-info btn-prev dashboard'
+    = link_to 'ユーザーの一覧へ',{:controller => 'admin',:action => 'list'}, :class => 'btn btn-info btn-prev dashboard'
 
     .admin-add
 
-      = form_tag '/super/admin/add', :class => 'form-horizontal col-lg-11 clearfix', :role => 'form'
+      = form_tag '', :class => 'form-horizontal col-lg-11 clearfix', :role => 'form'
 
         .form-group
           label.col-sm-2.control-label for="name" 名前

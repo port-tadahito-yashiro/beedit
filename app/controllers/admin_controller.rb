@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
   #未ログインの場合はログイン画面へ移動
-  before_action :authenticate
+  #before_action :authenticate
 
 
   #
