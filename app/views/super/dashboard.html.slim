@@ -1,5 +1,3 @@
-= render :partial => 'common/header'
-
 .container
   .row
     == showFlashMessages
@@ -114,10 +112,6 @@
             = link_to '一覧',{:controller => 'task',:action => 'list'}
           li.btn-default
             = link_to '新規作成',{:controller => 'task',:action => 'add'}
-          //li.btn-default
-          //  = link_to '編集',{:controller => 'task',:action => 'list'}
-          //li.btn-default
-          //  = link_to '削除',{:controller => 'task',:action => 'list'}
 
         h1.btn-port.fa.fa-file  プロジェクト管理
         ul
@@ -125,10 +119,6 @@
             = link_to '一覧',{:controller => 'project',:action => 'list'}
           li.btn-default
             = link_to '新規作成',{:controller => 'project',:action => 'add'}
-          //li.btn-default
-          //  = link_to '編集',{:controller => 'project',:action => 'list'}
-          //li.btn-default
-          //  = link_to '削除',{:controller => 'project',:action => 'list'}
 
         h1.btn-port.fa.fa-flag  企業管理
         ul
@@ -136,10 +126,6 @@
             = link_to '一覧',{:controller => 'company',:action => 'list'}
           li.btn-default
             = link_to '新規作成',{:controller => 'company',:action => 'add'}
-          //li.btn-default
-          //  = link_to '編集',{:controller => 'company',:action => 'edit'}
-          //li.btn-default
-          //  = link_to '削除',{:controller => 'company',:action => 'delete'}
 
         h1.btn-port.fa.fa-users  ユーザー管理
         ul

@@ -4,6 +4,7 @@
 
 #wrapper{
   .login{
+    width: 100%;
     .form-horizontal{
       text-align: center;
       width: 100%;
@@ -29,6 +30,8 @@
 }
 
 .container{
+  padding-bottom: 200px;
+  margin-top: 50px;
   .row{
     .col-lg-6{
       .content1{

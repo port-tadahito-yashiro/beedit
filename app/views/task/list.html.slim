@@ -1,5 +1,3 @@
-= render :partial => 'common/header'
-
 #wrapper
 
   == showFlashMessages
@@ -32,7 +30,7 @@
             td = task.context
             td = task.admin.name
             td
-              = link_to '編集',url_for(:controller => 'task', :action => 'edit', :id => task[:id]), :class => 'btn btn-info'
+              //= link_to '編集',url_for(:controller => 'task', :action => 'edit', :id => task[:id]), :class => 'btn btn-info'
               = link_to '完了',url_for(:controller => 'task', :action => 'finish', :id => task[:id]), :class => 'btn btn-success'
               = link_to '削除',url_for(:controller => 'task', :action => 'delete', :id => task[:id]), :class => 'btn btn-danger'
 

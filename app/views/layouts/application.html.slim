@@ -6,4 +6,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    = yield
+    main
+      = render :partial => 'common/header'
+      = yield
+      = render :partial => 'common/footer'

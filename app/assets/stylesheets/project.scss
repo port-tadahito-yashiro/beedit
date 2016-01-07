@@ -7,6 +7,7 @@
     .project-list{
       width: 100%;
       padding: 0 100px;
+      padding-bottom: 200px;
       .dashboard{
         margin: 50px;
       }
@@ -49,7 +50,7 @@
     }
     .project-add{
       width: 100%;
-      padding: 0 100px;
+      margin-bottom: 300px;
       .submit{
         .project-add-submit{
           float:right;
@@ -58,7 +59,8 @@
     }
     .project-edit{
       width: 100%;
-      padding: 0 100px;
+      padding: 0 100px 400px 100px;
+      margin-bottom: 300px;
       .submit{
         .project-edit-submit{
           float:right;

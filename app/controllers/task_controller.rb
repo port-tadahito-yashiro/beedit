@@ -33,6 +33,8 @@ class TaskController < ApplicationController
       @task_data.state = 0
       if @task_data.save then
         p @task_data
+        flash[:notice] = 'タスクを作成しました'
+        redirect_to(url_for({:controller => 'task',:action => 'list'}))
         #notify_to_slack_task
       end
     end
@@ -52,6 +54,18 @@ class TaskController < ApplicationController
     task.deleted_user = 1
     if task.save then
       flash[:notice] = 'タスクを削除しました'
+      redirect_to(url_for({:controller => 'task',:action => 'list'}))
+    end
+  end
+
+  def edit
+    @Admins = Admin.all
+    @task = Task.where(:id => params[:id]).first
+    @task.admin_id = params[:admin_id]
+    @task.title = params[:title]
+    @title.context = params[:context]
+    if @task.save then
+      flash[:notice] = 'タスクを編集しました'
       redirect_to(url_for({:controller => 'task',:action => 'list'}))
     end
   end

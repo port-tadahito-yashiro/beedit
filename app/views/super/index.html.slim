@@ -1,11 +1,9 @@
-= render :partial => 'common/header'
-
 #wrapper
 
   == showFlashMessages
 
-  .login
-    = form_tag '', :class => 'form-horizontal col-lg-11 clearfix', 'role' => 'form' do
+  .login.col-sm-6
+    = form_tag '', :class => 'form-horizontal col-sm-6 clearfix', 'role' => 'form' do
       label.regend Beedit 管理画面
       .form-group
         label.control-label ID
