@@ -76,6 +76,21 @@
           }
         }
       }
+      #calendarUpModal{
+        .modal-dialog{
+          .modal-content{
+            .modal-header{
+              padding: 30px;
+            }
+            .form-horizontal{
+              padding: 20px 20px 20px 20px;
+            }
+            .modal-footer{
+              padding: 30px;
+            }
+          }
+        }
+      }
 
       .content2{
         .content2-top{

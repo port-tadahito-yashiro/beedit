@@ -39,7 +39,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  ENV["RAILS_RELATIVE_URL_ROOT"] = "/beedit"
-  Rails.application.config.relative_url_root = "/beedit"
-  
+  #ENV["RAILS_RELATIVE_URL_ROOT"] = "/beedit"
+  #Rails.application.config.relative_url_root = "/beedit"
+
 end

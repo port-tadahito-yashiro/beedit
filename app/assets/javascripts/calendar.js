@@ -54,14 +54,15 @@ $(document).ready(function() {
 
     // イベント選択アップデート処理
     var updateEvent = function(event, revertFunc) {
-
+    console.log("アップデート処理　選択")
+    console.log(event.title)
     var basicDay = new Date();
     // モーダルウィンドウにデフォルト値を設定
-    $('#title').val(event.title);
-    $('#start').val(timestampToDatetime(((basicDay.setTime(event.start)　/ 1000))));
-    $('#end').val(timestampToDatetime(((basicDay.setTime(event.end)　/ 1000))));
+    $('#updateEventForm #title').val(event.title);
+    $('#updateEventForm #start').val(timestampToDatetime(((basicDay.setTime(event.start)　/ 1000))));
+    $('#updateEventForm #end').val(timestampToDatetime(((basicDay.setTime(event.end)　/ 1000))));
     //　モーダルウィンドウ表示
-    $('#calendarModal').modal();
+    $('#calendarUpModal').modal();
 
     $(document).on('click', '.close, .btnCancel', function(){
       $('#calendarModal').modal('hide');
@@ -70,22 +71,23 @@ $(document).ready(function() {
     });
 
     //Submit event form click
-    $('#submitButton').on('click', function(e){
+    $('#submitUpButton').on('click', function(e){
       // We don't want this to act as a link so cancel the link action
       e.preventDefault();
-      doSubmit();
+      doUpdate();
     });
 
     // デリート処理
     $('#deleteButton').on('click', function(){
+      console.log("削除")
       var url = "/super/events/delete/" + event.id;
       // Ajax処理
       $.ajax({
           type: "POST",
           url: url,
           success: function(json) {
-              document.getElementById("createEventForm").reset();
-              $('#calendarModal').modal('hide');
+              document.getElementById("updateEventForm").reset();
+              $('#calendarUpModal').modal('hide');
               calendar.fullCalendar('refetchEvents');
           },
           //error: revertFunc
@@ -95,15 +97,16 @@ $(document).ready(function() {
 
 
       // submitを行った時の処理
-      function doSubmit(){
-        var title = $('#createEventForm #title').val();
-        var start = $('#createEventForm #start').val();
-        var end = $('#createEventForm #end').val();
+      function doUpdate(){
+        console.log("更新処理が行われる")
+        var title = $('#updateEventForm #title').val();
+        var start = $('#updateEventForm #start').val();
+        var end = $('#updateEventForm #end').val();
         var url = "/super/events/" + event.id;
         var data = {_method: 'PUT',
                 event: {name: title,
-                    start: title,
-                    end: start,
+                    start: start,
+                    end: end,
                     allDay: 1}};
         // Ajax処理
         $.ajax({
@@ -111,8 +114,8 @@ $(document).ready(function() {
             url: url,
             data: data,
             success: function(json) {
-                document.getElementById("createEventForm").reset();
-                $('#calendarModal').modal('hide');
+                document.getElementById("updateEventForm").reset();
+                $('#calendarUpModal').modal('hide');
                 calendar.fullCalendar('refetchEvents');
             },
             error: revertFunc

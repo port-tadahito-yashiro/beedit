@@ -36,7 +36,7 @@ class Admin < ActiveRecord::Base
   #
   def self.authenticate(email,password)
     # パラメータ:emailを持つUserが存在しない場合nilを返す
-    return if !(admin = Admin.where(:email => email).first)
+    return if !(admin = Admin.where(:email => email,:deleted_at => nil).first)
     saltpass = admin.salt + password
     p saltpass
     sha1p = Digest::SHA1.hexdigest(saltpass)

@@ -109,10 +109,10 @@ class ProjectController < ApplicationController
           if @project.save then
             flash[:notice] = 'プロジェクト情報を編集しました'
 
-            event       = Event.where(:project_id => params[:id]).first
-            event.title = project_data[:name]
-            event.start = project_data[:start_at]
-            event.end   = project_data[:finish_at]
+            event = Event.where(:project_id => params[:id]).first
+            event[:title] = project_data[:name]
+            event[:start] = project_data[:start_at]
+            event[:end]   = project_data[:finish_at]
             event.save
           end
           render :json => {:success => true, :id => @project.id}

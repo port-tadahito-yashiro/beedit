@@ -59,14 +59,21 @@ class EventController < ApplicationController
    #end
   def update
     if request.put?
-      p '------------------'
-      data = Event.where(:id => params[:id]).last
-      p "-----data----"
-      p data
-      data[:title]  = params[:event][:name]
-      data[:start] = Time.at((params[:event][:start].to_i))
-      data[:end] = Time.at((params[:event][:end].to_i))
+      # イベントデータ更新処理
+      p "更新処理が走った"
+      data = Event.where(:id => params[:id]).first
+      data[:title] = params[:event][:name]
+      data[:start] = params[:event][:start]
+      data[:end] = params[:event][:end]
       data.save
+
+      unless data[:project_id].blank?
+        project = Project.where(:id => data[:project_id]).first
+        project[:name] = params[:event][:name]
+        project[:start_at] = params[:event][:start]
+        project[:finish_at] = params[:event][:end]
+        project.save
+      end
     end
     view_data = []
     Event.where(:deleted_at => nil).all.each do |item|
