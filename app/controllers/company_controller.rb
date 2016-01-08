@@ -21,6 +21,9 @@ class CompanyController < ApplicationController
       if Company.regist(params)
         flash[:notice] = '新規 企業情報を作成しました'
         redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
+      else
+        flash[:error] = '新規 企業情報作成に失敗しました'
+        redirect_to(url_for({ controller: 'company', action: 'add' }))
       end
     end
   end
@@ -37,6 +40,9 @@ class CompanyController < ApplicationController
       if Company.updated(params)
         flash[:notice] = '企業情報を編集しました'
         redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
+      else
+        flash[:error] = '企業情報の編集に失敗しました'
+        redirect_to(url_for({ controller: 'company', action: 'edit', id: params[:id]}))
       end
     end
   end

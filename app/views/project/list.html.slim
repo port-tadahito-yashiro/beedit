@@ -13,15 +13,16 @@
         tr
           th id
           th タイトル
+          th ssl期限日
           th ドメイン期限日
-          th 残り日数
+          th ドメイン期限 残り日数
           th 参加者 / グラフ / プレビュー / 編集 / 削除
         - @projects.each do |project|
           tr
             td = project.id
             td = project.title
+            td = project.ssl_deadline_at
             td = project.domain_deadline_at
-            //td = project.deadline_at
             == deadLine(project.domain_deadline_at)
             td
               //= link_to('参加者情報',url_for(:controller => 'project',:action => 'user',:id => project[:id]),:class => 'btn btn-warning')

@@ -24,13 +24,13 @@ class Company < ActiveRecord::Base
   #
   #
   def self.regist(params)
-    company_data = Company.new
+    company = Company.new
     if params[:password] == params[:password_confirm] && !params[:password].blank?
-      company_data.name = params[:name]
-      company_data.description = params[:description]
-      company_data.email = params[:email]
-      company_data.password = params[:password]
-      if company_data.save
+      company.name = params[:name]
+      company.description = params[:description]
+      company.email = params[:email]
+      company.password = params[:password]
+      if company.save
         return true
       end
       return false

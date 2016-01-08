@@ -26,6 +26,7 @@ class TaskController < ApplicationController
   #
   def add
     @Admins = Admin.all
+    @Projects = Project.all
     if request.post?
       @task_data = Task.new
       @task_data.admin_id = params[:admin_id]
@@ -36,6 +37,9 @@ class TaskController < ApplicationController
         flash[:notice] = 'タスクを作成しました'
         redirect_to(url_for({ controller: 'task', action: 'list' }))
         # notify_to_slack_task
+      else
+        flash[:error] = 'タスクの作成に失敗しました'
+        redirect_to(url_for({ controller: 'task', action: 'list' }))
       end
     end
   end
@@ -54,6 +58,9 @@ class TaskController < ApplicationController
     if task.save
       flash[:notice] = 'タスクを削除しました'
       redirect_to(url_for({ controller: 'task', action: 'list' }))
+    else
+      flash[:error] = 'タスクの削除に失敗しました'
+      redirect_to(url_for({ controller: 'task', action: 'list' }))
     end
   end
 
@@ -66,6 +73,9 @@ class TaskController < ApplicationController
     if @task.save
       flash[:notice] = 'タスクを編集しました'
       redirect_to(url_for({ controller: 'task', action: 'list' }))
+    else
+      falsh[:error] = 'タスクの編集に失敗しました'
+      redirect_to(url_for({ controller: 'task', action: 'edit', id: params[:id]}))
     end
   end
 
@@ -73,13 +83,12 @@ class TaskController < ApplicationController
     task = Task.where(id: params[:id]).first
     task.state = 1
     if task.save
-        flash[:notice] = 'タスクを完了しました'
-        redirect_to(url_for({ controller: 'task', action: 'list' }))
-      else
-        flash[:error] = 'エラーが起きました'
-        redirect_to(url_for({ controller: 'task', action: 'list' }))
+      flash[:notice] = 'タスクを完了しました'
+      redirect_to(url_for({ controller: 'task', action: 'list' }))
+    else
+      flash[:error] = 'エラーが起きました'
+      redirect_to(url_for({ controller: 'task', action: 'list' }))
     end
-
   end
 
   private

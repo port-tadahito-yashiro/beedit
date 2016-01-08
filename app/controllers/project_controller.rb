@@ -33,49 +33,23 @@ class ProjectController < ApplicationController
 
     if request.post?
       # 値を取得する
-      project_data = params[:project]
-      task_data = params[:tasks]
-
-      if !project_data[:name].blank?
+      unless params[:project][:name].blank?
         ActiveRecord::Base.transaction do
           # 新規プロジェクトの作成
-          @project = Project.create(sales_user_id: project_data[:sales].to_i,
-                                    company_id: project_data[:company].to_i,
-                                    name: project_data[:name],
-                                    table_name: project_data[:table_name],
-                                    url: project_data[:url],
-                                    page_type: 1,
-                                    title: project_data[:title],
-                                    description: project_data[:description],
-                                    ogp_description: project_data[:ogp_description],
-                                    start_at: project_data[:start_at],
-                                    finish_at: project_data[:finish_at],
-                                    domain_name: project_data[:domain_name],
-                                    domain_deadline_at: project_data[:domain_deadline_at],
-                                    ssl_deadline_at: project_data[:ssl_deadline_at])
+          @project = Project.regist(params[:project])
           flash[:notice] = '新しくプロジェクトを作成しました'
           # slackへの通知
           # notify_to_slack_project
-          Event.create(project_id: @project[:id],
-                       title: project_data[:name],
-                       start: project_data[:start_at],
-                       end: project_data[:finish_at])
-        end
+          Event.regist(params[:tasks], @project)
           # 新規タスクの作成
-        if !task_data.blank?
-          task_data.each_with_index do |task, i|
-            Task.create(project_id: @project[:id].to_i,
-                        admin_id: task[1][:user_id].to_i,
-                        title: task[1][:name],
-                        context: task[1][:detail],
-                        state: '1')
+          params[:tasks].each do |task|
+            unless task[1][:name].blank?
+              Task.regist(task[1], @project)
+            end
           end
         end
-
-        render json: { success: true,
-                       id: @project.id }
+        render json: { success: true, id: @project.id }
       else
-        p '失敗した'
         flash[:error] = '新しくプロジェクト作成に失敗しました'
         render json: { success: false }
       end
@@ -93,48 +67,52 @@ class ProjectController < ApplicationController
     @taskers = Admin.where(department_id: 1).all
     @companies = Company.all
 
-    @project = Project.where(id: arams[:id]).first
+    @project = Project.where(id: params[:id]).first
 
     if request.post?
       # 値を取得する
       project_data = params[:project]
       task_data = params[:tasks]
-        ActiveRecord::Base.transaction do
-          @project.sales_user_id = project_data[:sales].to_i
-          @project.company_id = project_data[:company].to_i
-          @project.name = project_data[:name]
-          @project.url = project_data[:url]
-          @project.page_type = 1
-          @project.title = project_data[:title]
-          @project.table_name = project_data[:table_name]
-          @project.description = project_data[:description]
-          @project.ogp_description = project_data[:ogp_description]
-          @project.start_at = project_data[:start_at]
-          @project.finish_at = project_data[:finish_at]
-          @project.domain_name = project_data[:domain_name]
-          @project.domain_deadline_at = project_data[:domain_deadline_at]
-          @project.ssl_deadline_at = project_data[:ssl_deadline_at]
-          if @project.save
-            flash[:notice] = 'プロジェクト情報を編集しました'
-            event = Event.where(project_id: params[:id]).first
-            event[:title] = project_data[:name]
-            event[:start] = project_data[:start_at]
-            event[:end]   = project_data[:finish_at]
-            event.save
-          end
-          render json: { success: true,
-                         id: @project.id }
+      ActiveRecord::Base.transaction do
+        @project.sales_user_id = project_data[:sales].to_i
+        @project.company_id = project_data[:company].to_i
+        @project.name = project_data[:name]
+        @project.url = project_data[:url]
+        @project.page_type = 1
+        @project.title = project_data[:title]
+        @project.table_name = project_data[:table_name]
+        @project.description = project_data[:description]
+        @project.ogp_description = project_data[:ogp_description]
+        @project.start_at = project_data[:start_at]
+        @project.finish_at = project_data[:finish_at]
+        @project.domain_name = project_data[:domain_name]
+        @project.domain_deadline_at = project_data[:domain_deadline_at]
+        @project.ssl_deadline_at = project_data[:ssl_deadline_at]
+        if @project.save
+          flash[:notice] = 'プロジェクト情報を編集しました'
+          event = Event.where(project_id: params[:id]).first
+          event[:title] = project_data[:name]
+          event[:start] = project_data[:start_at]
+          event[:end]   = project_data[:finish_at]
+          event.save
+        else
+          flash[:error] = 'プロジェクト情報の編集に失敗しました'
         end
-        if !task_data.blank?
-          # 新規タスクの作成
-          task_data.each_with_index do |task, i|
-            Task.create(project_id: @project[:id].to_i,
-                        admin_id: task[1][:user_id].to_i,
-                        title: task[1][:name],
-                        context: task[1][:detail],
-                        state: '0')
-          end
+        render json: { success: true,
+                       id: @project.id }
+      end
+      return if task_data.blank?
+        # 新規タスクの作成
+      task_data.each_with_index do |task, i|
+        unless task[1][:name].blank?
+        Task.create(
+                project_id: @project[:id].to_i,
+                admin_id: task[1][:user_id].to_i,
+                title: task[1][:name],
+                context: task[1][:detail],
+                state: '0')
         end
+      end
     end
   end
 

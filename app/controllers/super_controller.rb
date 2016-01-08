@@ -19,9 +19,9 @@ class SuperController < ApplicationController
       end
       super_user = Admin.authenticate(params[:email],
                                       params[:password])
-      if !super_user.blank?
+      unless super_user.blank?
         session[:adminId] = super_user[:id]
-        return  redirect_to url_for({ controller: 'super', action: 'dashboard' })
+        redirect_to url_for({ controller: 'super', action: 'dashboard' })
       end
     end
   end

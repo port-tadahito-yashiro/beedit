@@ -21,9 +21,10 @@ class AdminController < ApplicationController
     if request.post?
       if Admin.regist(params)
         flash[:notice] = '新規ユーザーを作成しました'
-        redirect_to(url_for(controller: 'super', action: 'dashboard'))
+        redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
       else
         flash[:error] = '新規ユーザー作成に失敗しました'
+        redirect_to(url_for({ controller: 'admin', action: 'add' }))
       end
     end
   end
@@ -39,9 +40,10 @@ class AdminController < ApplicationController
     if request.post?
       if Admin.updated(params)
         flash[:notice] = 'ユーザー情報を編集しました'
-        redirect_to(url_for(controller: 'super', action: 'dashboard'))
+        redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
       else
         flash[:error] = 'ユーザ-の情報編集に失敗しました'
+        redirect_to(url_for({ controller: 'admin', action: 'edit', id: params[:id]}))
       end
     end
   end

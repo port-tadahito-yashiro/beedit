@@ -16,4 +16,14 @@ class Task < ActiveRecord::Base
     self.updated_at = Time.now
     self.updated_time = Time.now.to_i
   end
+
+  def self.regist(params, project)
+    task = Task.new
+    task.project_id = project[:id]
+    task.admin_id   = params[:user_id].to_i
+    task.title      = params[:name]
+    task.context    = params[:detail]
+    task.state      = 0
+    return if task.save
+  end
 end

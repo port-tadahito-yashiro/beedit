@@ -57,7 +57,6 @@ class EventController < ApplicationController
   def update
     if request.put?
       # イベントデータ更新処理
-      p "更新処理が走った"
       data = Event.where(:id => params[:id]).first
       data[:title] = params[:event][:name]
       data[:start] = params[:event][:start]
