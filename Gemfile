@@ -107,6 +107,9 @@ gem 'capistrano-rbenv', '~> 2.0',   require: false
 gem 'capistrano-bundler', '~> 1.1', require: false
 gem 'capistrano3-unicorn' #unicornを使っている場合のみ
 
+# https://rubygems.org/gems/rubocop
+gem 'rubocop', require: false
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
