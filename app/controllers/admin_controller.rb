@@ -19,11 +19,7 @@ class AdminController < ApplicationController
   def add
     @departments = Department.all
     if request.post?
-      if Admin.regist(params[:department],
-                      params[:name],
-                      params[:email],
-                      params[:password],
-                      params[:password_confirm])
+      if Admin.regist(params)
         flash[:notice] = '新規ユーザーを作成しました'
         redirect_to(url_for(controller: 'super', action: 'dashboard'))
       else
@@ -41,12 +37,7 @@ class AdminController < ApplicationController
     @admin = Admin.where(id: params[:id]).first
     @departments = Department.all
     if request.post?
-      if Admin.updated(params[:id],
-                       params[:department],
-                       params[:name],
-                       params[:email],
-                       params[:password],
-                       params[:password_confirm])
+      if Admin.updated(params)
         flash[:notice] = 'ユーザー情報を編集しました'
         redirect_to(url_for(controller: 'super', action: 'dashboard'))
       else

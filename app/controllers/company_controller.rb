@@ -18,11 +18,7 @@ class CompanyController < ApplicationController
   #
   def add
     if request.post?
-      if Company.regist(params[:name],
-                        params[:description],
-                        params[:password],
-                        params[:email],
-                        params[:password_confirm])
+      if Company.regist(params)
         flash[:notice] = '新規 企業情報を作成しました'
         redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
       end
@@ -38,12 +34,7 @@ class CompanyController < ApplicationController
     @projects = Project.where(company_id: params[:id]).order('id DESC').page(params[:page]).per(10)
     @company = Company.where(id: params[:id]).first
     if request.post?
-      if Company.updated(params[:id],
-                         params[:name],
-                         params[:description],
-                         params[:password],
-                         params[:email],
-                         params[:password_confirm])
+      if Company.updated(params)
         flash[:notice] = '企業情報を編集しました'
         redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
       end

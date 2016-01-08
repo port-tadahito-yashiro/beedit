@@ -47,15 +47,15 @@ class Admin < ActiveRecord::Base
   # Created 2015/12/03
   #
   #
-  def self.regist(department, name, email, password, password_confirm)
+  def self.regist(params)
     admin = Admin.new
-    if password == password_confirm && !password.blank? ||
-       !name.blank? ||
-       !email.blank?
-      admin.name = name
-      admin.department_id = department.to_i
-      admin.email = email
-      admin.password = password
+    if params[:password] == params[:password_confirm] && !params[:password].blank? ||
+       !params[:name].blank? ||
+       !params[:email].blank?
+      admin.name = params[:name]
+      admin.department_id = params[:department].to_i
+      admin.email = params[:email]
+      admin.password = params[:password]
       if admin.save
         return true
       end
@@ -64,16 +64,15 @@ class Admin < ActiveRecord::Base
    return false
   end
 
-  def self.updated(admin_id, department, name, email, password, password_confirm)
-    admin = Admin.where(id: admin_id).first
-
-    if password == password_confirm && !password.blank? ||
-       !name.blank? ||
-       !email.blank?
-      admin.name = name
-      admin.department_id = department.to_i
-      admin.email = email
-      admin.password = password
+  def self.updated(params)
+    admin = Admin.where(id: params[:id]).first
+    if params[:password] == params[:password_confirm] && !params[:password].blank? ||
+       !params[:name].blank? ||
+       !params[:email].blank?
+      admin.name = params[:name]
+      admin.department_id = params[:department].to_i
+      admin.email = params[:email]
+      admin.password = params[:password]
       if admin.save
         return true
       end

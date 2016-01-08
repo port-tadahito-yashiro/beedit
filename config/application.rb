@@ -13,6 +13,25 @@ module Beedit
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
 
+    #
+    # RSpec対応の記述(http://qiita.com/yuutetu/items/135b1c8ab512208aebfe)
+    #
+    #
+    #
+    config.generators do |g|
+      g.stylesheets false
+      g.javascripts false
+      g.helper false
+      g.template_engine false
+      g.test_framework :rspec, view_specs: false, helper_specs: false, fixture: true
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
+
+    # ip制限
+    #config.middleware.use Rack::Access, {
+    #    '/super' => ['192.168.100.200']
+    #}
+
     # cron用の設定
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]

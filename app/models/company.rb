@@ -23,13 +23,13 @@ class Company < ActiveRecord::Base
   # Created 2015/12/03
   #
   #
-  def self.regist(name, description, password, email, password_confirm)
+  def self.regist(params)
     company_data = Company.new
-    if password == password_confirm && !password.blank?
-      company_data.name = name
-      company_data.description = description
-      company_data.email = email
-      company_data.password = password
+    if params[:password] == params[:password_confirm] && !params[:password].blank?
+      company_data.name = params[:name]
+      company_data.description = params[:description]
+      company_data.email = params[:email]
+      company_data.password = params[:password]
       if company_data.save
         return true
       end
@@ -44,13 +44,13 @@ class Company < ActiveRecord::Base
   # Created 2015/12/03
   #
   #
-  def self.updated(company_id, name, description, password, email, email_confirm)
+  def self.updated(params)
     company = Company.where(id: company_id).first
-    if password == password_confirm && !password.blank?
-      company.name = name
-      company.description = description
-      company.email = email
-      company.password = password
+    if params[:password] == params[:password_confirm] && !params[:password].blank?
+      company.name = params[:name]
+      company.description = params[:description]
+      company.email = params[:email]
+      company.password = params[:password]
       if company.save
         return true
       end
