@@ -1,8 +1,6 @@
 class AdminController < ApplicationController
-
-  #未ログインの場合はログイン画面へ移動
-  #before_action :authenticate
-
+  # 未ログインの場合はログイン画面へ移動
+  # before_action :authenticate
 
   #
   # list
@@ -10,9 +8,8 @@ class AdminController < ApplicationController
   # Created 2015/12/03
   #
   def list
-    @admins = Admin.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(15)
+    @admins = Admin.where(deleted_at: nil).order('id DESC').page(params[:page]).per(15)
   end
-
 
   #
   # add
@@ -22,15 +19,18 @@ class AdminController < ApplicationController
   def add
     @departments = Department.all
     if request.post?
-      if Admin.regist(params[:department],params[:name],params[:email],params[:password],params[:password_confirm])
+      if Admin.regist(params[:department],
+                      params[:name],
+                      params[:email],
+                      params[:password],
+                      params[:password_confirm])
         flash[:notice] = '新規ユーザーを作成しました'
-        redirect_to(url_for({ controller: 'super',action: 'dashboard' }))
+        redirect_to(url_for(controller: 'super', action: 'dashboard'))
       else
         flash[:error] = '新規ユーザー作成に失敗しました'
       end
     end
   end
-
 
   #
   # edit
@@ -41,15 +41,19 @@ class AdminController < ApplicationController
     @admin = Admin.where(id: params[:id]).first
     @departments = Department.all
     if request.post?
-      if Admin.updated(params[:id],params[:department],params[:name],params[:email],params[:password],params[:password_confirm])
+      if Admin.updated(params[:id],
+                       params[:department],
+                       params[:name],
+                       params[:email],
+                       params[:password],
+                       params[:password_confirm])
         flash[:notice] = 'ユーザー情報を編集しました'
-        redirect_to(url_for({ controller: 'super',action: 'dashboard' }))
+        redirect_to(url_for(controller: 'super', action: 'dashboard'))
       else
         flash[:error] = 'ユーザ-の情報編集に失敗しました'
       end
     end
   end
-
 
   #
   # delete
@@ -57,7 +61,7 @@ class AdminController < ApplicationController
   # Created 2015/12/03
   #
   def delete
-    admin = Admin.where(:id => params[:id]).first
+    admin = Admin.where(id: params[:id]).first
     admin.deleted_at = Time.now
     admin.deleted_time = Time.now.to_i
     admin.deleted_user = 1
@@ -69,5 +73,4 @@ class AdminController < ApplicationController
       render json: { success: false }
     end
   end
-
 end

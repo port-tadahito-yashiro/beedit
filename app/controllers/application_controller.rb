@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-
-
   def logged_in?
     return !!session[:adminId]
   end
@@ -17,9 +15,6 @@ class ApplicationController < ActionController::Base
   def authenticate
     return if logged_in?
     flash[:error] = 'ログインしてください'
-    redirect_to url_for({:controller => 'super',:action => 'index'})
+    redirect_to url_for({ controller: 'super', action: 'index' })
   end
-
-
-
 end

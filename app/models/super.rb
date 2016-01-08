@@ -2,11 +2,9 @@ require 'digest/sha1'
 
 class Super < ActiveRecord::Base
   before_save do
-
-    #salt値の生成
+    # salt値の生成
     self.salt = Super.new_salt
     self.password = Super.crypt_password(self.password, self.salt)
-
     self.created_at = Time.now
     self.created_time = Time.now.to_i
     self.created_user = 1
@@ -20,11 +18,8 @@ class Super < ActiveRecord::Base
     self.updated_time = Time.now.to_i
   end
 
-
-
-
-  def self.authenticate(email,password)
-    auth = Super.where(:email => email, :password => Digest::SHA1.hexdigest("#{Rails.application.secrets[:salt]}#{password}").first)
+  def self.authenticate(email, password)
+    auth = Super.where(email: email, password: Digest::SHA1.hexdigest("#{Rails.application.secrets[:salt]}#{password}").first)
     return auth
   end
 
@@ -39,7 +34,6 @@ class Super < ActiveRecord::Base
     Digest::SHA1.hexdigest(salt + password)
   end
 
-
   #
   # self.new_salt
   # Author kazuki.yamaguchi
@@ -49,7 +43,4 @@ class Super < ActiveRecord::Base
     s = rand.to_s.tr('+', '.')
     s[0, if s.size > 32 then 32 else s.size end]
   end
-
-
-
 end

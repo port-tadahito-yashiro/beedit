@@ -1,6 +1,5 @@
 class CompanyController < ApplicationController
-
-  #　未ログインの場合はログイン画面へ移動
+  # 未ログインの場合はログイン画面へ移動
   before_action :authenticate
 
   #
@@ -9,7 +8,7 @@ class CompanyController < ApplicationController
   # Created 2015/12/03
   #
   def list
-    @companies = Company.where(:deleted_at => nil).order("id DESC").page(params[:page]).per(15)
+    @companies = Company.where(deleted_at: nil).order('id DESC').page(params[:page]).per(15)
   end
 
   #
@@ -18,10 +17,14 @@ class CompanyController < ApplicationController
   # Created 2015/12/03
   #
   def add
-    if request.post? then
-      if Company.regist(params[:name],params[:description],params[:password],params[:email],params[:password_confirm]) then
+    if request.post?
+      if Company.regist(params[:name],
+                        params[:description],
+                        params[:password],
+                        params[:email],
+                        params[:password_confirm])
         flash[:notice] = '新規 企業情報を作成しました'
-        redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
+        redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
       end
     end
   end
@@ -32,12 +35,17 @@ class CompanyController < ApplicationController
   # Created 2015/12/03
   #
   def edit
-    @projects = Project.where(:company_id => params[:id]).order("id DESC").page(params[:page]).per(10)
-    @company = Company.where(:id => params[:id]).first
+    @projects = Project.where(company_id: params[:id]).order('id DESC').page(params[:page]).per(10)
+    @company = Company.where(id: params[:id]).first
     if request.post?
-      if Company.updated(params[:id],params[:name],params[:description],params[:password],params[:email],params[:password_confirm]) then
+      if Company.updated(params[:id],
+                         params[:name],
+                         params[:description],
+                         params[:password],
+                         params[:email],
+                         params[:password_confirm])
         flash[:notice] = '企業情報を編集しました'
-        redirect_to(url_for({:controller => 'super',:action => 'dashboard'}))
+        redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
       end
     end
   end
@@ -48,16 +56,16 @@ class CompanyController < ApplicationController
   # Created 2015/12/03
   #
   def delete
-    company = Company.where(:id => params[:id]).first
+    company = Company.where(id: params[:id]).first
     company.deleted_at = Time.now
     company.deleted_time = Time.now.to_i
     company.deleted_user = 1
-    if company.save then
+    if company.save
       flash[:notice] = '企業情報を削除しました'
-      render :json => {:success => true}
+      render json: { success: true }
     else
       flash[:error] = '企業情報の削除に失敗しました'
-      render :json => {:success => false}
+      render json: { success: false }
     end
   end
 

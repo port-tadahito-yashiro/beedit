@@ -1,13 +1,12 @@
 require 'date'
 
 class EventController < ApplicationController
-
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
  # GET /events
  # GET /events.json
  def index
-   @events = Event.where(:deleted_at => nil).all
+   @events = Event.where(deleted_at: nil).all
  end
 
  # GET /events/1
@@ -29,13 +28,11 @@ class EventController < ApplicationController
  def create
 
    if request.post?
-     #データの保存
+     # データの保存
      data = Event.new
      data[:title] = params[:event][:name]
      data[:start] = params[:event][:start]
      data[:end] = params[:event][:end]
-     p "---------data.save------"
-     p data
      data.save
    end
    view_data = []
@@ -86,7 +83,6 @@ class EventController < ApplicationController
   # DELETE /events/1.json
   def delete
     if request.post?
-      p "-------デリート処理--------"
       data = Event.where(:id => params[:id]).last
       data[:deleted_at] = Time.now
       data[:deleted_time] = Time.now.to_i

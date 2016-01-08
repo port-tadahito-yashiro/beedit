@@ -1,8 +1,7 @@
 require 'time'
 
 class SuperController < ApplicationController
-
-  #未ログインの場合はログイン画面へ移動
+  # 未ログインの場合はログイン画面へ移動
   before_action :authenticate, except: [:index]
 
   #
@@ -11,17 +10,18 @@ class SuperController < ApplicationController
   # Create::
   #
   def index
-    #ログイン認証
-    if request.post? then
+    # ログイン認証
+    if request.post?
       if params[:email].blank? ||
         params[:password].blank?
         flash[:error] = '入力されていない項目があります'
-        return redirect_to url_for({:controller => 'super',:action => 'index'})
+        return redirect_to url_for({ controller: 'super', action:'index' })
       end
-      super_user = Admin.authenticate(params[:email],params[:password])
-      if !super_user.blank? then
+      super_user = Admin.authenticate(params[:email],
+                                      params[:password])
+      if !super_user.blank?
         session[:adminId] = super_user[:id]
-        return  redirect_to url_for({:controller => 'super',:action => 'dashboard'})
+        return  redirect_to url_for({ controller: 'super', action: 'dashboard' })
       end
     end
   end
@@ -34,11 +34,9 @@ class SuperController < ApplicationController
   #
   def dashboard
     @AllProject = Project.all.count
-    @NoFinishTask = Task.where(:deleted_at => nil,:state => 0).count
+    @NoFinishTask = Task.where(deleted_at: nil,state: 0).count
     now_time = DateTime.now
-    evAll = Event.all
     @events = Event.where(Event.arel_table[:start].lt(now_time).and(Event.arel_table[:end].gt(now_time)).and(Event.arel_table[:deleted_at].eq(nil))).all
-    p @events
   end
 
   #
@@ -58,7 +56,7 @@ class SuperController < ApplicationController
   #
   def logout
     session[:adminId] = nil
-    redirect_to url_for({:controller => 'super',:action => 'index'})
+    redirect_to url_for({ controller: 'super', action: 'index' })
   end
 
   private
@@ -69,8 +67,5 @@ class SuperController < ApplicationController
   #
   #
   def authenticatedSuperId
-
-
   end
-
 end

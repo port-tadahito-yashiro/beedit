@@ -1,6 +1,5 @@
 class TaskController < ApplicationController
-
-  #未ログインの場合はログイン画面へ移動
+  # 未ログインの場合はログイン画面へ移動
   before_action :authenticate
 
   #
@@ -11,8 +10,12 @@ class TaskController < ApplicationController
   #
   def list
     now_time = DateTime.now
-    @tasks = Task.where(:finish_at => nil,:deleted_at => nil,:state => 0).order("id DESC").page(params[:page]).per(15)
-    @deleteTasks = Task.where(Task.arel_table[:finish_at].gt(now_time).or(Task.arel_table[:deleted_at].not_eq(nil)).or(Task.arel_table[:state].not_eq(0))).order("deleted_at").limit(6)
+    @tasks = Task.where(finish_at: nil,
+                        deleted_at: nil,
+                        state: 0).order('id DESC').page(params[:page]).per(15)
+    @deleteTasks = Task.where(Task.arel_table[:finish_at].gt(now_time)
+                              .or(Task.arel_table[:deleted_at].not_eq(nil))
+                              .or(Task.arel_table[:state].not_eq(0))).order('deleted_at').limit(6)
   end
 
   #
@@ -22,20 +25,17 @@ class TaskController < ApplicationController
   #
   #
   def add
-
     @Admins = Admin.all
-
-    if request.post? then
+    if request.post?
       @task_data = Task.new
       @task_data.admin_id = params[:admin_id]
       @task_data.title = params[:title]
       @task_data.context = params[:context]
       @task_data.state = 0
-      if @task_data.save then
-        p @task_data
+      if @task_data.save
         flash[:notice] = 'タスクを作成しました'
-        redirect_to(url_for({:controller => 'task',:action => 'list'}))
-        #notify_to_slack_task
+        redirect_to(url_for({ controller: 'task', action: 'list' }))
+        # notify_to_slack_task
       end
     end
   end
@@ -47,44 +47,42 @@ class TaskController < ApplicationController
   #
   #
   def delete
-    task = Task.where(:id => params[:id]).first
-    p task
+    task = Task.where(id: params[:id]).first
     task.deleted_at = Time.now
     task.deleted_time = Time.now.to_i
     task.deleted_user = 1
-    if task.save then
+    if task.save
       flash[:notice] = 'タスクを削除しました'
-      redirect_to(url_for({:controller => 'task',:action => 'list'}))
+      redirect_to(url_for({ controller: 'task', action: 'list' }))
     end
   end
 
   def edit
     @Admins = Admin.all
-    @task = Task.where(:id => params[:id]).first
+    @task = Task.where(id: params[:id]).first
     @task.admin_id = params[:admin_id]
     @task.title = params[:title]
     @title.context = params[:context]
-    if @task.save then
+    if @task.save
       flash[:notice] = 'タスクを編集しました'
-      redirect_to(url_for({:controller => 'task',:action => 'list'}))
+      redirect_to(url_for({ controller: 'task', action: 'list' }))
     end
   end
 
   def finish
-    task = Task.where(:id => params[:id]).first
+    task = Task.where(id: params[:id]).first
     task.state = 1
-    if task.save then
+    if task.save
         flash[:notice] = 'タスクを完了しました'
-        redirect_to(url_for({:controller => 'task',:action => 'list'}))
+        redirect_to(url_for({ controller: 'task', action: 'list' }))
       else
         flash[:error] = 'エラーが起きました'
-        redirect_to(url_for({:controller => 'task',:action => 'list'}))
+        redirect_to(url_for({ controller: 'task', action: 'list' }))
     end
 
   end
 
   private
-
   #
   # slackメッセージ(task)
   # Author kazuki.yamaguchi

@@ -8,10 +8,9 @@ class Admin < ActiveRecord::Base
   paginates_per 5
 
   before_save do
-
-   self.salt = Admin.new_salt
-   self.password = Admin.crypt_password(self.password, self.salt)
-
+    self.salt = Admin.new_salt
+    self.password = Admin.crypt_password(self.password,
+                                        self.salt)
     self.created_at = Time.now
     self.created_time = Time.now.to_i
     self.created_user = 1
@@ -22,11 +21,11 @@ class Admin < ActiveRecord::Base
 
   before_update do
     self.salt = Admin.new_salt
-    self.password = Admin.crypt_password(self.password, self.salt)
+    self.password = Admin.crypt_password(self.password,
+                                         self.salt)
     self.updated_at = Time.now
     self.updated_time = Time.now.to_i
   end
-
 
   #
   # authenticate
@@ -34,18 +33,13 @@ class Admin < ActiveRecord::Base
   # Created 2015/12/03
   #
   #
-  def self.authenticate(email,password)
+  def self.authenticate(email, password)
     # パラメータ:emailを持つUserが存在しない場合nilを返す
-    return if !(admin = Admin.where(:email => email,:deleted_at => nil).first)
+    return if !(admin = Admin.where(email: email, deleted_at: nil).first)
     saltpass = admin.salt + password
-    p saltpass
     sha1p = Digest::SHA1.hexdigest(saltpass)
-
-    p sha1p
     return admin if admin.deleted_at.blank? && sha1p == admin.password
   end
-
-
 
   #
   # regist
@@ -53,16 +47,16 @@ class Admin < ActiveRecord::Base
   # Created 2015/12/03
   #
   #
-  def self.regist(department,name,email,password,password_confirm)
+  def self.regist(department, name, email, password, password_confirm)
     admin = Admin.new
-    if password == password_confirm and !password.blank? ||
+    if password == password_confirm && !password.blank? ||
        !name.blank? ||
        !email.blank?
       admin.name = name
       admin.department_id = department.to_i
       admin.email = email
       admin.password = password
-      if admin.save then
+      if admin.save
         return true
       end
       return false
@@ -70,17 +64,17 @@ class Admin < ActiveRecord::Base
    return false
   end
 
-  def self.updated(admin_id,department,name,email,password,password_confirm)
-    admin = Admin.where(:id => admin_id).first
+  def self.updated(admin_id, department, name, email, password, password_confirm)
+    admin = Admin.where(id: admin_id).first
 
-    if password == password_confirm and !password.blank? ||
+    if password == password_confirm && !password.blank? ||
        !name.blank? ||
        !email.blank?
       admin.name = name
       admin.department_id = department.to_i
       admin.email = email
       admin.password = password
-      if admin.save then
+      if admin.save
         return true
       end
       return false
@@ -107,6 +101,4 @@ class Admin < ActiveRecord::Base
     s = rand.to_s.tr('+', '.')
     s[0, if s.size > 32 then 32 else s.size end]
   end
-
-
 end

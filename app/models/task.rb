@@ -16,5 +16,4 @@ class Task < ActiveRecord::Base
     self.updated_at = Time.now
     self.updated_time = Time.now.to_i
   end
-
 end
