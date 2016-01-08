@@ -91,6 +91,9 @@ gem 'capistrano3-unicorn' #unicornを使っている場合のみ
 # https://rubygems.org/gems/rubocop
 gem 'rubocop', require: false
 
+# https://rubygems.org/gems/rspec-rails
+gem 'rspec-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -103,4 +106,45 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+## test gems #############################################
+group :test do
+  # https://rubygems.org/gems/capybara
+  gem 'capybara'
+
+  # https://rubygems.org/gems/database_rewinder
+  gem 'database_rewinder'
+
+  # https://rubygems.org/gems/factory_girl_rails
+  gem 'factory_girl_rails'
+
+  # https://rubygems.org/gems/faker
+  gem 'faker'
+
+  # https://rubygems.org/gems/guard-rspec
+  gem 'guard-rspec'
+
+  # https://rubygems.org/gems/launchy
+  gem 'launchy'
+
+  # https://rubygems.org/gems/mock_redis
+  gem 'mock_redis'
+
+  # https://rubygems.org/gems/poltergeist
+  # https://rubygems.org/gems/phantomjs
+  gem 'poltergeist'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
+
+  # https://rubygems.org/gems/rack_session_access
+  gem 'rack_session_access'
+
+  # https://rubygems.org/gems/selenium-webdriver
+  gem 'selenium-webdriver'
+
+  # https://rubygems.org/gems/vcr
+  gem 'vcr'
+
+  # https://rubygems.org/gems/webmock
+  gem 'webmock'
 end
