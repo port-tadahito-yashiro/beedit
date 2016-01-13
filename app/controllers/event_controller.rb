@@ -29,17 +29,17 @@ class EventController < ApplicationController
 
    if request.post?
      # データの保存
-     data = Event.new
-     data[:title] = params[:event][:name]
-     data[:start] = params[:event][:start]
-     data[:end] = params[:event][:end]
-     data.save
+     event = Event.new
+     event[:title] = params[:event][:name]
+     event[:start] = params[:event][:start]
+     event[:end] = params[:event][:end]
+     event.save
    end
-   view_data = []
+   data = []
    Event.where(:deleted_at => nil).all.each do |item|
-     view_data.push(item)
+     data.push(item)
    end
-  render :json => ActiveSupport::JSON.encode(view_data)
+  render :json => ActiveSupport::JSON.encode(data)
  end
 
  # PATCH/PUT /events/1
@@ -60,13 +60,13 @@ class EventController < ApplicationController
       data = Event.where(:id => params[:id]).first
       data[:title] = params[:event][:name]
       data[:start] = params[:event][:start]
-      data[:end] = params[:event][:end]
+      data[:end]   = params[:event][:end]
       data.save
 
       unless data[:project_id].blank?
         project = Project.where(:id => data[:project_id]).first
-        project[:name] = params[:event][:name]
-        project[:start_at] = params[:event][:start]
+        project[:name]      = params[:event][:name]
+        project[:start_at]  = params[:event][:start]
         project[:finish_at] = params[:event][:end]
         project.save
       end
@@ -82,17 +82,17 @@ class EventController < ApplicationController
   # DELETE /events/1.json
   def delete
     if request.post?
-      data = Event.where(:id => params[:id]).last
-      data[:deleted_at] = Time.now
-      data[:deleted_time] = Time.now.to_i
-      data[:deleted_user] = 1
-      data.save
+      event = Event.where(:id => params[:id]).last
+      event[:deleted_at] = Time.now
+      event[:deleted_time] = Time.now.to_i
+      event[:deleted_user] = 1
+      event.save
     end
-    view_data = []
+    data = []
     Event.where(:deleted_at => nil).all.each do |item|
-      view_data.push(item)
+      data.push(item)
     end
-   render :json => ActiveSupport::JSON.encode(view_data)
+   render :json => ActiveSupport::JSON.encode(data)
   end
 
  private

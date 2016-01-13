@@ -1,5 +1,4 @@
 class Task < ActiveRecord::Base
-
   belongs_to :project
   belongs_to :admin
 
@@ -17,13 +16,17 @@ class Task < ActiveRecord::Base
     self.updated_time = Time.now.to_i
   end
 
-  def self.regist(params, project)
+  def self.regist(params, project = nil)
     task = Task.new
-    task.project_id = project[:id]
+    task.project_id = project
     task.admin_id   = params[:user_id].to_i
     task.title      = params[:name]
     task.context    = params[:detail]
     task.state      = 0
-    return if task.save
+    if task.save
+      return true
+    else
+      return false
+    end
   end
 end

@@ -54,9 +54,9 @@ class CompanyController < ApplicationController
   #
   def delete
     company = Company.where(id: params[:id]).first
-    company.deleted_at = Time.now
-    company.deleted_time = Time.now.to_i
-    company.deleted_user = 1
+    company.deleted_at    = Time.now
+    company.deleted_time  = Time.now.to_i
+    company.deleted_user  = 1
     if company.save
       flash[:notice] = '企業情報を削除しました'
       render json: { success: true }

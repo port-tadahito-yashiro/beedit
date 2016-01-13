@@ -40,18 +40,22 @@ class ProjectController < ApplicationController
           flash[:notice] = '新しくプロジェクトを作成しました'
           # slackへの通知
           # notify_to_slack_project
-          Event.regist(params[:tasks], @project)
+          Event.regist(params[:project], @project)
           # 新規タスクの作成
-          params[:tasks].each do |task|
-            unless task[1][:name].blank?
-              Task.regist(task[1], @project)
+          unless params[:tasks].blank?
+            params[:tasks].each do |task|
+              unless task[1][:name].blank?
+                if Task.regist(task[1], @project.id)
+                  flash[:notice] = '新規タスクを作成しました'
+                else
+                  flash[:error] = '新規タスクの作成に失敗しました'
+                  render json: { succces: false, id: project.id}
+                end
+              end
             end
           end
         end
         render json: { success: true, id: @project.id }
-      else
-        flash[:error] = '新しくプロジェクト作成に失敗しました'
-        render json: { success: false }
       end
     end
   end
@@ -70,49 +74,35 @@ class ProjectController < ApplicationController
     @project = Project.where(id: params[:id]).first
 
     if request.post?
-      # 値を取得する
-      project_data = params[:project]
-      task_data = params[:tasks]
-      ActiveRecord::Base.transaction do
-        @project.sales_user_id = project_data[:sales].to_i
-        @project.company_id = project_data[:company].to_i
-        @project.name = project_data[:name]
-        @project.url = project_data[:url]
-        @project.page_type = 1
-        @project.title = project_data[:title]
-        @project.table_name = project_data[:table_name]
-        @project.description = project_data[:description]
-        @project.ogp_description = project_data[:ogp_description]
-        @project.start_at = project_data[:start_at]
-        @project.finish_at = project_data[:finish_at]
-        @project.domain_name = project_data[:domain_name]
-        @project.domain_deadline_at = project_data[:domain_deadline_at]
-        @project.ssl_deadline_at = project_data[:ssl_deadline_at]
-        if @project.save
-          flash[:notice] = 'プロジェクト情報を編集しました'
-          event = Event.where(project_id: params[:id]).first
-          event[:title] = project_data[:name]
-          event[:start] = project_data[:start_at]
-          event[:end]   = project_data[:finish_at]
-          event.save
-        else
-          flash[:error] = 'プロジェクト情報の編集に失敗しました'
-        end
-        render json: { success: true,
-                       id: @project.id }
+      if project = Project.update(params[:project], params[:id])
+        flash[:notice] = 'プロジェクト情報を編集しました'
+      else
+        flash[:error] = 'プロジェクト情報の編集に失敗しました'
+        render json: { success: false, id: project.id }
       end
-      return if task_data.blank?
-        # 新規タスクの作成
-      task_data.each_with_index do |task, i|
-        unless task[1][:name].blank?
-        Task.create(
-                project_id: @project[:id].to_i,
-                admin_id: task[1][:user_id].to_i,
-                title: task[1][:name],
-                context: task[1][:detail],
-                state: '0')
+
+      if event = Event.update(params[:project],params[:id])
+        flash[:notice] = 'プロジェクト情報を編集しました'
+      else
+        flash[:error] = 'プロジェクト情報を編集に失敗しました'
+        render json: { success: false, id: project.id }
+      end
+
+      return if params[:tasks].blank?
+      # 新規タスクの作成
+      unless params[:tasks].blank?
+        params[:tasks].each do |task|
+          unless task[1][:name].blank?
+            if Task.regist(task[1], @project.id)
+              flash[:notice] = '新規タスクを作成しました'
+            else
+              flash[:error] = '新規タスクの作成に失敗しました'
+              render json: { succces: false, id: @project.id }
+            end
+          end
         end
       end
+      render json: { success: true, id: @project.id }
     end
   end
 
@@ -128,12 +118,13 @@ class ProjectController < ApplicationController
       project.deleted_time = Time.now.to_i
       project.deleted_user = 1
       if project.save
-        ActiveRecord::Base.transaction do
-          project.events.each do |event|
-            event.deleted_at = Time.now
-            event.deleted_time = Time.now.to_i
-            event.deleted_user = 1
-            event.save
+        project.events.each do |event|
+          event.deleted_at = Time.now
+          event.deleted_time = Time.now.to_i
+          event.deleted_user = 1
+          unless event.save
+            flash[:error] = 'プロジェクトのイベント削除に失敗しました'
+            render json: { success: false }
           end
         end
         flash[:notice] = 'プロジェクトを削除しました'

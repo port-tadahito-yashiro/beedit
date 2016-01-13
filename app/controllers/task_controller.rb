@@ -25,15 +25,10 @@ class TaskController < ApplicationController
   #
   #
   def add
-    @Admins = Admin.all
-    @Projects = Project.all
+    @admins = Admin.all
+    @projects = Project.all
     if request.post?
-      @task_data = Task.new
-      @task_data.admin_id = params[:admin_id]
-      @task_data.title = params[:title]
-      @task_data.context = params[:context]
-      @task_data.state = 0
-      if @task_data.save
+      if Task.regist(params)
         flash[:notice] = 'タスクを作成しました'
         redirect_to(url_for({ controller: 'task', action: 'list' }))
         # notify_to_slack_task
@@ -52,7 +47,7 @@ class TaskController < ApplicationController
   #
   def delete
     task = Task.where(id: params[:id]).first
-    task.deleted_at = Time.now
+    task.deleted_at   = Time.now
     task.deleted_time = Time.now.to_i
     task.deleted_user = 1
     if task.save
@@ -65,7 +60,7 @@ class TaskController < ApplicationController
   end
 
   def edit
-    @Admins = Admin.all
+    @admins = Admin.all
     @task = Task.where(id: params[:id]).first
     @task.admin_id = params[:admin_id]
     @task.title = params[:title]
