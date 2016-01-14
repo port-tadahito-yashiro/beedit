@@ -44,7 +44,7 @@
           th タスク名
           th タスク詳細
           th 担当者
-        - @deleteTasks.each do |task|
+        - @delete_tasks.each do |task|
           tr
             td = task.id
             - if  task.project.blank?

@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
 
   #
   # authenticate
-  # Author masaki.nagaishi
-  # Created 2015/02/16
+  # Author kazuki.yamaguchi
+  # Created 
   # 未ログインの場合ログインを促す
   def authenticate
     return if logged_in?

@@ -9,13 +9,12 @@ class TaskController < ApplicationController
   #
   #
   def list
-    now_time = DateTime.now
-    @tasks = Task.where(finish_at: nil,
-                        deleted_at: nil,
-                        state: 0).order('id DESC').page(params[:page]).per(15)
-    @deleteTasks = Task.where(Task.arel_table[:finish_at].gt(now_time)
-                              .or(Task.arel_table[:deleted_at].not_eq(nil))
-                              .or(Task.arel_table[:state].not_eq(0))).order('deleted_at').limit(6)
+    time = DateTime.now
+    @tasks = Task.finish.state.deleted.order('id DESC').page(params[:page]).per(15)
+
+    @delete_tasks = Task.where(Task.arel_table[:finish_at].gt(time)
+                             .or(Task.arel_table[:deleted_at].not_eq(nil))
+                             .or(Task.arel_table[:state].not_eq(0))).order('deleted_at').limit(6)
   end
 
   #
@@ -60,18 +59,6 @@ class TaskController < ApplicationController
   end
 
   def edit
-    @admins = Admin.all
-    @task = Task.where(id: params[:id]).first
-    @task.admin_id = params[:admin_id]
-    @task.title = params[:title]
-    @title.context = params[:context]
-    if @task.save
-      flash[:notice] = 'タスクを編集しました'
-      redirect_to(url_for({ controller: 'task', action: 'list' }))
-    else
-      falsh[:error] = 'タスクの編集に失敗しました'
-      redirect_to(url_for({ controller: 'task', action: 'edit', id: params[:id]}))
-    end
   end
 
   def finish

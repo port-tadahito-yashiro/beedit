@@ -16,7 +16,15 @@ class Task < ActiveRecord::Base
     self.updated_time = Time.now.to_i
   end
 
-  def self.regist(params, project = nil)
+  scope :finish, ->{ where(finish_at: nil) }
+  scope :finish_before, ->(time){ where(arel_table[:finish_at].gt(time)) }
+
+  scope :state, ->{ where(state: 0) }
+  scope :state_delete, ->{ where(state: 1) }
+
+  scope :deleted, ->{ where(deleted_at: nil) }
+
+  def self.regist(params, project)
     task = Task.new
     task.project_id = project
     task.admin_id   = params[:user_id].to_i

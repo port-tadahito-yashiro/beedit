@@ -106,12 +106,12 @@
             h2 現在未完了のタスク : #{@NoFinishTask}
 
 
-        h1.btn-port.fa.fa-check  タスク管理
+        h1.btn-port.fa.fa-flag  企業管理
         ul
           li.btn-default
-            = link_to '一覧',{:controller => 'task',:action => 'list'}
+            = link_to '一覧',{:controller => 'company',:action => 'list'}
           li.btn-default
-            = link_to '新規作成',{:controller => 'task',:action => 'add'}
+            = link_to '新規作成',{:controller => 'company',:action => 'add'}
 
         h1.btn-port.fa.fa-file  プロジェクト管理
         ul
@@ -120,12 +120,12 @@
           li.btn-default
             = link_to '新規作成',{:controller => 'project',:action => 'add'}
 
-        h1.btn-port.fa.fa-flag  企業管理
+        h1.btn-port.fa.fa-check  タスク管理
         ul
           li.btn-default
-            = link_to '一覧',{:controller => 'company',:action => 'list'}
+            = link_to '一覧',{:controller => 'task',:action => 'list'}
           li.btn-default
-            = link_to '新規作成',{:controller => 'company',:action => 'add'}
+            = link_to '新規作成',{:controller => 'task',:action => 'add'}
 
         h1.btn-port.fa.fa-users  ユーザー管理
         ul
