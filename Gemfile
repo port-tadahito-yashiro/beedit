@@ -94,6 +94,9 @@ gem 'rubocop', require: false
 # https://rubygems.org/gems/rspec-rails
 gem 'rspec-rails'
 
+# https://rubygems.org/gems/cancancan
+gem 'cancancan', '~> 1.13', '>= 1.13.1'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
