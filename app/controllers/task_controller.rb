@@ -27,7 +27,7 @@ class TaskController < ApplicationController
     @admins = Admin.all
     @projects = Project.all
     if request.post?
-      if Task.regist(params)
+      if Task.regist(params,params[:project_id])
         flash[:notice] = 'タスクを作成しました'
         redirect_to(url_for({ controller: 'task', action: 'list' }))
         # notify_to_slack_task

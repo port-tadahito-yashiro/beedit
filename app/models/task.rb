@@ -24,7 +24,7 @@ class Task < ActiveRecord::Base
 
   scope :deleted, ->{ where(deleted_at: nil) }
 
-  def self.regist(params, project)
+  def self.regist(params, project = nil)
     task = Task.new
     task.project_id = project
     task.admin_id   = params[:user_id].to_i
