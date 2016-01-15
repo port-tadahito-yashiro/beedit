@@ -3,7 +3,6 @@ require 'time'
 class SuperController < ApplicationController
   # 未ログインの場合はログイン画面へ移動
   before_action :authenticate, except: [:index]
-  load_and_authorize_resource
 
   #
   # ログイン画面

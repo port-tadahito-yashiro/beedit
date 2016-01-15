@@ -30,11 +30,11 @@ $(document).ready(function() {
       var title = $('#createEventForm #title').val();
       var start = $('#createEventForm #start').val();
       var end = $('#createEventForm #end').val();
-      console.log(start);
-      var data = {event: {name: title,
+      var data = { name: title,
                           start: start,
                           end: end,
-                          allDay: 1}};
+                          allDay: 1};
+      console.log(data);
       // Ajax処理
       $.ajax({
           type: "POST",
@@ -103,11 +103,11 @@ $(document).ready(function() {
         var start = $('#updateEventForm #start').val();
         var end = $('#updateEventForm #end').val();
         var url = "/super/events/" + event.id;
-        var data = {_method: 'PUT',
-                event: {name: title,
+        var data = {
+                    name: title,
                     start: start,
                     end: end,
-                    allDay: 1}};
+                    allDay: 1};
         // Ajax処理
         $.ajax({
             type: "POST",

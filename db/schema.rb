@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114092042) do
+ActiveRecord::Schema.define(version: 20160115062406) do
 
   create_table "admins", force: true do |t|
     t.integer  "department_id",             null: false
@@ -100,6 +100,20 @@ ActiveRecord::Schema.define(version: 20160114092042) do
     t.datetime "updated_at",                       null: false
     t.integer  "updated_time",                     null: false
     t.integer  "updated_user",         default: 1, null: false
+  end
+
+  create_table "roles", force: true do |t|
+    t.string   "name",                     null: false
+    t.text     "description",              null: false
+    t.datetime "created_at",               null: false
+    t.integer  "created_time",             null: false
+    t.integer  "created_user", default: 1, null: false
+    t.datetime "deleted_at"
+    t.integer  "deleted_time"
+    t.integer  "deleted_user"
+    t.datetime "updated_at",               null: false
+    t.integer  "updated_time",             null: false
+    t.integer  "updated_user", default: 1, null: false
   end
 
   create_table "supers", force: true do |t|

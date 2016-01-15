@@ -30,9 +30,9 @@ class EventController < ApplicationController
    if request.post?
      # データの保存
      event = Event.new
-     event[:title] = params[:event][:name]
-     event[:start] = params[:event][:start]
-     event[:end] = params[:event][:end]
+     event[:title] = params[:name]
+     event[:start] = params[:start]
+     event[:end]   = params[:end]
      event.save
    end
    data = []
@@ -55,19 +55,19 @@ class EventController < ApplicationController
   #   end
    #end
   def update
-    if request.put?
+    if request.post?
       # イベントデータ更新処理
       data = Event.where(:id => params[:id]).first
-      data[:title] = params[:event][:name]
-      data[:start] = params[:event][:start]
-      data[:end]   = params[:event][:end]
+      data[:title] = params[:name]
+      data[:start] = params[:start]
+      data[:end]   = params[:end]
       data.save
 
       unless data[:project_id].blank?
         project = Project.where(:id => data[:project_id]).first
-        project[:name]      = params[:event][:name]
-        project[:start_at]  = params[:event][:start]
-        project[:finish_at] = params[:event][:end]
+        project[:name]      = params[:name]
+        project[:start_at]  = params[:start]
+        project[:finish_at] = params[:end]
         project.save
       end
     end
@@ -95,15 +95,10 @@ class EventController < ApplicationController
    render :json => ActiveSupport::JSON.encode(data)
   end
 
- private
-   # Use callbacks to share common setup or constraints between actions.
-   def set_event
-     @event = Event.find(params[:id])
-   end
-
-   # Never trust parameters from the scary internet, only allow the white list through.
-   def event_params
-     params.require(:event).permit(:name, :start, :end, :color, :allDay)
-   end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
 end

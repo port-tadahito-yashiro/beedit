@@ -3,27 +3,26 @@ require 'digest/sha1'
 class Admin < ActiveRecord::Base
 
   has_one :department
+  has_one :role
   has_many :tasks
 
   paginates_per 5
 
   before_save do
-    self.salt = Admin.new_salt
-    self.password = Admin.crypt_password(self.password,
-                                        self.salt)
-    self.created_at = Time.now
+    self.salt         = Admin.new_salt
+    self.password     = Admin.crypt_password(self.password, self.salt)
+    self.created_at   = Time.now
     self.created_time = Time.now.to_i
     self.created_user = 1
-    self.updated_at = Time.now
+    self.updated_at   = Time.now
     self.updated_time = Time.now.to_i
     self.updated_user = 1
   end
 
   before_update do
-    self.salt = Admin.new_salt
-    self.password = Admin.crypt_password(self.password,
-                                         self.salt)
-    self.updated_at = Time.now
+    self.salt         = Admin.new_salt
+    self.password     = Admin.crypt_password(self.password, self.salt)
+    self.updated_at   = Time.now
     self.updated_time = Time.now.to_i
   end
 
@@ -52,10 +51,11 @@ class Admin < ActiveRecord::Base
     if params[:password] == params[:password_confirm] && !params[:password].blank? ||
        !params[:name].blank? ||
        !params[:email].blank?
-      admin.name = params[:name]
+      admin.name          = params[:name]
       admin.department_id = params[:department].to_i
-      admin.email = params[:email]
-      admin.password = params[:password]
+      admin.role_id       = params[:role].to_i
+      admin.email         = params[:email]
+      admin.password      = params[:password]
       if admin.save
         return true
       end
@@ -69,10 +69,11 @@ class Admin < ActiveRecord::Base
     if params[:password] == params[:password_confirm] && !params[:password].blank? ||
        !params[:name].blank? ||
        !params[:email].blank?
-      admin.name = params[:name]
+      admin.name          = params[:name]
       admin.department_id = params[:department].to_i
-      admin.email = params[:email]
-      admin.password = params[:password]
+      admin.role_id       = params[:role].to_i
+      admin.email         = params[:email]
+      admin.password      = params[:password]
       if admin.save
         return true
       end

@@ -18,6 +18,7 @@ class AdminController < ApplicationController
   #
   def add
     @departments = Department.all
+    @roles = Role.all
     if request.post?
       if Admin.regist(params)
         flash[:notice] = '新規ユーザーを作成しました'

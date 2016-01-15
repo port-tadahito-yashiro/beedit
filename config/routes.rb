@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   # ログイン画面
-  #match '/super/login' => 'super#index', :via => [:get, :post]
   root 'super#index',:via => [:get, :post]
   match '/super/logout' => 'super#logout', :via => [:get, :post]
 
@@ -9,17 +8,16 @@ Rails.application.routes.draw do
   match '/super/dashboard'     => 'super#dashboard', :via => [:get]
 
   # イベント周り
-  match '/super/events'   => 'event#create', :via => [:get, :post]
-  match '/super/events/:id'   => 'event#update', :via => [:put, :post]
-  match '/super/events/delete/:id'   => 'event#delete', :via => [:get, :post]
+  match '/super/events'             => 'event#create', :via => [:get, :post]
+  match '/super/events/:id'         => 'event#update', :via => [:put, :post]
+  match '/super/events/delete/:id'  => 'event#delete', :via => [:get, :post]
   # フォーム取得
   match '/project/getform/task'     => 'project#get_form', :via => [:get]
-
 
   #タスク管理
   match '/super/task/list'                   => 'task#list',:via => [:get]
   match '/super/task/add'                    => 'task#add',:via => [:get,:post]
-  match '/super/task/edit/:id'                   => 'task#edit',:via => [:get,:post]
+  match '/super/task/edit/:id'               => 'task#edit',:via => [:get,:post]
   match '/super/task/delete/:id'             => 'task#delete',:via => [:get,:post]
   match '/super/task/finish/:id'             => 'task#finish',:via => [:get,:post]
 
@@ -53,6 +51,4 @@ Rails.application.routes.draw do
 
   #管理ユーザー
   #match '/super/admin/list'                   => 'admin#admin_list', :via => [:get]
-
-
 end

@@ -4,6 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   load_and_authorize_resource
 
+  #before_filter do
+  #  resource = controller_name.singularize.to_sym
+  #  method = "#{resource}_params"
+  #  params[resource] &&= send(method) if respond_to?(method, true)
+  #end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = '権限がありません'
+    redirect_to(url_for({ controller: 'super', action: 'dashboard' }))
+  end
+
   def logged_in?
     return !!session[:adminId]
   end
@@ -22,7 +33,5 @@ class ApplicationController < ActionController::Base
   def current_ability
     current_user = Admin.where(id: session[:adminId]).last
     @current_ability ||= Ability.new(current_user)
-    # e.g. @current_ability ||= Ability.new(current_user, params)
-    # e.g. @current_ability ||= Ability.new(admin_user)
   end
 end
