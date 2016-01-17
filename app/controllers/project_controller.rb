@@ -106,6 +106,10 @@ class ProjectController < ApplicationController
     end
   end
 
+  def view
+    @project = Project.where(:id => params[:id]).last
+  end
+
   #
   # delete
   # Author kazuki.yamaguchi

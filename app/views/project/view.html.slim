@@ -1,0 +1,69 @@
+#wrapper
+
+  == showFlashMessages
+
+  #wrapper-project
+
+    = link_to 'ダッシュボードへ戻る',{:controller => 'super',:action => 'dashboard'}, :class => 'btn btn-default btn-prev dashboard'
+    = link_to 'プロジェクトの新規作成へ',{:controller => 'project',:action => 'add'}, :class => 'btn btn-primary btn-prev dashboard'
+
+
+    .project-views
+      dl.formSet
+        dt.required　セールス担当
+        dd
+          span= @project.sales_user_id
+        dt.required　企業
+        dd
+          span= @project.company_id
+        dt.required　プロジェクト名
+        dd
+          span= @project.name
+        dt.required　データベーステーブル
+        dd
+          span= @project.table_name
+        dt.required　URL
+        dd
+          span= @project.url
+        dt.required　タイトル
+        dd
+          span= @project.title
+        dt.required　ディスクリプション
+        dd
+          span= @project.description
+        dt.required　OGPディスクリプション
+        dd
+          span= @project.ogp_description
+        dt.required　キーワード
+        dd
+          span= @project.keyword
+        dt.required　ThanksMail　タイトル
+        dd
+          span= @project.thanks_title
+        dt.required　ThanksMail　テキスト
+        dd
+          span= @project.thanks_text
+        dt.required　先方宛　タイトル
+        dd
+          span= @project.mail_title
+        dt.required　先方宛　テキスト
+        dd
+          span= @project.mail_text
+        dt.required　個人情報の文面
+        dd
+          span= @project.personal_info
+        dt.required　プロジェクト開始日時
+        dd
+          span= @project.start_at
+        dt.required　プロジェクト終了日時
+        dd
+          span= @project.finish_at
+        dt.required　ドメイン名
+        dd
+          span= @project.domain_name
+        dt.required　ドメイン期限
+        dd
+          span= @project.domain_deadline_at
+        dt.required　SSL期限
+        dd
+          span= @project.ssl_deadline_at

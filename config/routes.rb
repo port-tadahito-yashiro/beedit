@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   match '/super/project/list'                => 'project#list',:via => [:get]
   match '/super/project/add'                 => 'project#add',:via => [:get, :post]
   match '/super/project/edit/:id'            => 'project#edit',:via => [:get, :post]
+  match '/super/project/view/:id'            => 'project#view',:via => [:get]
   match '/super/project/delete/:id'          => 'project#delete',:via => [:get, :post]
   match '/super/project/delete/list'         => 'project#delete_list',:via => [:get, :post]
   match '/super/project/delete/restore/:id'  => 'project#delete_restore',:via => [:get, :post]

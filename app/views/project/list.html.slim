@@ -20,7 +20,7 @@
         - @projects.each do |project|
           tr
             td = project.id
-            td = project.title
+            td = link_to(project.title,url_for(:controller => 'project',:action => 'view', :id => project.id))
             td = project.ssl_deadline_at
             td = project.domain_deadline_at
             == deadLine(project.domain_deadline_at)
