@@ -42,6 +42,6 @@ Rails.application.configure do
   #ENV["RAILS_RELATIVE_URL_ROOT"] = "/beedit"
   #Rails.application.config.relative_url_root = "/beedit"
 
-  config.log_level = :warn
+  #config.log_level = :warn
 
 end

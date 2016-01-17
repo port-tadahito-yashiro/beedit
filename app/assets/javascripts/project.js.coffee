@@ -42,7 +42,7 @@ $ ->
         if(msg.success)
           console.log(msg)
           window.location = '/super/project/edit/' + msg.id
-        return
+          return
       error: (XMLHttpRequest, textStatus, errorThrown) ->
         console.log('挿入に失敗')
         window.location = '/super/project/add'
@@ -56,7 +56,6 @@ $ ->
   $('#wrapper .project-edit-submit').click ->
     # htmlのデータを取得する
     form = $('.project-edit').children()
-    console.log(form)
     formData = upload_data(form)
     project_id = location.pathname.split('/super/project/edit/')[1]
     # タスクの追加　及び　更新
@@ -72,7 +71,7 @@ $ ->
         console.log('aaaa')
         if(msg.success)
           window.location = '/super/project/edit/' + msg.id
-        return
+          return
       error: (XMLHttpRequest, textStatus, errorThrown)->
         return
     return
@@ -97,6 +96,12 @@ $ ->
       title: $(form).find('#title').val()
       description: $(form).find('#description').val()
       ogp_description: $(form).find('#ogp_description').val()
+      keyword: $(form).find('#keyword').val()
+      thanks_title: $(form).find('#thanks_title').val()
+      thanks_text: $(form).find('#thanks_text').val()
+      mail_title: $(form).find('#mail_title').val()
+      mail_text: $(form).find('#mail_text').val()
+      personal_info: $(form).find('#personal_info').val()
       start_at: $(form).find('#start_at').val()
       finish_at: $(form).find('#finish_at').val()
       domain_name: $(form).find('#domain_name').val()

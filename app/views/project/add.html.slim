@@ -61,6 +61,42 @@
           .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'ogp_description',:name => 'ogp_description',:id => 'ogp_description', :placeholder => 'OGPディスクリプション'
 
         .form-group
+          label.col-sm-2.control-label for="keyword"
+            'キーワード'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'keyword',:name => 'keyword',:id => 'keyword', :placeholder => 'キーワード'
+
+        .form-group
+          label.col-sm-2.control-label for="thanks_title"
+            'サンクスメール　タイトル'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'thanks_title',:name => 'thanks_title',:id => 'thanks_title', :placeholder => 'サンクスメール タイトル'
+
+        .form-group
+          label.col-sm-2.control-label for="thanks_text"
+            'サンクスメール　テキスト'
+            span.text-danger *
+          .col-sm-10 = text_area_tag '', '', :class => 'form-control', :id => 'thanks_text',:name => 'thanks_text',:id => 'thanks_text', :placeholder => 'サンクスメール テキスト',:size => "10x10"
+
+        .form-group
+          label.col-sm-2.control-label for="mail_title"
+            '先方メール　タイトル'
+            span.text-danger *
+          .col-sm-10 = text_field_tag '', '', :class => 'form-control', :id => 'mail_title',:name => 'mail_title',:id => 'mail_title', :placeholder => '先方メール タイトル'
+
+        .form-group
+          label.col-sm-2.control-label for="mail_text"
+            '先方メール　テキスト'
+            span.text-danger *
+          .col-sm-10 = text_area_tag '', '', :class => 'form-control', :id => 'mail_text',:name => 'mail_text',:id => 'mail_text', :placeholder => '先方メール テキスト',:size => "10x10"
+
+        .form-group
+          label.col-sm-2.control-label for="personal_info"
+            '個人情報保護の文面'
+            span.text-danger *
+          .col-sm-10 = text_area_tag '', '', :class => 'form-control', :id => 'personal_info',:name => 'personal_info',:id => 'personal_info', :placeholder => '個人情報保護の文面',:size => "10x10"
+
+        .form-group
           label.col-sm-2.control-label for="start_at"
             '開始時間'
             span.text-danger *
