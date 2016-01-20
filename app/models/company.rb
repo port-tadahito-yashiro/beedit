@@ -25,17 +25,18 @@ class Company < ActiveRecord::Base
   #
   def self.regist(params)
     company = Company.new
-    if params[:password] == params[:password_confirm] && !params[:password].blank?
+    #if params[:password] == params[:password_confirm] && !params[:password].blank?
       company.name = params[:name]
-      company.description = params[:description]
       company.email = params[:email]
-      company.password = params[:password]
+      # company.password = params[:password]
       if company.save
         return true
+      else
+        return false
       end
-      return false
-    end
-   return false
+    #  return false
+    #end
+    #return false
   end
 
   #
@@ -46,17 +47,18 @@ class Company < ActiveRecord::Base
   #
   def self.updated(params)
     company = Company.where(id: company_id).first
-    if params[:password] == params[:password_confirm] && !params[:password].blank?
+    #if params[:password] == params[:password_confirm] && !params[:password].blank?
       company.name = params[:name]
-      company.description = params[:description]
       company.email = params[:email]
-      company.password = params[:password]
+       company.password = params[:password]
       if company.save
         return true
+      else
+        retunr false
       end
-      return false
-    end
-    return false
+    #  return false
+    #end
+    #return false
   end
 
   private
